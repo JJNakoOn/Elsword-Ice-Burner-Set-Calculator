@@ -101,6 +101,10 @@ def parseEffect(text):
     match = re.search(pattern, text)
     if match:
         return {"attribute": "流血%", "value": ast.literal_eval(match.group(1))}
+    pattern = r"攻攻擊時給予傷害量的([\d.]+)%程度3秒間追加持續傷害"
+    match = re.search(pattern, text)
+    if match:
+        return {"attribute": "流血%", "value": ast.literal_eval(match.group(1))}
 
     # -MP消耗量%
     pattern = r"MP消耗量\-([\d.]+)%"

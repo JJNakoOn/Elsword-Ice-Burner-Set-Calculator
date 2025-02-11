@@ -1430,7 +1430,8 @@
                 "pieces": 3,
                 "effects": [
                     {
-                        "description": "攻擊時給予傷害量的5%程度3秒間追加持續傷害(副本)"
+                        "attribute": "流血%",
+                        "value": 5
                     },
                     {
                         "attribute": "技能傷害%",
