@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>艾爾之光冰裝搭配器</title>
+    <link rel="icon" href="./data/favicon.ico">
+    <link href="./style/bootstrap.min.css" rel="stylesheet" />
+    <link href="./style/els.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>艾爾之光冰裝搭配器</h1>
+        <p>
+          這是根據台服艾爾之光的冰裝進度讓玩家方便搭配冰裝飾品格的小工具，操作方法如下：<br />
+          1.<b>選擇冰裝</b>分頁中選擇持有的冰裝<br />
+          2.在<b>搭配冰裝</b>分頁中可以根據部位挑選欲搭配的冰裝，可於<b>套裝效果</b>中勾選最多三套的冰裝套效<br />
+          3.最終素質結果會顯示在<b>最終數值</b>，可用截圖模式僅看部位及數值
+        </p>
+      </header>
+
+      <nav class="nav nav-tabs mb-4">
+        <button class="nav-link active" onclick="openTab('importTab', this)">
+          選擇冰裝
+        </button>
+        <button class="nav-link" onclick="openTab('setupTab', this)">
+          搭配冰裝
+        </button>
+      </nav>
+
+      <main>
+        <section id="importTab" class="tab-content active">
+          <div id="availableEquipmentHeader">
+            <h3>可用冰裝清單</h3>
+            <button class="btn btn-secondary" onclick="selectAllEquipment()">
+              全選所有冰裝
+            </button>
+          </div>
+          <div id="availableEquipment"></div>
+          <div class="d-flex justify-content-center my-3" id="pagination"></div>
+          <div class="import-button-wrapper">
+            <button class="btn btn-primary" onclick="importSelectedEquipment()">
+              套用
+            </button>
+          </div>
+        </section>
+
+        <section id="setupTab" class="tab-content">
+          <div class="toggle-switch">
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="toggleSections"
+              />
+              <label class="form-check-label" for="toggleSections">
+                <h5><b>截圖模式</b></h5>
+              </label>
+            </div>
+          </div>
+          <div class="setup-container">
+            <div class="equipment-selection">
+              <h3>部位選擇</h3>
+              <div class="equipment-parts" id="equipmentParts">
+                <div
+                  class="equipment-part"
+                  onclick="selectPart('weapon')"
+                  id="weapon"
+                >
+                  武器
+                </div>
+                <div
+                  class="equipment-part"
+                  onclick="selectPart('accessoryWeapon')"
+                  id="accessoryWeapon"
+                >
+                  飾品(武器)
+                </div>
+                <div
+                  class="equipment-part"
+                  onclick="selectPart('support')"
+                  id="support"
+                >
+                  支援
+                </div>
+                <div
+                  class="equipment-part"
+                  onclick="selectPart('faceTop')"
+                  id="faceTop"
+                >
+                  臉上
+                </div>
+                <div
+                  class="equipment-part"
+                  onclick="selectPart('accessoryUpper')"
+                  id="accessoryUpper"
+                >
+                  飾品(上衣)
+                </div>
+                <div
+                  class="equipment-part"
+                  onclick="selectPart('faceMiddle')"
+                  id="faceMiddle"
+                >
+                  臉中
+                </div>
+                <div
+                  class="equipment-part"
+                  onclick="selectPart('accessoryLower')"
+                  id="accessoryLower"
+                >
+                  飾品(下衣)
+                </div>
+                <div
+                  class="equipment-part"
+                  onclick="selectPart('faceBottom')"
+                  id="faceBottom"
+                >
+                  臉下
+                </div>
+                <div
+                  class="equipment-part"
+                  onclick="selectPart('arm')"
+                  id="arm"
+                >
+                  手臂
+                </div>
+                <div
+                  class="equipment-part"
+                  onclick="selectPart('earring')"
+                  id="earring"
+                >
+                  耳環
+                </div>
+                <div
+                  class="equipment-part"
+                  onclick="selectPart('necklace')"
+                  id="necklace"
+                >
+                  項鍊
+                </div>
+                <div
+                  class="equipment-part"
+                  onclick="selectPart('ring')"
+                  id="ring"
+                >
+                  戒指
+                </div>
+              </div>
+            </div>
+            <div class="ice-options" id="iceOptionsSection">
+              <h3>挑選冰裝</h3>
+              <div id="equipmentOptions" class="radio-selection"></div>
+            </div>
+
+            <div class="suit-effects" id="suitEffectsSection">
+              <h3>套裝效果(最多選3個)</h3>
+              <ul id="suitEffectsList" class="checkbox-list"></ul>
+            </div>
+            <div class="final-values">
+              <h3>最終數值</h3>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>屬性</th>
+                    <th>值</th>
+                  </tr>
+                </thead>
+                <tbody id="finalAttributes"></tbody>
+              </table>
+              <div class="special-effects">
+                <h3>其他效果</h3>
+                <ul id="specialEffectsList"></ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <p>
+          特別感謝<a href="https://kelsword.web.fc2.com/" target="_blank">KelsworD</a>的資料提供以及<a href="https://gemini.google.com/" target="_blank">Google Gemini</a>的協助<br/> 
+          網站上遇到任何問題或建議，可以 1.到github提issue 2.Discord找nako_on(奈子ㄤ)
+        </p>
+      </footer>
+    </div>
+    <script src="./src/bootstrap.bundle.min.js"></script>
+    <script src="./src/els.js"></script>
+  </body>
+</html>
