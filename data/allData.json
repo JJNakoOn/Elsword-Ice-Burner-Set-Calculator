@@ -6425,9 +6425,6 @@
                 "attributes": {
                     "attrList": [
                         {
-                            "description": "-"
-                        },
-                        {
                             "attribute": "致命一擊%",
                             "value": 1.5
                         },
@@ -6678,9 +6675,6 @@
                 "part": "accessoryLower",
                 "attributes": {
                     "attrList": [
-                        {
-                            "description": "-"
-                        },
                         {
                             "attribute": "移動速度%",
                             "value": 3
@@ -8954,9 +8948,6 @@
                 "attributes": {
                     "attrList": [
                         {
-                            "description": "-"
-                        },
-                        {
                             "attribute": "致命一擊%",
                             "value": 2
                         },
@@ -9081,9 +9072,6 @@
                 "part": "weapon",
                 "attributes": {
                     "attrList": [
-                        {
-                            "description": "-"
-                        },
                         {
                             "attribute": "致命一擊%",
                             "value": 4
@@ -9305,9 +9293,6 @@
                 "attributes": {
                     "attrList": [
                         {
-                            "description": "-"
-                        },
-                        {
                             "attribute": "動作速度%",
                             "value": 3
                         },
@@ -9355,9 +9340,6 @@
                 "part": "arm",
                 "attributes": {
                     "attrList": [
-                        {
-                            "description": "-"
-                        },
                         {
                             "attribute": "動作速度%",
                             "value": 2
@@ -9424,9 +9406,6 @@
                 "part": "weapon",
                 "attributes": {
                     "attrList": [
-                        {
-                            "description": "-"
-                        },
                         {
                             "attribute": "致命一擊%",
                             "value": 4

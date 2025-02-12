@@ -16,7 +16,7 @@ zh2enMap = {
     "飾品(手臂)": "arm",
     "飾品(耳環)": "earring",
     "飾品(項鍊)": "necklace",
-    "飾品(戒指物理)": "ring"
+    "飾品(戒指物理)": "ring",
 }
 
 
@@ -50,7 +50,7 @@ def parseEffect(text):
         "物理攻擊力": "雙攻%",
         "HP增加": "HP%",
         "攻擊體力100%以下的敵人時傷害": "100%血殺%",
-        "兩極化:攻擊/被擊傷害": "兩極化%"
+        "兩極化:攻擊/被擊傷害": "兩極化%",
     }
     for pp in percentagePlusList:
         percentagePlusMap[pp] = pp + "%"
@@ -67,7 +67,7 @@ def parseEffect(text):
     match = re.search(pattern, text)
     if match:
         return {"attribute": "雙攻+", "value": ast.literal_eval(match.group(1))}
-    
+
     pattern = r"魔法攻擊力\+([\d.]+)"
     match = re.search(pattern, text)
     if match:
@@ -78,7 +78,7 @@ def parseEffect(text):
     match = re.search(pattern, text)
     if match:
         return {"attribute": "雙防+", "value": ast.literal_eval(match.group(1))}
-    
+
     pattern = r"魔法防禦力\+([\d.]+)"
     match = re.search(pattern, text)
     if match:
@@ -118,7 +118,8 @@ def parseEffect(text):
     if match:
         return {"attribute": "無視防禦%", "value": ast.literal_eval(match.group(1))}
 
-    return {"description": text.strip()}
+    descriptionContent = text.strip()
+    return {"description": descriptionContent} if descriptionContent != "-" else {}
 
 
 def getHTML(url):
@@ -163,7 +164,7 @@ def getCellAttrList(cell):
 def main():
     result = []
     urlPrefix = "https://kelsword.web.fc2.com/rareavatar/ra_"
-    
+
     for idx in reversed(range(1, 71)):
         url = urlPrefix + str(idx).zfill(2) + ".htm"
         soup = BeautifulSoup(getHTML(url), "html.parser")
@@ -174,8 +175,11 @@ def main():
         for row in soup.select("tr"):
             columns = row.find_all("td")
             col0Title = re.sub(r"\n", "", columns[0].text).strip()
-            col0Title = col0Title.replace(
-                "追加", "").strip() if "追加" in col0Title else col0Title
+            col0Title = (
+                col0Title.replace("追加", "").strip()
+                if "追加" in col0Title
+                else col0Title
+            )
 
             # process suitEffects
             if col0Title == "武器":
@@ -187,10 +191,7 @@ def main():
                             suitFXData = parseEffect(suitFXs[suitFXIdx])
                             if suitFXData != {}:
                                 fxList.append(suitFXData)
-                        suitEffectsList.append({
-                            "pieces": idx,
-                            "effects": fxList
-                        })
+                        suitEffectsList.append({"pieces": idx, "effects": fxList})
             # process parts attributes
             if col0Title in zh2enMap:
                 itemName = ""
@@ -200,28 +201,29 @@ def main():
                     itemName = getCellAttrList(columns[1])[0]
                     if itemName.endswith("(男)"):
                         itemName = setName + col0Title
-                allAttr = getCellAttrList(
-                    columns[2]) + getCellAttrList(columns[3])
+                allAttr = getCellAttrList(columns[2]) + getCellAttrList(columns[3])
                 attrList = []
                 for attrIdx in range(len(allAttr)):
                     attrData = parseEffect(allAttr[attrIdx])
                     if attrData != {}:
                         attrList.append(attrData)
-                partsList.append({
-                    "name": itemName,
-                    "part": zh2enMap[col0Title],
-                    "attributes": {
-                        "attrList": attrList
+                partsList.append(
+                    {
+                        "name": itemName,
+                        "part": zh2enMap[col0Title],
+                        "attributes": {"attrList": attrList},
                     }
-                })
+                )
 
-        result.append({
-            "set": setName,
-            "link": url,
-            "parts": partsList,
-            "suitEffects": suitEffectsList
-        })
-    with open("./allData.json", 'w', encoding="utf-8") as f:
+        result.append(
+            {
+                "set": setName,
+                "link": url,
+                "parts": partsList,
+                "suitEffects": suitEffectsList,
+            }
+        )
+    with open("./allData.json", "w", encoding="utf-8") as f:
         f.write(json.dumps(result, ensure_ascii=False, indent=4))
 
 
