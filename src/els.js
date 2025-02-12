@@ -563,7 +563,7 @@ function updateSuitEffects() {
             );
             const uniqueId = `${setName}-${maxPieces}-${Date.now()}`;
 
-            let effectsHTML = `<input type="checkbox" id="${uniqueId}" value="${setName}" data-pieces="${maxPieces}"> <label for="${uniqueId}"><b>${setName} (已穿 ${count} 件)</b><br>`;
+            let effectsHTML = `<input type="checkbox" id="${uniqueId}" value="${setName}" data-pieces="${maxPieces}"> <label class="suit-effect-content" for="${uniqueId}"><b>${setName} (已穿 ${count} 件)</b><br>`;
 
             const sortedEffects = [...setData.suitEffects].sort(
                 (a, b) => a.pieces - b.pieces
