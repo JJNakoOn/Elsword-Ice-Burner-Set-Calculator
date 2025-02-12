@@ -8,6 +8,10 @@
             "attributes": {
                 "attrList": [
                     {
+                        "attribute": "雙攻+",
+                        "value": 25
+                    },
+                    {
                         "attribute": "適應力%",
                         "value": 2
                     },
@@ -23,6 +27,10 @@
             "part": "support",
             "attributes": {
                 "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 25
+                    },
                     {
                         "attribute": "致命一擊%",
                         "value": 2
@@ -40,6 +48,10 @@
             "attributes": {
                 "attrList": [
                     {
+                        "attribute": "雙攻+",
+                        "value": 25
+                    },
+                    {
                         "attribute": "致命一擊%",
                         "value": 3
                     },
@@ -55,6 +67,10 @@
             "part": "accessoryUpper",
             "attributes": {
                 "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 25
+                    },
                     {
                         "attribute": "極大化%",
                         "value": 3
@@ -72,6 +88,10 @@
             "attributes": {
                 "attrList": [
                     {
+                        "attribute": "雙攻+",
+                        "value": 25
+                    },
+                    {
                         "attribute": "致命一擊%",
                         "value": 3
                     },
@@ -87,6 +107,10 @@
             "part": "accessoryLower",
             "attributes": {
                 "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 25
+                    },
                     {
                         "attribute": "極大化%",
                         "value": 3
@@ -104,6 +128,10 @@
             "attributes": {
                 "attrList": [
                     {
+                        "attribute": "雙攻+",
+                        "value": 25
+                    },
+                    {
                         "attribute": "致命一擊%",
                         "value": 3
                     },
@@ -119,6 +147,10 @@
             "part": "arm",
             "attributes": {
                 "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 25
+                    },
                     {
                         "attribute": "極大化%",
                         "value": 3
@@ -136,6 +168,10 @@
             "attributes": {
                 "attrList": [
                     {
+                        "attribute": "雙攻+",
+                        "value": 25
+                    },
+                    {
                         "attribute": "致命一擊%",
                         "value": 2
                     },
@@ -152,6 +188,10 @@
             "attributes": {
                 "attrList": [
                     {
+                        "attribute": "雙攻+",
+                        "value": 25
+                    },
+                    {
                         "attribute": "適應力%",
                         "value": 2
                     },
@@ -167,6 +207,10 @@
             "part": "ring",
             "attributes": {
                 "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 25
+                    },
                     {
                         "attribute": "技能傷害%",
                         "value": 2
