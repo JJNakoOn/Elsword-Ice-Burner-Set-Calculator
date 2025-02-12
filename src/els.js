@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     initializeFinalAttributes();
     const toggleSections = document.getElementById("toggleSections");
     const iceOptionsSection = document.getElementById("iceOptionsSection");
+    const specialEffectsBottom = document.getElementById("specialFXBottom");
+    const specialFXRight = document.getElementById("specialFXRight");
     const suitEffectsSection =
         document.getElementById("suitEffectsSection");
 
@@ -13,6 +15,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         suitEffectsSection.style.display = toggleSections.checked
             ? "none"
             : "block";
+        specialEffectsBottom.style.display = toggleSections.checked
+            ? "none"
+            : "block";
+        specialFXRight.style.display = toggleSections.checked
+            ? "block"
+            : "none";
     });
 
     iceOptionsSection.style.display = toggleSections.checked
@@ -21,9 +29,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     suitEffectsSection.style.display = toggleSections.checked
         ? "none"
         : "block";
+    specialEffectsBottom.style.display = toggleSections.checked
+        ? "none"
+        : "block";
+    specialFXRight.style.display = toggleSections.checked
+        ? "block"
+        : "none";
 });
 
-const selectedEquipmentSets = new Set(); 
+const selectedEquipmentSets = new Set();
 const selectedCheckboxes = new Set();
 const selectedAttributes = {};
 const selectedParts = {};
@@ -113,7 +127,7 @@ function generateMockData(count) {
         "arm",
         "earring",
         "ring"
-    ]; 
+    ];
     const data = [];
 
     for (let i = 1; i <= count; i++) {
@@ -494,7 +508,7 @@ function updateFinalValues() {
             if (setData) {
                 suitEffects[effectId].effect = setData.suitEffects.filter(
                     (effectSet) => effectSet.pieces <= maxPieces
-                ); 
+                );
             }
         }
     });
@@ -509,7 +523,7 @@ function updateFinalValues() {
                         if (attributeTotals[eff.attribute] !== undefined) {
                             attributeTotals[eff.attribute] += eff.value;
                         } else {
-                            specialEffects.push(eff.description); 
+                            specialEffects.push(eff.description);
                         }
                     });
                 }
@@ -524,11 +538,17 @@ function updateFinalValues() {
     const specialEffectsList =
         document.getElementById("specialEffectsList");
     specialEffectsList.innerHTML = "";
+    const specialEffectsListRight =
+        document.getElementById("specialEffectsListRight");
+    specialEffectsListRight.innerHTML = "";
 
     specialEffects.forEach((effect) => {
         const listItem = document.createElement("li");
         listItem.textContent = effect;
         specialEffectsList.appendChild(listItem);
+        const listItemRight = document.createElement("li");
+        listItemRight.textContent = effect;
+        specialEffectsListRight.appendChild(listItemRight);
     });
 }
 
