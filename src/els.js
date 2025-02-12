@@ -389,6 +389,7 @@ function clearSelectedPart(part) {
     delete selectedAttributes[part];
     updateFinalValues();
     removeZeroCountSuits();
+    applySuitEffectClasses();
 }
 
 function updateSelectedPart(
@@ -447,6 +448,7 @@ function updateSelectedPart(
 
     updateFinalValues();
     removeZeroCountSuits();
+    applySuitEffectClasses();
 }
 
 function removeZeroCountSuits() {
@@ -639,10 +641,35 @@ function updateSuitEffects() {
                     checkBox.checked = false;
                 } else {
                     updateFinalValues();
+                    applySuitEffectClasses();
                 }
             });
         }
     }
+}
+
+function applySuitEffectClasses() {
+    // 移除所有已套用的 class
+    document.querySelectorAll('.equipment-part').forEach(part => {
+        part.classList.remove('selected-suit-part-1', 'selected-suit-part-2', 'selected-suit-part-3');
+    });
+
+    const checkedSets = document.querySelectorAll('#suitEffectsList input[type="checkbox"]:checked');
+    checkedSets.forEach((cb, index) => {
+        const setName = cb.value;
+        const setData = allEquipmentData.find(set => set.set === setName);
+        if (setData) {
+            setData.parts.forEach(part => {
+                const equipmentPart = document.getElementById(part.part);
+                // 檢查該部位是否實際有穿著裝備
+                if (selectedAttributes[part.part] && selectedAttributes[part.part].setName === setName) {
+                    if (equipmentPart) {
+                        equipmentPart.classList.add(`selected-suit-part-${index + 1}`);
+                    }
+                }
+            });
+        }
+    });
 }
 
 function openTab(tabId, clickedButton) {

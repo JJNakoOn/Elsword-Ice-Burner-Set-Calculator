@@ -91,7 +91,7 @@ body {
   }
 
   .selected-part {
-    color: #ffa500;
+    color: #ff6600;
     text-align: center;
   }
 
@@ -250,3 +250,21 @@ body {
     color: #2980b9;
     /* 修改文字顏色 */
   }
+
+/* 寧靜森林 */
+.selected-suit-part-1 {
+  background-color: #e6f0e6;
+  color: #336633;
+}
+
+/* 溫暖柔和 */
+.selected-suit-part-2 {
+  background-color: #fff5cc;
+  color: #663300;
+}
+
+/* 星空藍調 */
+.selected-suit-part-3 {
+  background-color: #e3f8fd;
+  color: #1a237e;
+}
