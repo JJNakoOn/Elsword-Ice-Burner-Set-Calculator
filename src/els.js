@@ -1,4 +1,12 @@
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|Opera Mini/i.test(navigator.userAgent);
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
+    if (isMobileDevice()) {
+        const myModal = new bootstrap.Modal(document.getElementById('mobileWarningModal'));
+        myModal.show();
+    }
     await loadAvailableIceEquipment();
     initializeFinalAttributes();
     const toggleSections = document.getElementById("toggleSections");

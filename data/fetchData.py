@@ -117,6 +117,10 @@ def parseEffect(text):
     match = re.search(pattern, text)
     if match:
         return {"attribute": "無視防禦%", "value": ast.literal_eval(match.group(1))}
+    pattern = r"無視敵人魔法防禦力([\d.]+)%"
+    match = re.search(pattern, text)
+    if match:
+        return {}
 
     descriptionContent = text.strip()
     return {"description": descriptionContent} if descriptionContent != "-" else {}
