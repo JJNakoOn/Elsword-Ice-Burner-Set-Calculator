@@ -125,7 +125,10 @@ body {
   }
 
   .d-block {
-    margin-bottom: 5px;
+    margin: 10px;
+  }
+  .d-block b{
+    height: 20px;
   }
 
   .equipment-selection,
