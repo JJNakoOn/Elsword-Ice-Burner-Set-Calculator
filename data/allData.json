@@ -287,14 +287,15 @@
                             "value": 30
                         },
                         {
-                            "attribute": "兩極化%",
-                            "value": 1
+                            "attribute": "流血%",
+                            "value": 2
                         },
                         {
                             "attribute": "極大化%",
-                            "value": 2
+                            "value": 1
                         }
                     ]
+                    
                 }
             },
             {
@@ -311,8 +312,8 @@
                             "value": 1
                         },
                         {
-                            "attribute": "技能傷害%",
-                            "value": 1
+                            "attribute": "極大化%",
+                            "value": 2
                         }
                     ]
                 }
@@ -347,11 +348,11 @@
                             "value": 30
                         },
                         {
-                            "attribute": "流血%",
-                            "value": 2
+                            "attribute": "兩極化%",
+                            "value": 1
                         },
                         {
-                            "attribute": "極大化%",
+                            "attribute": "技能傷害%",
                             "value": 1
                         }
                     ]

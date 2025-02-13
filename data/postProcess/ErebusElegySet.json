@@ -1,0 +1,131 @@
+{
+    "set": "厄暗輓歌",
+    "link": "https://kelsword.web.fc2.com/rareavatar/ra_70.htm",
+    "parts": [
+        {
+            "name": "厄暗輓歌武器",
+            "part": "weapon",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 200
+                    },
+                    {
+                        "attribute": "流血%",
+                        "value": 5
+                    },
+                    {
+                        "attribute": "致命一擊傷害%",
+                        "value": 2
+                    }
+                ]
+            }
+        },
+        {
+            "name": "厄暗輓歌:靈魂引導靈",
+            "part": "support",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "流血%",
+                        "value": 2
+                    },
+                    {
+                        "attribute": "極大化%",
+                        "value": 1
+                    }
+                ]
+                
+            }
+        },
+        {
+            "name": "厄暗輓歌:使者冠冕",
+            "part": "faceTop",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "兩極化%",
+                        "value": 1
+                    },
+                    {
+                        "attribute": "極大化%",
+                        "value": 2
+                    }
+                ]
+            }
+        },
+        {
+            "name": "厄暗輓歌:沉默面紗",
+            "part": "faceBottom",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "兩極化%",
+                        "value": 1
+                    },
+                    {
+                        "attribute": "-MP消耗量%",
+                        "value": 5
+                    }
+                ]
+            }
+        },
+        {
+            "name": "厄暗輓歌:冥界焰河",
+            "part": "accessoryLower",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "兩極化%",
+                        "value": 1
+                    },
+                    {
+                        "attribute": "技能傷害%",
+                        "value": 1
+                    }
+                ]
+            }
+        }
+    ],
+    "suitEffects": [
+        {
+            "pieces": 2,
+            "effects": [
+                {
+                    "attribute": "100%血殺%",
+                    "value": 5
+                }
+            ]
+        },
+        {
+            "pieces": 3,
+            "effects": [
+                {
+                    "attribute": "流血%",
+                    "value": 7
+                },
+                {
+                    "attribute": "致命一擊傷害%",
+                    "value": 2
+                }
+            ]
+        }
+    ]
+}
