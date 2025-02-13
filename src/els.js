@@ -337,7 +337,7 @@ function selectPart(part) {
             }> <b>${item.name}</b> <br>(`;
         item.attributes.attrList.forEach((attr, index) => {
             if (attr.attribute !== undefined)
-                itemHTML += `${attr.attribute}：+${attr.value}`;
+                itemHTML += getAttritubeValueName(attr.attribute, attr.value);
             else itemHTML += `${attr.description}`;
 
             if (index < item.attributes.attrList.length - 1) {
@@ -478,6 +478,54 @@ function getPartName(part) {
     return partNames[part] || part;
 }
 
+function getAttritubeValueName(attribute, value) {
+    const purePluses = [
+        "雙攻",
+        "雙防",
+        "所有屬性抵抗"
+    ]
+    for (const idx in purePluses)
+        if (attribute === `${purePluses[idx]}+`)
+            return `${attribute}${value}`
+
+    const percentagePluses = [
+        "致命一擊",
+        "極大化",
+        "動作速度",
+        "適應力",
+        "致命一擊傷害",
+        "技能傷害",
+        "移動速度",
+        "跳躍速度",
+        "額外傷害",
+        "傷害減少",
+        "攻擊MP回復",
+        "被擊MP回復",
+        "覺醒回復速度",
+        "覺醒持續時間",
+        "雙攻",
+        "HP",
+        "100%血殺",
+        "兩極化",
+        "流血",
+        "無視防禦"
+    ]
+    for (const idx in percentagePluses)
+        if (attribute === `${percentagePluses[idx]}%`)
+            return `${percentagePluses[idx]}+${value}%`
+
+    const percentageMinuses = [
+        "MP消耗量",
+        "技能冷卻"
+    ]
+    for (const idx in percentageMinuses)
+        if (attribute === `-${percentageMinuses[idx]}%`)
+            return `${percentageMinuses[idx]}-${value}%`
+
+    return `${attribute}：${value}`
+
+}
+
 function updateFinalValues() {
     const finalAttributes = document.getElementById("finalAttributes");
     const attributeCells =
@@ -603,7 +651,7 @@ function updateSuitEffects() {
                 effectsHTML += `${effectSet.pieces} 件效果－`;
                 effectSet.effects.forEach((effect, index) => {
                     if (effect.attribute !== undefined)
-                        effectsHTML += `${effect.attribute}：+${effect.value}`;
+                        effectsHTML += getAttritubeValueName(effect.attribute, effect.value);
                     else effectsHTML += `${effect.description}`;
                     if (index < effectSet.effects.length - 1) {
                         effectsHTML += ", ";

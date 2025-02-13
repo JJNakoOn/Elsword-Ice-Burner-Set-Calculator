@@ -191,59 +191,41 @@ body {
 
   .btn-secondary:hover {
     background-color: #e67e22;
-    /* 稍暗的金色 */
     border-color: #e67e22;
   }
 
-  /* 調整可用冰裝清單標題和按鈕的樣式 */
   #availableEquipmentHeader {
     display: flex;
     align-items: center;
-    /* 垂直對齊 */
     justify-content: space-between;
-    /* 標題和按鈕間隔空間 */
     margin-bottom: 10px;
-    /* 底部間距 */
   }
 
   #availableEquipmentHeader h3 {
     margin: 0;
-    /* 移除 h3 預設 margin */
   }
 
-  /* 分頁按鈕樣式調整 */
   #pagination .btn {
     background-color: transparent;
-    /* 透明背景 */
     border: 1px solid #ced4da;
-    /* 邊框 */
     color: #333;
-    /* 文字顏色 */
     margin: 0 5px;
-    /* 按鈕間距 */
   }
 
   #pagination .btn.active {
     background-color: #007bff;
-    /* 選中時的背景顏色 */
     border-color: #007bff;
-    /* 選中時的邊框顏色 */
     color: #fff;
-    /* 選中時的文字顏色 */
   }
 
   #importTab .import-button-wrapper {
     display: flex;
-    /* 啟用 Flexbox 佈局 */
     justify-content: flex-end;
-    /* 水平靠右對齊 */
     margin-top: 0px;
-    /* 設定按鈕與上方內容的間距 */
   }
 
   .toggle-switch .form-check-input {
     transform: scale(1.5);
-    /* 放大 Toggle */
   }
 
   .toggle-switch .form-check-label {
@@ -251,20 +233,33 @@ body {
     /* 修改文字顏色 */
   }
 
-/* 寧靜森林 */
-.selected-suit-part-1 {
-  background-color: #e6f0e6;
-  color: #336633;
-}
+  .selected-suit-part-1 {
+    background-color: #e6f0e6;
+    color: #336633;
+  }
 
-/* 溫暖柔和 */
-.selected-suit-part-2 {
-  background-color: #fff5cc;
-  color: #663300;
-}
+  .selected-suit-part-2 {
+    background-color: #fff5cc;
+    color: #663300;
+  }
 
-/* 星空藍調 */
-.selected-suit-part-3 {
-  background-color: #e3f8fd;
-  color: #1a237e;
-}
+  .selected-suit-part-3 {
+    background-color: #e3f8fd;
+    color: #1a237e;
+  }
+
+  #finalValueTable th {
+    background-color: #b4cff8;
+  }
+
+  /* .final-values thead {
+    background-color: #ddd;
+  }
+
+  .final-values tbody tr:nth-child(even) {
+    background-color: #f2f2f2; 
+  }
+  
+  .final-values tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+  } */
