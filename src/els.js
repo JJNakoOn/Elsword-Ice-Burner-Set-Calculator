@@ -526,6 +526,13 @@ function getAttritubeValueName(attribute, value) {
 
 }
 
+function processDescriptionWithBrackets(description, link) {
+    const bracketRegex = /\[(.*?)\]/g;
+    return description.replace(bracketRegex, (match, content) => {
+        return `<a href="${link}#proper_effect" target="_blank">${match}</a>`;
+    });
+}
+
 function updateFinalValues() {
     const finalAttributes = document.getElementById("finalAttributes");
     const attributeCells =
@@ -581,7 +588,10 @@ function updateFinalValues() {
                         if (attributeTotals[eff.attribute] !== undefined) {
                             attributeTotals[eff.attribute] += eff.value;
                         } else {
-                            specialEffects.push(eff.description);
+                            const setName = effectId.split('-')[0];
+                            const setData = allEquipmentData.find(set => set.set === setName);
+                            const processedDescription = processDescriptionWithBrackets(eff.description, setData?.link || '#');
+                            specialEffects.push(processedDescription);
                         }
                     });
                 }
@@ -602,10 +612,10 @@ function updateFinalValues() {
 
     specialEffects.forEach((effect) => {
         const listItem = document.createElement("li");
-        listItem.textContent = effect;
+        listItem.innerHTML = effect;
         specialEffectsList.appendChild(listItem);
         const listItemRight = document.createElement("li");
-        listItemRight.textContent = effect;
+        listItemRight.innerHTML = effect;
         specialEffectsListRight.appendChild(listItemRight);
     });
 }
@@ -652,7 +662,8 @@ function updateSuitEffects() {
                 effectSet.effects.forEach((effect, index) => {
                     if (effect.attribute !== undefined)
                         effectsHTML += getAttritubeValueName(effect.attribute, effect.value);
-                    else effectsHTML += `${effect.description}`;
+                    else
+                        effectsHTML += processDescriptionWithBrackets(effect.description, setData.link);
                     if (index < effectSet.effects.length - 1) {
                         effectsHTML += ", ";
                     }
