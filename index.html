@@ -10,7 +10,7 @@
     />
     <meta
       property="og:description"
-      content="這是根據台服艾爾之光的冰裝進度讓玩家方便搭配冰裝飾品格的小工具"
+      content="根據台服艾爾之光的冰裝進度讓玩家方便搭配冰裝飾品格的小工具"
     />
     <title>艾爾之光冰裝搭配器</title>
     <link rel="icon" href="./data/favicon.ico" />
@@ -21,12 +21,16 @@
     <div class="container">
       <header>
         <h1>艾爾之光冰裝搭配器</h1>
-        <p>
-          這是根據台服艾爾之光的冰裝進度讓玩家方便搭配冰裝飾品格的小工具，操作方法如下：<br />
-          1.<b>選擇冰裝</b>分頁中選擇持有的冰裝<br />
-          2.在<b>搭配冰裝</b>分頁中可以根據部位挑選欲搭配的冰裝，可於<b>套裝效果</b>中勾選最多三套的冰裝套效<br />
-          3.最終素質結果會顯示在<b>最終數值</b>，可用截圖模式僅看部位及數值
-        </p>
+        <div class="introduction">
+          <p>
+            冰裝搭配計算工具，只要三個步驟：<br />
+            1️⃣ 在<b>選擇冰裝</b>分頁中選擇你擁有的冰裝並套用<br />
+            2️⃣
+            在<b>搭配冰裝</b>分頁中點選想裝備的部位，挑選冰裝，並勾選想要的套裝效果(最多3套)<br />
+            3️⃣ 查看最終數值，需要截圖時可開啟截圖模式，方便記錄！<br/>
+            Ⓜ️ 新增調整冰裝：可回<b>選擇冰裝</b>分頁，選擇需要的冰裝後再套用
+          </p>
+        </div>
       </header>
 
       <nav class="nav nav-tabs mb-4">
@@ -42,9 +46,18 @@
         <section id="importTab" class="tab-content active">
           <div id="availableEquipmentHeader">
             <h3>可用冰裝清單</h3>
-            <button class="btn btn-secondary" onclick="selectAllEquipment()">
-              全選所有冰裝
-            </button>
+
+            <div class="button-group">
+              <button class="btn btn-secondary" onclick="selectAllEquipment()">
+                全選所有冰裝
+              </button>
+              <button
+                class="btn btn-secondary-outline"
+                onclick="deselectAllEquipment()"
+              >
+                取消選取
+              </button>
+            </div>
           </div>
           <div id="availableEquipment"></div>
           <div class="d-flex justify-content-center my-3" id="pagination"></div>
@@ -169,7 +182,10 @@
             </div>
             <div class="final-values">
               <h3>最終數值</h3>
-              <table id="finalValueTable" class="table table-bordered table-striped">
+              <table
+                id="finalValueTable"
+                class="table table-bordered table-striped"
+              >
                 <thead class>
                   <tr>
                     <th>屬性</th>
@@ -195,14 +211,13 @@
           特別感謝<a href="https://kelsword.web.fc2.com/" target="_blank"
             >KelsworD</a
           >的資料提供以及<a href="https://gemini.google.com/" target="_blank"
-            >Google Gemini</a
-          >的協助<br />
-          網站上遇到任何問題或建議，可以 1.到<a
+            >Gemini</a
+          >&<a href="https://claude.ai/" target="_blank">Claude</a>的協助<br />
+          網站上遇到任何問題/建議，歡迎<a
             href="https://github.com/JJNakoOn/Elsword-Ice-Burner-Set-Calculator/issues"
             target="_blank"
-            >github提issue</a
-          >
-          2.Discord找nako_on(奈子ㄤ)
+            >到github提issue</a
+          >或Discord找nako_on(奈子ㄤ)
         </p>
       </footer>
     </div>

@@ -4,9 +4,13 @@ body {
     padding: 20px;
     color: #333;
   }
-
-  header {
-    text-align: center;
+  header h1{
+    text-align: center;    
+  }
+  header .introduction{
+    text-align: left;
+    max-width: 40%;
+    margin: 0 auto;
     margin-bottom: 10px;
   }
   footer {
@@ -17,17 +21,17 @@ body {
     
   }
   h1 {
-    font-size: 36px;
+    font-size: 2.2rem;
     font-weight: bold;
     color: #d9534f;
   }
 
   p {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   .nav-tabs .nav-link {
-    font-size: 18px;
+    font-size: 1.2rem;
   }
 
   .tab-content {
@@ -145,7 +149,6 @@ body {
     display: block;
   }
 
-  /* 新增樣式 */
   .container {
     max-width: 90%;
     margin: 0 auto;
@@ -158,7 +161,6 @@ body {
     font-size: 24px;
     font-weight: bold;
     color: #337ab7;
-    /* 副標題顏色 */
     margin-bottom: 10px;
   }
 
@@ -169,29 +171,36 @@ body {
 
   .btn-primary {
     background-color: #2980b9;
-    /* 深藍色 */
     border-color: #2980b9;
     color: #ffffff;
-    /* 白色 */
   }
 
   .btn-primary:hover {
     background-color: #216dbb;
-    /* 稍暗的深藍色 */
     border-color: #216dbb;
   }
 
   .btn-secondary {
     background-color: #f39c12;
-    /* 金色 */
     border-color: #f39c12;
     color: #ffffff;
-    /* 白色 */
   }
 
   .btn-secondary:hover {
     background-color: #e67e22;
     border-color: #e67e22;
+  }
+
+  .btn-secondary-outline {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #ffffff;
+  }
+
+  .btn-secondary-outline:hover {
+      background-color: #5a6268;
+      border-color: #5a6268;
+      color: #ffffff;
   }
 
   #availableEquipmentHeader {
@@ -202,9 +211,15 @@ body {
   }
 
   #availableEquipmentHeader h3 {
+    font-weight: bold;
+    color: #337ab7;
     margin: 0;
   }
 
+  #availableEquipmentHeader .button-group {
+    display: flex;
+    gap: 10px;
+  }
   #pagination .btn {
     background-color: transparent;
     border: 1px solid #ced4da;
@@ -230,7 +245,6 @@ body {
 
   .toggle-switch .form-check-label {
     color: #2980b9;
-    /* 修改文字顏色 */
   }
 
   .selected-suit-part-1 {
@@ -251,15 +265,3 @@ body {
   #finalValueTable th {
     background-color: #b4cff8;
   }
-
-  /* .final-values thead {
-    background-color: #ddd;
-  }
-
-  .final-values tbody tr:nth-child(even) {
-    background-color: #f2f2f2; 
-  }
-  
-  .final-values tbody tr:nth-child(odd) {
-    background-color: #ffffff;
-  } */

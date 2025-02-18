@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 const selectedEquipmentSets = new Set();
 const selectedCheckboxes = new Set();
 const selectedAttributes = {};
-const selectedParts = {};
+let selectedParts = {};
 let suitCounts = {};
 let currentPage = 1;
 const itemsPerPage = 10;
@@ -208,6 +208,12 @@ function selectAllEquipment() {
     displayAvailableIceEquipment();
 }
 
+function deselectAllEquipment() {
+    selectedCheckboxes.clear();
+    
+    displayAvailableIceEquipment();
+}
+
 function displayAvailableIceEquipment() {
     const container = document.getElementById("availableEquipment");
     container.innerHTML = "";
@@ -289,6 +295,8 @@ function updatePagination() {
 }
 
 function importSelectedEquipment() {
+    selectedEquipmentSets.clear();
+    selectedParts = {};
     selectedCheckboxes.forEach((globalIndex) => {
         const setData = allEquipmentData[globalIndex];
         if (!selectedEquipmentSets.has(setData.set)) {
@@ -708,7 +716,6 @@ function updateSuitEffects() {
 }
 
 function applySuitEffectClasses() {
-    // 移除所有已套用的 class
     document.querySelectorAll('.equipment-part').forEach(part => {
         part.classList.remove('selected-suit-part-1', 'selected-suit-part-2', 'selected-suit-part-3');
     });
@@ -720,7 +727,6 @@ function applySuitEffectClasses() {
         if (setData) {
             setData.parts.forEach(part => {
                 const equipmentPart = document.getElementById(part.part);
-                // 檢查該部位是否實際有穿著裝備
                 if (selectedAttributes[part.part] && selectedAttributes[part.part].setName === setName) {
                     if (equipmentPart) {
                         equipmentPart.classList.add(`selected-suit-part-${index + 1}`);
