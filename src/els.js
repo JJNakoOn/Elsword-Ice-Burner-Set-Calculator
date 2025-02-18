@@ -105,7 +105,7 @@ function initializeFinalAttributes() {
         const nameCell = row.insertCell(0);
         const valueCell = row.insertCell(1);
         nameCell.textContent = attr;
-        valueCell.textContent = "0";
+        valueCell.textContent = "-";
         valueCell.setAttribute("data-attribute", attr);
     });
 }
@@ -609,7 +609,7 @@ function updateFinalValues() {
 
     attributeCells.forEach((cell) => {
         const attr = cell.getAttribute("data-attribute");
-        cell.textContent = attributeTotals[attr] || 0;
+        cell.textContent = attributeTotals[attr] === 0 ? "-" : attributeTotals[attr];
     });
     const specialEffectsList =
         document.getElementById("specialEffectsList");
