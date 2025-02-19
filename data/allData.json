@@ -254,6 +254,209 @@
         ]
     },
     {
+        "set": "神秘的埃羅德",
+        "isCostume": true,
+        "link": "https://forum.gamer.com.tw/Co.php?bsn=12259&sn=1331864",
+        "parts": [
+            {
+                "name": "神秘的埃羅德武器飾品",
+                "part": "accessoryWeapon",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "致命一擊%",
+                            "value": 1
+                        },
+                        {
+                            "attribute": "動作速度%",
+                            "value": 1
+                        },
+                        {
+                            "description": "修理費折扣10% (最大70%)"
+                        },
+                        {
+                            "description": "攻擊時1%的機率減少技能冷卻時間5秒 (超技能/天上之愛除外)(副本)(套用在副本內所有的玩家)"
+                        }
+                    ]
+                    
+                }
+            },
+            {
+                "name": "神秘的埃羅德王冠",
+                "part": "faceTop",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 20
+                        },
+                        {
+                            "attribute": "雙防+",
+                            "value": 10
+                        },
+                        {
+                            "attribute": "致命一擊%",
+                            "value": 1.5
+                        },
+                        {
+                            "attribute": "移動速度%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "跳躍速度%",
+                            "value": 2
+                        },
+                        {
+                            "description": "攻擊時5%的機率動作、移動、跳躍速度在10秒間增加20% (副本)(套用在副本內所有的玩家)"
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "神秘的埃羅德翅膀",
+                "part": "accessoryUpper",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 20
+                        },
+                        {
+                            "attribute": "雙防+",
+                            "value": 10
+                        },
+                        {
+                            "attribute": "致命一擊%",
+                            "value": 1.5
+                        },
+                        {
+                            "attribute": "移動速度%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "跳躍速度%",
+                            "value": 2
+                        },
+                        {
+                            "description": "隨機任務發動機率+5% (組隊全體)"
+                        }
+                    ]
+                    
+                }
+            },
+            {
+                "name": "神秘的埃羅德翅膀(腳)",
+                "part": "accessoryLower",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 30
+                        },
+                        {
+                            "attribute": "致命一擊%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "攻擊MP回復%",
+                            "value": 0.5
+                        },
+                        {
+                            "description": "Fever發動機率+5% (組隊全體)"
+                        }
+                    ]
+                    
+                }
+            },
+            {
+                "name": "神秘的埃羅德掛飾",
+                "part": "faceBottom",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 35
+                        },
+                        {
+                            "attribute": "致命一擊%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "動作速度%",
+                            "value": 2
+                        },
+                        {
+                            "description": "攻擊時3%的機率HP5%、MP+10回復 (副本)(套用在副本內所有的玩家)"
+                        }
+                    ]
+                    
+                }
+            },
+            {
+                "name": "神秘的埃羅德翅膀(手)",
+                "part": "arm",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 20
+                        },
+                        {
+                            "attribute": "致命一擊%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "移動速度%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "跳躍速度%",
+                            "value": 2
+                        },
+                        {
+                            "description": "攻擊時3%的機率發動雙重攻擊 (副本)(套用在副本內所有的玩家)"
+                        }
+                    ]
+                    
+                }
+            },
+            {
+                "name": "神秘的埃羅德耳飾",
+                "part": "earring",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 35
+                        },
+                        {
+                            "attribute": "致命一擊%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "動作速度%",
+                            "value": 2
+                        },
+                        {
+                            "description": "攻擊時3%的機率5秒間物理、魔法攻擊力增加10% (副本)(套用在副本內所有的玩家)"
+                        }
+                    ]
+                    
+                }
+            }
+        ],
+        "suitEffects": [
+            {
+                "pieces": 7,
+                "effects": [
+                    {
+                        "description": "神秘的埃羅德的氣息釋放"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "set": "厄暗輓歌(暫)",
         "link": "https://kelsword.web.fc2.com/rareavatar/ra_70.htm",
         "parts": [
@@ -9556,209 +9759,6 @@
                     {
                         "attribute": "致命一擊傷害%",
                         "value": 10
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "set": "神秘的埃羅德",
-        "isCostume": true,
-        "link": "https://forum.gamer.com.tw/Co.php?bsn=12259&sn=1331864",
-        "parts": [
-            {
-                "name": "神秘的埃羅德武器飾品",
-                "part": "accessoryWeapon",
-                "attributes": {
-                    "attrList": [
-                        {
-                            "attribute": "致命一擊%",
-                            "value": 1
-                        },
-                        {
-                            "attribute": "動作速度%",
-                            "value": 1
-                        },
-                        {
-                            "description": "修理費折扣10% (最大70%)"
-                        },
-                        {
-                            "description": "攻擊時1%的機率減少技能冷卻時間5秒 (超技能/天上之愛除外)(副本)(套用在副本內所有的玩家)"
-                        }
-                    ]
-                    
-                }
-            },
-            {
-                "name": "神秘的埃羅德王冠",
-                "part": "faceTop",
-                "attributes": {
-                    "attrList": [
-                        {
-                            "attribute": "雙攻+",
-                            "value": 20
-                        },
-                        {
-                            "attribute": "雙防+",
-                            "value": 10
-                        },
-                        {
-                            "attribute": "致命一擊%",
-                            "value": 1.5
-                        },
-                        {
-                            "attribute": "移動速度%",
-                            "value": 2
-                        },
-                        {
-                            "attribute": "跳躍速度%",
-                            "value": 2
-                        },
-                        {
-                            "description": "攻擊時5%的機率動作、移動、跳躍速度在10秒間增加20% (副本)(套用在副本內所有的玩家)"
-                        }
-                    ]
-                }
-            },
-            {
-                "name": "神秘的埃羅德翅膀",
-                "part": "accessoryUpper",
-                "attributes": {
-                    "attrList": [
-                        {
-                            "attribute": "雙攻+",
-                            "value": 20
-                        },
-                        {
-                            "attribute": "雙防+",
-                            "value": 10
-                        },
-                        {
-                            "attribute": "致命一擊%",
-                            "value": 1.5
-                        },
-                        {
-                            "attribute": "移動速度%",
-                            "value": 2
-                        },
-                        {
-                            "attribute": "跳躍速度%",
-                            "value": 2
-                        },
-                        {
-                            "description": "隨機任務發動機率+5% (組隊全體)"
-                        }
-                    ]
-                    
-                }
-            },
-            {
-                "name": "神秘的埃羅德翅膀(腳)",
-                "part": "accessoryLower",
-                "attributes": {
-                    "attrList": [
-                        {
-                            "attribute": "雙攻+",
-                            "value": 30
-                        },
-                        {
-                            "attribute": "致命一擊%",
-                            "value": 2
-                        },
-                        {
-                            "attribute": "攻擊MP回復%",
-                            "value": 0.5
-                        },
-                        {
-                            "description": "Fever發動機率+5% (組隊全體)"
-                        }
-                    ]
-                    
-                }
-            },
-            {
-                "name": "神秘的埃羅德掛飾",
-                "part": "faceBottom",
-                "attributes": {
-                    "attrList": [
-                        {
-                            "attribute": "雙攻+",
-                            "value": 35
-                        },
-                        {
-                            "attribute": "致命一擊%",
-                            "value": 2
-                        },
-                        {
-                            "attribute": "動作速度%",
-                            "value": 2
-                        },
-                        {
-                            "description": "攻擊時3%的機率HP5%、MP+10回復 (副本)(套用在副本內所有的玩家)"
-                        }
-                    ]
-                    
-                }
-            },
-            {
-                "name": "神秘的埃羅德翅膀(手)",
-                "part": "arm",
-                "attributes": {
-                    "attrList": [
-                        {
-                            "attribute": "雙攻+",
-                            "value": 20
-                        },
-                        {
-                            "attribute": "致命一擊%",
-                            "value": 2
-                        },
-                        {
-                            "attribute": "移動速度%",
-                            "value": 2
-                        },
-                        {
-                            "attribute": "跳躍速度%",
-                            "value": 2
-                        },
-                        {
-                            "description": "攻擊時3%的機率發動雙重攻擊 (副本)(套用在副本內所有的玩家)"
-                        }
-                    ]
-                    
-                }
-            },
-            {
-                "name": "神秘的埃羅德耳飾",
-                "part": "earring",
-                "attributes": {
-                    "attrList": [
-                        {
-                            "attribute": "雙攻+",
-                            "value": 35
-                        },
-                        {
-                            "attribute": "致命一擊%",
-                            "value": 2
-                        },
-                        {
-                            "attribute": "動作速度%",
-                            "value": 2
-                        },
-                        {
-                            "description": "攻擊時3%的機率5秒間物理、魔法攻擊力增加10% (副本)(套用在副本內所有的玩家)"
-                        }
-                    ]
-                    
-                }
-            }
-        ],
-        "suitEffects": [
-            {
-                "pieces": 7,
-                "effects": [
-                    {
-                        "description": "神秘的埃羅德的氣息釋放"
                     }
                 ]
             }
