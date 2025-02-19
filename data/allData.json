@@ -9653,30 +9653,6 @@
                 }
             },
             {
-                "name": "神秘的埃羅德耳飾",
-                "part": "faceMiddle",
-                "attributes": {
-                    "attrList": [
-                        {
-                            "attribute": "雙攻+",
-                            "value": 35
-                        },
-                        {
-                            "attribute": "致命一擊%",
-                            "value": 2
-                        },
-                        {
-                            "attribute": "動作速度%",
-                            "value": 2
-                        },
-                        {
-                            "description": "攻擊時3%的機率5秒間物理、魔法攻擊力增加10% (副本)(套用在副本內所有的玩家)"
-                        }
-                    ]
-                    
-                }
-            },
-            {
                 "name": "神秘的埃羅德翅膀(腳)",
                 "part": "accessoryLower",
                 "attributes": {
@@ -9747,6 +9723,30 @@
                         },
                         {
                             "description": "攻擊時3%的機率發動雙重攻擊 (副本)(套用在副本內所有的玩家)"
+                        }
+                    ]
+                    
+                }
+            },
+            {
+                "name": "神秘的埃羅德耳飾",
+                "part": "earring",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 35
+                        },
+                        {
+                            "attribute": "致命一擊%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "動作速度%",
+                            "value": 2
+                        },
+                        {
+                            "description": "攻擊時3%的機率5秒間物理、魔法攻擊力增加10% (副本)(套用在副本內所有的玩家)"
                         }
                     ]
                     
