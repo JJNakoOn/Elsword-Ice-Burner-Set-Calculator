@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         myModal.show();
     }
     await loadAvailableIceEquipment();
+    await loadChangelog();
     initializeFinalAttributes();
     const toggleSections = document.getElementById("toggleSections");
     const iceOptionsSection = document.getElementById("iceOptionsSection");
@@ -43,11 +44,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     specialFXRight.style.display = toggleSections.checked
         ? "block"
         : "none";
+
+    resetConfirmModal = new bootstrap.Modal(document.getElementById('resetConfirmModal'));
 });
 
 const selectedEquipmentSets = new Set();
 const selectedCheckboxes = new Set();
-const selectedAttributes = {};
+let selectedAttributes = {};
 let selectedParts = {};
 let suitCounts = {};
 let currentPage = 1;
@@ -82,6 +85,57 @@ const attributeList = [
     "所有屬性抵抗+"
 ];
 
+function showResetConfirmation() {
+    resetConfirmModal.show();
+}
+
+function resetAll() {
+    // 清空已選擇的部位
+    Object.keys(selectedParts).forEach(part => {
+        clearSelectedPart(part);
+    });
+    
+    // 重置所有相關變數
+    selectedAttributes = {};
+    suitCounts = {};
+    
+    // 重置部位顏色標示
+    document.querySelectorAll('.equipment-part').forEach(part => {
+        part.classList.remove('selected-part');
+        part.classList.remove('selected-suit-part-1', 'selected-suit-part-2', 'selected-suit-part-3');
+    });
+    
+    // 取消所有套裝效果的勾選
+    const suitEffectsList = document.getElementById('suitEffectsList');
+    if (suitEffectsList) {
+        const checkboxes = suitEffectsList.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+        });
+    }
+    
+    // 重置最終數值
+    updateFinalValues();
+    
+    // 清空冰裝選擇區
+    const equipmentOptions = document.getElementById('equipmentOptions');
+    if (equipmentOptions) {
+        equipmentOptions.innerHTML = '';
+    }
+    
+    // 重置標題
+    const iceOptionsTitle = document.querySelector('.ice-options h3');
+    if (iceOptionsTitle) {
+        iceOptionsTitle.textContent = '挑選冰裝';
+    }
+    
+    // 關閉 Modal
+    resetConfirmModal.hide();
+    
+    // 重新載入套裝效果列表
+    updateSuitEffects();
+}
+
 async function loadAvailableIceEquipment() {
     await fetch("./data/allData.json")
         .then((res) => res.json())
@@ -95,6 +149,41 @@ async function loadAvailableIceEquipment() {
         });
     });
     displayAvailableIceEquipment();
+}
+
+async function loadChangelog() {
+    try {
+        const response = await fetch("./data/changeLog.json");
+        const changeLogData = await response.json();
+
+        const changelogContent = document.getElementById('changelogContent');
+        changeLogData.forEach(entry => {
+            const entryElement = document.createElement('div');
+            entryElement.className = 'changelog-entry';
+
+            const date = new Date(entry.date);
+            const formattedDate = date.toLocaleDateString('zh-TW', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            entryElement.innerHTML = `
+                <div class="changelog-date">${formattedDate}</div>
+                <div class="changelog-content">
+                    <ul>
+                        ${entry.changes.map(change => `<li>${change}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+
+            changelogContent.appendChild(entryElement);
+        });
+    } catch (error) {
+        console.error('Error loading changelog:', error);
+        const changelogContent = document.getElementById('changelogContent');
+        changelogContent.innerHTML = '<p class="text-danger">載入更新日誌時發生錯誤</p>';
+    }
 }
 
 function initializeFinalAttributes() {
@@ -210,7 +299,7 @@ function selectAllEquipment() {
 
 function deselectAllEquipment() {
     selectedCheckboxes.clear();
-    
+
     displayAvailableIceEquipment();
 }
 
@@ -234,7 +323,7 @@ function displayAvailableIceEquipment() {
         const partsList = item.parts
             .map((part) => getPartName(part.part))
             .join("、");
-        const costumePostfix = item.isCostume !== undefined? "(時裝)": "" 
+        const costumePostfix = item.isCostume !== undefined ? "(時裝)" : ""
         listItem.innerHTML = `<input type="checkbox" id="equip_${globalIndex}" value="${globalIndex}" ${selectedCheckboxes.has(globalIndex) ? "checked" : ""
             }>
                         <label for="equip_${globalIndex}" class="ms-2"><a href=${item.link} target="_blank"><b>${item.set

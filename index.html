@@ -27,7 +27,7 @@
             1️⃣ 在<b>選擇冰裝</b>分頁中選擇你擁有的冰裝並套用<br />
             2️⃣
             在<b>搭配冰裝</b>分頁中點選想裝備的部位，挑選冰裝，並勾選想要的套裝效果(最多3套)<br />
-            3️⃣ 查看最終數值，需要截圖時可開啟截圖模式，方便記錄！<br/>
+            3️⃣ 查看最終數值，需要截圖時可開啟截圖模式，方便記錄！<br />
             Ⓜ️ 新增調整冰裝：可回<b>選擇冰裝</b>分頁，選擇需要的冰裝後再套用
           </p>
         </div>
@@ -40,6 +40,12 @@
         <button class="nav-link" onclick="openTab('setupTab', this)">
           搭配冰裝
         </button>
+        <button
+          class="nav-link changelog-tab"
+          onclick="openTab('changelogTab', this)"
+        >
+          更新日誌
+        </button>
       </nav>
 
       <main>
@@ -48,11 +54,11 @@
             <h3>可用冰裝清單</h3>
 
             <div class="button-group">
-              <button class="btn btn-secondary" onclick="selectAllEquipment()">
+              <button class="btn btn-warning" onclick="selectAllEquipment()">
                 全部選取
               </button>
               <button
-                class="btn btn-secondary-outline"
+                class="btn btn-secondary"
                 onclick="deselectAllEquipment()"
               >
                 取消選取
@@ -83,7 +89,15 @@
           </div>
           <div class="setup-container">
             <div class="equipment-selection">
-              <h3>部位選擇</h3>
+              <div class="title-with-reset">
+                <h3>部位選擇</h3>
+                <button
+                  class="btn btn-secondary-outline reset-button"
+                  onclick="showResetConfirmation()"
+                >
+                  重置
+                </button>
+              </div>
               <div class="equipment-parts" id="equipmentParts">
                 <div
                   class="equipment-part"
@@ -205,6 +219,11 @@
             </div>
           </div>
         </section>
+
+        <section id="changelogTab" class="tab-content">
+          <h3>更新日誌</h3>
+          <div id="changelogContent" class="changelog-container"></div>
+        </section>
       </main>
       <footer>
         <p>
@@ -257,6 +276,45 @@
         </div>
       </div>
     </div>
+
+    <div
+      class="modal fade"
+      id="resetConfirmModal"
+      tabindex="-1"
+      aria-labelledby="resetConfirmModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="resetConfirmModalLabel">確認重置</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>確定要重置所有選擇的部位、套裝效果和數值嗎？</p>
+            <p>（已選擇的冰裝清單將會保留）</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              取消
+            </button>
+            <button type="button" class="btn btn-danger" onclick="resetAll()">
+              確認重置
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="./src/bootstrap.bundle.min.js"></script>
     <script src="./src/els.js"></script>
   </body>

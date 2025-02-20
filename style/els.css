@@ -1,267 +1,358 @@
 body {
-    font-family: "Arial", sans-serif;
-    background-color: #f0f8ff;
-    padding: 20px;
-    color: #333;
-  }
-  header h1{
-    text-align: center;    
-  }
-  header .introduction{
-    text-align: left;
-    max-width: 40%;
-    margin: 0 auto;
-    margin-bottom: 10px;
-  }
-  footer {
-    text-align: center;
-    margin-top: 10px;
-    color: #d9534f;
-    font-weight: bold;
-    
-  }
-  h1 {
-    font-size: 2.2rem;
-    font-weight: bold;
-    color: #d9534f;
-  }
+  font-family: "Arial", sans-serif;
+  background-color: #f0f8ff;
+  padding: 20px;
+  color: #333;
+}
+header h1{
+  text-align: center;    
+}
+header .introduction{
+  text-align: left;
+  max-width: 40%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+footer {
+  text-align: center;
+  margin-top: 10px;
+  color: #d9534f;
+  font-weight: bold;
+  
+}
+h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #d9534f;
+}
 
-  p {
-    font-size: 1rem;
-  }
+p {
+  font-size: 1rem;
+}
 
-  .nav-tabs .nav-link {
-    font-size: 1.2rem;
-  }
+.nav-tabs .nav-link {
+  font-size: 1.2rem;
+}
 
-  .tab-content {
-    display: none;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
+.nav-tabs {
+  display: flex;
+  border-bottom: 1px solid #dee2e6;
+}
 
-  .tab-content.active {
-    display: block;
-  }
+.nav-tabs .changelog-tab {
+  font-size: 1rem;
+  margin-left: auto;
+}
 
-  .setup-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 20px;
-  }
+.changelog-container {
+  max-width: 800px;
+  overflow-y: auto;
+  max-height: 800px;
+  margin: 0 auto;
+}
 
-  .equipment-parts {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    background-color: #333;
-    padding: 10px;
-    border-radius: 8px;
-  }
+.changelog-entry {
+  border-left: 4px solid #2980b9;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 0 8px 8px 0;
+}
 
-  .equipment-parts > .equipment-part:first-child {
-    grid-column: 1 / 3;
-    justify-self: start;
-    width: 49%;
-  }
+.changelog-date {
+  color: #2980b9;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
 
-  .equipment-part {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 80px;
-    cursor: pointer;
-    color: white;
-    font-weight: bold;
-    background-color: #555;
-    border-radius: 8px;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+.changelog-content {
+  margin-left: 15px;
+}
 
-  .equipment-part.selected {
-    background-color: #00aaff;
-  }
+.changelog-content ul {
+  margin: 0;
+  padding-left: 20px;
+}
 
-  .equipment-part img {
-    max-width: 100%;
-    max-height: 100%;
-  }
+.changelog-content li {
+  margin-bottom: 5px;
+}
 
-  .selected-part {
-    color: #ff6600;
-    text-align: center;
+@media (max-width: 768px) {
+  .nav-tabs {
+      flex-wrap: wrap;
+      justify-content: flex-start;
   }
-
-  .selected-part span.part-name {
-    display: block;
-    font-weight: bold;
+  
+  .nav-tabs .changelog-tab {
+      margin-left: 0;
+      margin-top: 5px;
   }
+}
 
-  .checkbox-list {
-    list-style: none;
-    padding: 0;
-  }
+.tab-content {
+  display: none;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-  .checkbox-list-item {
-    border: dashed;
-    display: flex;
-    align-items: center;
-    margin: 5px;
-    padding: 5px;
-  }
+.tab-content.active {
+  display: block;
+}
 
-  .suit-effect-content{
-    width: 300px;
-  }
+.setup-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
 
-  input[type="checkbox"],
-  input[type="radio"] {
-    margin-right: 10px;
-    width: 20px;
-    height: 20px;
-  }
+.equipment-parts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 8px;
+}
 
-  .d-block {
-    margin: 10px;
-  }
+.equipment-parts > .equipment-part:first-child {
+  grid-column: 1 / 3;
+  justify-self: start;
+  width: 49%;
+}
 
-  .equipment-selection,
-  .ice-options,
-  .suit-effects,
-  .final-values {
-    padding: 15px;
-    overflow-y: auto;
-    max-height: 1200px;
-  }
+.equipment-part {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  background-color: #555;
+  border-radius: 8px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-  label {
-    font-size: 1.1rem;
-  }
+.equipment-part.selected {
+  background-color: #00aaff;
+}
 
-  .checkbox-list label {
-    display: block;
-  }
+.equipment-part img {
+  max-width: 100%;
+  max-height: 100%;
+}
 
-  .container {
-    max-width: 90%;
-    margin: 0 auto;
-  }
+.selected-part {
+  color: #ff6600;
+  text-align: center;
+}
 
-  .equipment-selection h3,
-  .ice-options h3,
-  .suit-effects h3,
-  .final-values h3 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #337ab7;
-    margin-bottom: 10px;
-  }
+.selected-part span.part-name {
+  display: block;
+  font-weight: bold;
+}
 
-  .table th,
-  .table td {
-    text-align: center;
-  }
+.checkbox-list {
+  list-style: none;
+  padding: 0;
+}
 
-  .btn-primary {
-    background-color: #2980b9;
-    border-color: #2980b9;
+.checkbox-list-item {
+  border: dashed;
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+}
+
+.suit-effect-content{
+  width: 300px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.d-block {
+  margin: 10px;
+}
+
+.equipment-selection,
+.ice-options,
+.suit-effects,
+.final-values {
+  padding: 15px;
+  overflow-y: auto;
+  max-height: 1200px;
+}
+
+label {
+  font-size: 1.1rem;
+}
+
+.checkbox-list label {
+  display: block;
+}
+
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.equipment-selection h3,
+.ice-options h3,
+.suit-effects h3,
+.final-values h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #337ab7;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.equipment-selection h3{
+  margin: 0px;
+}
+
+.table th,
+.table td {
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #2980b9;
+  border-color: #2980b9;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #216dbb;
+  border-color: #216dbb;
+}
+
+/* .btn-secondary {
+  background-color: #f39c12;
+  border-color: #f39c12;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #e67e22;
+  border-color: #e67e22;
+}
+
+.btn-secondary-outline {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #ffffff;
+}
+
+.btn-secondary-outline:hover {
+    background-color: #5a6268;
+    border-color: #5a6268;
     color: #ffffff;
-  }
+} */
 
-  .btn-primary:hover {
-    background-color: #216dbb;
-    border-color: #216dbb;
-  }
+#availableEquipmentHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
 
-  .btn-secondary {
-    background-color: #f39c12;
-    border-color: #f39c12;
-    color: #ffffff;
-  }
+#availableEquipmentHeader h3{
+  font-weight: bold;
+  color: #337ab7;
+  margin: 0;
+}
 
-  .btn-secondary:hover {
-    background-color: #e67e22;
-    border-color: #e67e22;
-  }
+#changelogTab h3 {
+  text-align: center;
+  font-weight: bold;
+  color: #337ab7;
+  margin-bottom: 10px;
+}
 
-  .btn-secondary-outline {
-    background-color: #6c757d;
-    border-color: #6c757d;
-    color: #ffffff;
-  }
+#availableEquipmentHeader .button-group {
+  display: flex;
+  gap: 10px;
+}
+#pagination .btn {
+  background-color: transparent;
+  border: 1px solid #ced4da;
+  color: #333;
+  margin: 0 5px;
+}
 
-  .btn-secondary-outline:hover {
-      background-color: #5a6268;
-      border-color: #5a6268;
-      color: #ffffff;
-  }
+#pagination .btn.active {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
 
-  #availableEquipmentHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
+#importTab .import-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0px;
+}
 
-  #availableEquipmentHeader h3 {
-    font-weight: bold;
-    color: #337ab7;
-    margin: 0;
-  }
+.toggle-switch .form-check-input {
+  transform: scale(1.5);
+}
 
-  #availableEquipmentHeader .button-group {
-    display: flex;
-    gap: 10px;
-  }
-  #pagination .btn {
-    background-color: transparent;
-    border: 1px solid #ced4da;
-    color: #333;
-    margin: 0 5px;
-  }
+.toggle-switch .form-check-label {
+  color: #2980b9;
+}
 
-  #pagination .btn.active {
-    background-color: #007bff;
-    border-color: #007bff;
-    color: #fff;
-  }
+.selected-suit-part-1 {
+  background-color: #e6f0e6;
+  color: #336633;
+}
 
-  #importTab .import-button-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 0px;
-  }
+.selected-suit-part-2 {
+  background-color: #fff5cc;
+  color: #663300;
+}
 
-  .toggle-switch .form-check-input {
-    transform: scale(1.5);
-  }
+.selected-suit-part-3 {
+  background-color: #e3f8fd;
+  color: #1a237e;
+}
 
-  .toggle-switch .form-check-label {
-    color: #2980b9;
-  }
+#finalValueTable th {
+  background-color: #b4cff8;
+}
 
-  .selected-suit-part-1 {
-    background-color: #e6f0e6;
-    color: #336633;
-  }
+.title-with-reset {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 10px;
+}
 
-  .selected-suit-part-2 {
-    background-color: #fff5cc;
-    color: #663300;
-  }
+.reset-button {
+  padding: 5px 15px;
+  font-size: 0.9rem;
+  background-color: #a3a8ac;
+  border-color: #a3a8ac;
+  color: white;
+  height: fit-content;
+  margin: 0;
+}
 
-  .selected-suit-part-3 {
-    background-color: #e3f8fd;
-    color: #1a237e;
-  }
-
-  #finalValueTable th {
-    background-color: #b4cff8;
-  }
+.reset-button:hover {
+  background-color: #5a6268;
+  border-color: #5a6268;
+  color: white;
+}
