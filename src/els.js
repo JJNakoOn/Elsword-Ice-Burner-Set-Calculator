@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const iceOptionsSection = document.getElementById("iceOptionsSection");
     const specialEffectsBottom = document.getElementById("specialFXBottom");
     const specialFXRight = document.getElementById("specialFXRight");
+    const resetButton = document.getElementById("resetButton");
     const suitEffectsSection =
         document.getElementById("suitEffectsSection");
 
@@ -30,6 +31,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         specialFXRight.style.display = toggleSections.checked
             ? "block"
             : "none";
+        resetButton.style.display = toggleSections.checked
+            ? "none"
+            : "flex";
     });
 
     iceOptionsSection.style.display = toggleSections.checked
@@ -44,9 +48,39 @@ document.addEventListener("DOMContentLoaded", async () => {
     specialFXRight.style.display = toggleSections.checked
         ? "block"
         : "none";
+    resetButton.style.display = toggleSections.checked
+        ? "none"
+        : "flex";
 
     resetConfirmModal = new bootstrap.Modal(document.getElementById('resetConfirmModal'));
+
+    updateFilteredData();
+    displayAvailableIceEquipment();
+
+    const searchInput = document.getElementById('searchInput');
+    const clearSearchBtn = document.querySelector('.clear-search-btn');
+    
+    searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase();
+        currentPage = 1;
+        updateFilteredData();
+        displayAvailableIceEquipment();
+        toggleClearButton();
+    });
+    
+    clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        updateFilteredData();
+        displayAvailableIceEquipment();
+        toggleClearButton();
+    });
+
+    toggleClearButton();
+
 });
+
+
 
 const selectedEquipmentSets = new Set();
 const selectedCheckboxes = new Set();
@@ -56,6 +90,9 @@ let suitCounts = {};
 let currentPage = 1;
 const itemsPerPage = 10;
 let allEquipmentData = [];
+let searchQuery = '';
+let filteredData = [];
+
 
 const attributeList = [
     "雙攻+",
@@ -85,6 +122,32 @@ const attributeList = [
     "所有屬性抵抗+"
 ];
 
+function updateFilteredData() {
+    if (!searchQuery) {
+        filteredData = [...allEquipmentData];
+    } else {
+        filteredData = allEquipmentData.filter(item => {
+            const setNameMatch = item.set.toLowerCase().includes(searchQuery);
+            const partsMatch = item.parts.some(part => 
+                getPartName(part.part).toLowerCase().includes(searchQuery)
+            );
+            return setNameMatch || partsMatch;
+        });
+    }
+}
+
+function toggleClearButton() {
+    const clearSearchBtn = document.querySelector('.clear-search-btn');
+    const searchInput = document.getElementById('searchInput');
+    
+    if (searchInput.value.length > 0) {
+        clearSearchBtn.classList.add('visible');
+    } else {
+        clearSearchBtn.classList.remove('visible');
+    }
+}
+
+
 function showResetConfirmation() {
     resetConfirmModal.show();
 }
@@ -94,17 +157,17 @@ function resetAll() {
     Object.keys(selectedParts).forEach(part => {
         clearSelectedPart(part);
     });
-    
+
     // 重置所有相關變數
     selectedAttributes = {};
     suitCounts = {};
-    
+
     // 重置部位顏色標示
     document.querySelectorAll('.equipment-part').forEach(part => {
         part.classList.remove('selected-part');
         part.classList.remove('selected-suit-part-1', 'selected-suit-part-2', 'selected-suit-part-3');
     });
-    
+
     // 取消所有套裝效果的勾選
     const suitEffectsList = document.getElementById('suitEffectsList');
     if (suitEffectsList) {
@@ -113,25 +176,25 @@ function resetAll() {
             checkbox.checked = false;
         });
     }
-    
+
     // 重置最終數值
     updateFinalValues();
-    
+
     // 清空冰裝選擇區
     const equipmentOptions = document.getElementById('equipmentOptions');
     if (equipmentOptions) {
         equipmentOptions.innerHTML = '';
     }
-    
+
     // 重置標題
     const iceOptionsTitle = document.querySelector('.ice-options h3');
     if (iceOptionsTitle) {
         iceOptionsTitle.textContent = '挑選冰裝';
     }
-    
+
     // 關閉 Modal
     resetConfirmModal.hide();
-    
+
     // 重新載入套裝效果列表
     updateSuitEffects();
 }
@@ -288,18 +351,18 @@ function generateMockData(count) {
 }
 
 function selectAllEquipment() {
-    selectedCheckboxes.clear();
-
-    allEquipmentData.forEach((item, index) => {
+    filteredData.forEach((item) => {
+        const index = allEquipmentData.indexOf(item);
         selectedCheckboxes.add(index);
     });
-
     displayAvailableIceEquipment();
 }
 
 function deselectAllEquipment() {
-    selectedCheckboxes.clear();
-
+    filteredData.forEach((item) => {
+        const index = allEquipmentData.indexOf(item);
+        selectedCheckboxes.delete(index);
+    });
     displayAvailableIceEquipment();
 }
 
@@ -308,7 +371,7 @@ function displayAvailableIceEquipment() {
     container.innerHTML = "";
 
     const paginatedData = paginateData(
-        allEquipmentData,
+        filteredData,
         currentPage,
         itemsPerPage
     );
@@ -318,7 +381,7 @@ function displayAvailableIceEquipment() {
     paginatedData.forEach((item, index) => {
         const listItem = document.createElement("li");
         listItem.className = "list-group-item";
-        const globalIndex = (currentPage - 1) * itemsPerPage + index;
+        const globalIndex = allEquipmentData.indexOf(item);
 
         const partsList = item.parts
             .map((part) => getPartName(part.part))
@@ -368,13 +431,12 @@ function updatePagination() {
     const pagination = document.getElementById("pagination");
     pagination.innerHTML = "";
 
-    const totalPages = Math.ceil(allEquipmentData.length / itemsPerPage);
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
     for (let i = 1; i <= totalPages; i++) {
         const button = document.createElement("button");
         button.textContent = i;
-        button.className = `btn btn-primary ${i === currentPage ? "active" : ""
-            }`;
+        button.className = `btn btn-primary ${i === currentPage ? "active" : ""}`;
         button.onclick = () => {
             currentPage = i;
             displayAvailableIceEquipment();

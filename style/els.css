@@ -81,13 +81,28 @@ p {
 
 @media (max-width: 768px) {
   .nav-tabs {
-      flex-wrap: wrap;
-      justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
   
   .nav-tabs .changelog-tab {
-      margin-left: 0;
-      margin-top: 5px;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+
+  #availableEquipmentHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-container {
+    max-width: none;
+    margin: 10px 0;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
   }
 }
 
@@ -267,14 +282,16 @@ label {
 #availableEquipmentHeader {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 10px;
+  gap: 10px;
 }
 
 #availableEquipmentHeader h3{
   font-weight: bold;
   color: #337ab7;
   margin: 0;
+  white-space: nowrap;
 }
 
 #changelogTab h3 {
@@ -287,6 +304,7 @@ label {
 #availableEquipmentHeader .button-group {
   display: flex;
   gap: 10px;
+  margin-left: auto;
 }
 #pagination .btn {
   background-color: transparent;
@@ -355,4 +373,42 @@ label {
   background-color: #5a6268;
   border-color: #5a6268;
   color: white;
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+  max-width: 300px;
+  margin-right: auto;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.search-input-wrapper input {
+  width: 100%;
+  padding-right: 30px;
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #6c757d;
+  padding: 0;
+  cursor: pointer;
+  display: none;
+}
+
+.clear-search-btn:hover {
+  color: #343a40;
+}
+
+.clear-search-btn.visible {
+  display: block;
 }
