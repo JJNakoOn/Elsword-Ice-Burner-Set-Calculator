@@ -15,8 +15,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const specialEffectsBottom = document.getElementById("specialFXBottom");
     const specialFXRight = document.getElementById("specialFXRight");
     const resetButton = document.getElementById("resetButton");
-    const suitEffectsSection =
-        document.getElementById("suitEffectsSection");
+    const suitEffectsSection = document.getElementById("suitEffectsSection");
+    const comparisonControls = document.getElementById("saveForCompareBtn"); 
+    const clearCompareBtn = document.getElementById("clearCompareBtn");
+    const comparisonHeader = document.getElementById("comparisonHeader"); 
+    const comparisonCells = document.querySelectorAll("td[data-comparison]");
 
     toggleSections.addEventListener("change", () => {
         iceOptionsSection.style.display = toggleSections.checked
@@ -34,6 +37,39 @@ document.addEventListener("DOMContentLoaded", async () => {
         resetButton.style.display = toggleSections.checked
             ? "none"
             : "flex";
+            
+        if (comparisonControls) {
+            comparisonControls.style.display = toggleSections.checked
+                ? "none"
+                : "inline-block";
+        }
+        if (clearCompareBtn) {
+            clearCompareBtn.style.display = toggleSections.checked
+                ? "none"
+                : (Object.keys(savedAttributes).length > 0 ? "inline-block" : "none");
+        }
+        
+        const hasComparisonData = Object.keys(savedAttributes).length > 0;
+        
+        if (comparisonHeader) {
+            comparisonHeader.style.display = toggleSections.checked
+                ? "none"
+                : (hasComparisonData ? "table-cell" : "none");
+        }
+        
+        comparisonCells.forEach(cell => {
+            cell.style.display = toggleSections.checked
+                ? "none"
+                : (hasComparisonData ? "table-cell" : "none");
+        });
+        
+        if (!toggleSections.checked && hasComparisonData) {
+            updateComparisonDisplay();
+        } else if (toggleSections.checked) {
+            document.querySelectorAll('.comparison-indicator').forEach(indicator => {
+                indicator.remove();
+            });
+        }
     });
 
     iceOptionsSection.style.display = toggleSections.checked
@@ -51,6 +87,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     resetButton.style.display = toggleSections.checked
         ? "none"
         : "flex";
+        
+    if (comparisonControls) {
+        comparisonControls.style.display = toggleSections.checked
+            ? "none"
+            : "inline-block";
+    }
 
     resetConfirmModal = new bootstrap.Modal(document.getElementById('resetConfirmModal'));
 
@@ -77,7 +119,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     toggleClearButton();
-
 });
 
 
@@ -92,6 +133,7 @@ const itemsPerPage = 10;
 let allEquipmentData = [];
 let searchQuery = '';
 let filteredData = [];
+let savedAttributes = {};
 
 
 const attributeList = [
@@ -153,22 +195,18 @@ function showResetConfirmation() {
 }
 
 function resetAll() {
-    // 清空已選擇的部位
     Object.keys(selectedParts).forEach(part => {
         clearSelectedPart(part);
     });
 
-    // 重置所有相關變數
     selectedAttributes = {};
     suitCounts = {};
 
-    // 重置部位顏色標示
     document.querySelectorAll('.equipment-part').forEach(part => {
         part.classList.remove('selected-part');
         part.classList.remove('selected-suit-part-1', 'selected-suit-part-2', 'selected-suit-part-3');
     });
 
-    // 取消所有套裝效果的勾選
     const suitEffectsList = document.getElementById('suitEffectsList');
     if (suitEffectsList) {
         const checkboxes = suitEffectsList.querySelectorAll('input[type="checkbox"]');
@@ -177,25 +215,20 @@ function resetAll() {
         });
     }
 
-    // 重置最終數值
     updateFinalValues();
 
-    // 清空冰裝選擇區
     const equipmentOptions = document.getElementById('equipmentOptions');
     if (equipmentOptions) {
         equipmentOptions.innerHTML = '';
     }
 
-    // 重置標題
     const iceOptionsTitle = document.querySelector('.ice-options h3');
     if (iceOptionsTitle) {
         iceOptionsTitle.textContent = '挑選冰裝';
     }
 
-    // 關閉 Modal
     resetConfirmModal.hide();
 
-    // 重新載入套裝效果列表
     updateSuitEffects();
 }
 
@@ -252,6 +285,16 @@ async function loadChangelog() {
 function initializeFinalAttributes() {
     const finalAttributes = document.getElementById("finalAttributes");
     finalAttributes.innerHTML = "";
+    
+    const thead = document.getElementById("finalValueTable").querySelector("thead tr");
+    if (thead.children.length < 3) {
+        const comparisonHeader = document.createElement("th");
+        comparisonHeader.textContent = "比較數值";
+        comparisonHeader.id = "comparisonHeader";
+        comparisonHeader.style.display = "none";
+        thead.appendChild(comparisonHeader);
+    }
+    
     attributeList.forEach((attr) => {
         const row = finalAttributes.insertRow();
         const nameCell = row.insertCell(0);
@@ -259,7 +302,82 @@ function initializeFinalAttributes() {
         nameCell.textContent = attr;
         valueCell.textContent = "-";
         valueCell.setAttribute("data-attribute", attr);
+        
+        const comparisonCell = row.insertCell(2);
+        comparisonCell.textContent = "-";
+        comparisonCell.setAttribute("data-comparison", attr);
+        comparisonCell.style.display = "none";
     });
+    
+    addCompareButton();
+}
+
+function addCompareButton() {
+    const finalValuesHeader = document.querySelector(".final-values h3");
+    
+    if (!document.getElementById("saveForCompareBtn")) {
+        const buttonContainer = document.createElement("div");
+        buttonContainer.className = "d-flex justify-content-between align-items-center w-100";
+        
+        const headerTitle = document.createElement("h3");
+        headerTitle.textContent = finalValuesHeader.textContent;
+        buttonContainer.appendChild(headerTitle);
+        
+        const btnGroup = document.createElement("div");
+        btnGroup.className = "btn-group";
+        
+        const saveButton = document.createElement("button");
+        saveButton.id = "saveForCompareBtn";
+        saveButton.className = "btn btn-primary btn-sm";
+        saveButton.innerHTML = "新增比較";
+        saveButton.onclick = saveCurrentValues;
+        
+        const clearButton = document.createElement("button");
+        clearButton.id = "clearCompareBtn";
+        clearButton.className = "btn btn-outline-secondary btn-sm";
+        clearButton.innerHTML = "清除比較";
+        clearButton.onclick = clearComparison;
+        clearButton.style.display = "none";
+        
+        btnGroup.appendChild(saveButton);
+        btnGroup.appendChild(clearButton);
+        buttonContainer.appendChild(btnGroup);
+        
+        finalValuesHeader.parentNode.replaceChild(buttonContainer, finalValuesHeader);
+    }
+}
+
+function clearComparison() {
+    savedAttributes = {};
+    
+    document.querySelectorAll("td[data-comparison]").forEach(cell => {
+        cell.style.display = "none";
+    });
+    document.getElementById("comparisonHeader").style.display = "none";
+    document.querySelectorAll(".comparison-indicator").forEach(el => el.remove());
+    document.getElementById("saveForCompareBtn").innerHTML = "儲存當前數值";
+    document.getElementById("clearCompareBtn").style.display = "none";
+}
+
+function saveCurrentValues() {
+    savedAttributes = {};
+    const attributeCells = document.querySelectorAll("td[data-attribute]");
+    
+    attributeCells.forEach((cell) => {
+        const attr = cell.getAttribute("data-attribute");
+        const value = cell.textContent;
+        savedAttributes[attr] = value === "-" ? 0 : parseFloat(value);
+    });
+    
+    document.querySelectorAll("td[data-comparison]").forEach(cell => {
+        cell.style.display = "table-cell";
+    });
+    document.getElementById("comparisonHeader").style.display = "table-cell";
+    
+    updateComparisonDisplay();
+    
+    document.getElementById("clearCompareBtn").style.display = "inline-block";
+    document.getElementById("saveForCompareBtn").innerHTML = "更新比較";
 }
 
 function generateMockData(count) {
@@ -694,8 +812,7 @@ function processDescriptionWithBrackets(description, link) {
 
 function updateFinalValues() {
     const finalAttributes = document.getElementById("finalAttributes");
-    const attributeCells =
-        finalAttributes.querySelectorAll("td[data-attribute]");
+    const attributeCells = finalAttributes.querySelectorAll("td[data-attribute]");
 
     const attributeTotals = {};
     const specialEffects = [];
@@ -761,12 +878,20 @@ function updateFinalValues() {
     attributeCells.forEach((cell) => {
         const attr = cell.getAttribute("data-attribute");
         cell.textContent = attributeTotals[attr] === 0 ? "-" : attributeTotals[attr];
+        
+        const indicator = cell.querySelector('.comparison-indicator');
+        if (indicator) {
+            indicator.remove();
+        }
     });
-    const specialEffectsList =
-        document.getElementById("specialEffectsList");
+    
+    if (Object.keys(savedAttributes).length > 0) {
+        updateComparisonDisplay();
+    }
+    
+    const specialEffectsList = document.getElementById("specialEffectsList");
     specialEffectsList.innerHTML = "";
-    const specialEffectsListRight =
-        document.getElementById("specialEffectsListRight");
+    const specialEffectsListRight = document.getElementById("specialEffectsListRight");
     specialEffectsListRight.innerHTML = "";
 
     specialEffects.forEach((effect) => {
@@ -864,6 +989,43 @@ function updateSuitEffects() {
             });
         }
     }
+}
+
+function updateComparisonDisplay() {
+    document.querySelectorAll('.comparison-indicator').forEach(indicator => {
+        indicator.remove();
+    });
+    
+    const attributeCells = document.querySelectorAll("td[data-attribute]");
+    const comparisonCells = document.querySelectorAll("td[data-comparison]");
+    
+    attributeCells.forEach((cell) => {
+        const attr = cell.getAttribute("data-attribute");
+        const currentValue = cell.textContent === "-" ? 0 : parseFloat(cell.textContent);
+        const savedValue = savedAttributes[attr] || 0;
+        
+        const comparisonCell = document.querySelector(`td[data-comparison="${attr}"]`);
+        if (comparisonCell) {
+            comparisonCell.textContent = savedValue === 0 ? "-" : savedValue;
+        }
+        
+        const diff = currentValue - savedValue;
+        
+        if (diff !== 0) {
+            const indicator = document.createElement("span");
+            indicator.className = "comparison-indicator";
+            
+            if (diff > 0) {
+                indicator.innerHTML = "▲";
+                indicator.style.color = "green";
+            } else {
+                indicator.innerHTML = "▼";
+                indicator.style.color = "red";
+            }
+            
+            cell.appendChild(indicator);
+        }
+    });
 }
 
 function applySuitEffectClasses() {

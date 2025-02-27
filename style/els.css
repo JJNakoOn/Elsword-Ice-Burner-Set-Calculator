@@ -412,3 +412,24 @@ label {
 .clear-search-btn.visible {
   display: block;
 }
+
+.comparison-indicator {
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+#saveForCompareBtn, #clearCompareBtn {
+  margin-left: 5px;
+}
+
+#finalValueTable th, #finalValueTable td {
+  text-align: center;
+}
+
+.title-with-compare {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
