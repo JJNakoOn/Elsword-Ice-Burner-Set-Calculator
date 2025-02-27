@@ -355,7 +355,7 @@ function clearComparison() {
     });
     document.getElementById("comparisonHeader").style.display = "none";
     document.querySelectorAll(".comparison-indicator").forEach(el => el.remove());
-    document.getElementById("saveForCompareBtn").innerHTML = "儲存當前數值";
+    document.getElementById("saveForCompareBtn").innerHTML = "新增比較";
     document.getElementById("clearCompareBtn").style.display = "none";
 }
 
