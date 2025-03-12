@@ -1,9 +1,9 @@
 {
-    "set": "艾里奧斯守護騎士(暫)",
+    "set": "艾里奧斯守護騎士團",
     "link": "https://discord.com/channels/877847187143426069/959975832066064395/1336904506587217951",
     "parts": [
         {
-            "name": "艾里奧斯守護騎士飾品(武器)",
+            "name": "艾里奧斯守護騎士團護具",
             "part": "accessoryWeapon",
             "attributes": {
                 "attrList": [
@@ -23,7 +23,7 @@
             }
         },
         {
-            "name": "艾里奧斯守護騎士飾品(支援)",
+            "name": "艾里奧斯守護騎士團孵育石",
             "part": "support",
             "attributes": {
                 "attrList": [
@@ -43,7 +43,7 @@
             }
         },
         {
-            "name": "艾里奧斯守護騎士飾品(臉上)",
+            "name": "艾里奧斯守護騎士團髮夾",
             "part": "faceTop",
             "attributes": {
                 "attrList": [
@@ -63,7 +63,7 @@
             }
         },
         {
-            "name": "艾里奧斯守護騎士飾品(上衣)",
+            "name": "艾里奧斯守護騎士團徽章",
             "part": "accessoryUpper",
             "attributes": {
                 "attrList": [
@@ -83,7 +83,7 @@
             }
         },
         {
-            "name": "艾里奧斯守護騎士飾品(臉中)",
+            "name": "艾里奧斯守護騎士團眼罩",
             "part": "faceMiddle",
             "attributes": {
                 "attrList": [
@@ -103,7 +103,7 @@
             }
         },
         {
-            "name": "艾里奧斯守護騎士飾品(下衣)",
+            "name": "艾里奧斯守護騎士庇護",
             "part": "accessoryLower",
             "attributes": {
                 "attrList": [
@@ -123,7 +123,7 @@
             }
         },
         {
-            "name": "艾里奧斯守護騎士飾品(臉下)",
+            "name": "艾里奧斯守護騎士團光輝",
             "part": "faceBottom",
             "attributes": {
                 "attrList": [
@@ -143,7 +143,7 @@
             }
         },
         {
-            "name": "艾里奧斯守護騎士飾品(手臂)",
+            "name": "艾里奧斯守護騎士團肩膀裝飾",
             "part": "arm",
             "attributes": {
                 "attrList": [
@@ -163,7 +163,7 @@
             }
         },
         {
-            "name": "艾里奧斯守護騎士飾品(耳環)",
+            "name": "艾里奧斯守護騎士團耳環",
             "part": "earring",
             "attributes": {
                 "attrList": [
@@ -183,7 +183,7 @@
             }
         },
         {
-            "name": "艾里奧斯守護騎士飾品(項鍊)",
+            "name": "艾里奧斯守護騎士團項鍊",
             "part": "necklace",
             "attributes": {
                 "attrList": [
@@ -203,7 +203,7 @@
             }
         },
         {
-            "name": "艾里奧斯守護騎士飾品(戒指)",
+            "name": "艾里奧斯守護騎士團戒指",
             "part": "ring",
             "attributes": {
                 "attrList": [
