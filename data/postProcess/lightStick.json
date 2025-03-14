@@ -1,0 +1,24 @@
+{
+    "set": "EL★STAR 一代手燈",
+    "isCostume": true,
+    "link": "https://bafybeigfnmg7o6f7wpxmirfxheyxrcewg724jmhkjaqzu7tcyjdnwyo34m.ipfs.dweb.link/",
+    "parts": [
+        {
+            "name": "EL★STAR 粉絲手燈",
+            "part": "support",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 60
+                    },
+                    {
+                        "attribute": "技能傷害%",
+                        "value": 1
+                    }
+                ]
+            }
+        }
+    ],
+    "suitEffects": []
+}

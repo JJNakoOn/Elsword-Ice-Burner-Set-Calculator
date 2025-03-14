@@ -167,7 +167,8 @@ p {
 }
 
 .selected-part {
-  color: #ff6600;
+  /* color: #ff6600; */
+  color: #FFD700;
   text-align: center;
 }
 

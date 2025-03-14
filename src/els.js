@@ -507,7 +507,7 @@ function displayAvailableIceEquipment() {
         const costumePostfix = item.isCostume !== undefined ? "(時裝)" : ""
         listItem.innerHTML = `<input type="checkbox" id="equip_${globalIndex}" value="${globalIndex}" ${selectedCheckboxes.has(globalIndex) ? "checked" : ""
             }>
-                        <label for="equip_${globalIndex}" class="ms-2"><a href=${item.link} target="_blank"><b>${item.set
+                        <label for="equip_${globalIndex}" class="ms-2"><a href=${item.link} target=${item.link === "#"?"":"_blank"}><b>${item.set
             }${costumePostfix}</b></a>－${partsList}</label>`;
 
         listItem.querySelector("input").addEventListener("change", (e) => {
@@ -926,7 +926,7 @@ function updateSuitEffects() {
         const count = suitCounts[setName];
         const setData = allEquipmentData.find((set) => set.set === setName);
 
-        if (setData) {
+        if (setData && setData.suitEffects.length > 0) {
             const listItem = document.createElement("li");
             listItem.className = "checkbox-list-item";
 

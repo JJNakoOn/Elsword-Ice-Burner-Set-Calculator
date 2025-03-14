@@ -1,4 +1,4 @@
-1. Add epSet.json & MysteryErode.json at the top
+1. Add epSet.json & MysteryErode.json & lightStick.json at the top
 2. Replace 厄暗輓歌set content with ErebusElegySet.json 
 3. 薔薇彼岸set > pieces 4 > "description": "打擊時5%機率發動[固有能力]"
 4. 蝶之安魂曲set > pieces 3 > "description": "打擊時1%機率召喚[藍色蝴蝶群](副本)"
