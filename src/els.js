@@ -145,6 +145,7 @@ const attributeList = [
     "適應力%",
     "致命一擊傷害%",
     "技能傷害%",
+    "強烈/超越技傷%",
     "-技能冷卻%",
     "兩極化%",
     "流血%",
@@ -772,6 +773,7 @@ function getAttritubeValueName(attribute, value) {
         "適應力",
         "致命一擊傷害",
         "技能傷害",
+        "強烈/超越技傷",
         "移動速度",
         "跳躍速度",
         "額外傷害",
@@ -1017,10 +1019,10 @@ function updateComparisonDisplay() {
             
             if (diff > 0) {
                 indicator.innerHTML = "▲";
-                indicator.style.color = "green";
+                indicator.style.color = "red";
             } else {
                 indicator.innerHTML = "▼";
-                indicator.style.color = "red";
+                indicator.style.color = "blue";
             }
             
             cell.appendChild(indicator);

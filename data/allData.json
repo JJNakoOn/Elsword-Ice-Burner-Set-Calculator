@@ -481,6 +481,133 @@
         "suitEffects": []
     },
     {
+        "set": "猛虎奇談(暫)",
+        "link": "https://discord.com/channels/877847187143426069/959975832066064395/1364804142312460372",
+        "parts": [
+            {
+                "name": "猛虎奇談武器",
+                "part": "weapon",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 200
+                        },
+                        {
+                            "attribute": "100%血殺%",
+                            "value": 5
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "猛虎奇談臉中",
+                "part": "faceMiddle",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 30
+                        },
+                        {
+                            "attribute": "兩極化%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "極大化%",
+                            "value": 1
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "猛虎奇談飾品(上衣)",
+                "part": "accessoryUpper",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 30
+                        },
+                        {
+                            "attribute": "流血%",
+                            "value": 1
+                        },
+                        {
+                            "attribute": "技能傷害%",
+                            "value": 1
+                        }
+                    ]
+                    
+                }
+            },
+            {
+                "name": "猛虎奇談耳環",
+                "part": "earring",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 30
+                        },
+                        {
+                            "attribute": "流血%",
+                            "value": 1
+                        },
+                        {
+                            "attribute": "技能傷害%",
+                            "value": 1
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "猛虎奇談戒指",
+                "part": "ring",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 50
+                        },
+                        {
+                            "attribute": "雙攻%",
+                            "value": 3
+                        },
+                        {
+                            "attribute": "兩極化%",
+                            "value": 2
+                        }
+                    ]
+                }
+            }
+        ],
+        "suitEffects": [
+            {
+                "pieces": 2,
+                "effects": [
+                    {
+                        "attribute": "兩極化%",
+                        "value": 4
+                    },
+                    {
+                        "attribute": "強烈/超越技傷%",
+                        "value": 4
+                    }
+                ]
+            },
+            {
+                "pieces": 3,
+                "effects": [
+                    {
+                        "attribute": "100%血殺%",
+                        "value": 6
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "set": "厄暗輓歌(暫)",
         "link": "https://kelsword.web.fc2.com/rareavatar/ra_70.htm",
         "parts": [
