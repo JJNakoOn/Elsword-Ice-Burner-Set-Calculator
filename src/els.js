@@ -125,6 +125,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 const selectedEquipmentSets = new Set();
 const selectedCheckboxes = new Set();
+const undoSelectedCheckboxeStack = [];
+const maxStackSize = 10;
 let selectedAttributes = {};
 let selectedParts = {};
 let suitCounts = {};
@@ -469,7 +471,27 @@ function generateMockData(count) {
     return data;
 }
 
+function processUndoStack() {
+    if (undoSelectedCheckboxeStack.length >= maxStackSize) {
+        undoSelectedCheckboxeStack.shift();
+    }
+    undoSelectedCheckboxeStack.push(new Set(selectedCheckboxes));
+}
+
+function undoSelected() {
+    if (undoSelectedCheckboxeStack.length === 0) {
+        return;
+    }
+
+    selectedCheckboxes.clear();
+    undoSelectedCheckboxeStack.pop().forEach(item => {
+        selectedCheckboxes.add(item);
+    });
+    displayAvailableIceEquipment();
+}
+
 function selectAllEquipment() {
+    processUndoStack();
     filteredData.forEach((item) => {
         const index = allEquipmentData.indexOf(item);
         selectedCheckboxes.add(index);
@@ -478,6 +500,7 @@ function selectAllEquipment() {
 }
 
 function deselectAllEquipment() {
+    processUndoStack();
     filteredData.forEach((item) => {
         const index = allEquipmentData.indexOf(item);
         selectedCheckboxes.delete(index);
@@ -512,6 +535,8 @@ function displayAvailableIceEquipment() {
             }${costumePostfix}</b></a>－${partsList}</label>`;
 
         listItem.querySelector("input").addEventListener("change", (e) => {
+            processUndoStack();
+
             if (e.target.checked) {
                 selectedCheckboxes.add(globalIndex);
             } else {
