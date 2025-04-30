@@ -1,5 +1,11 @@
 [
     {
+        "date": "2025-04-30",
+        "changes": [
+            "新增「復原」按鈕功能，特別感謝 <a href=\"https://github.com/Neillife\" target=\"_blank\">雪胖</a> 對本項目做出的貢獻。"
+        ]
+    },
+    {
         "date": "2025-04-24",
         "changes": [
             "新增「猛虎奇談」套裝",
