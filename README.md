@@ -55,7 +55,7 @@
 
 
 
-[contributors-shield]: https://img.shields.io/github/contributors/JJNakoOn/Elsword-Ice-Bur`r-Set-Calculator.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/JJNakoOn/Elsword-Ice-Burner-Set-Calculator.svg?style=for-the-badge
 [contributors-url]: https://github.com/JJNakoOn/Elsword-Ice-Burner-Set-Calculator/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/JJNakoOn/Elsword-Ice-Burner-Set-Calculator.svg?style=for-the-badge
 [forks-url]: https://github.com/JJNakoOn/Elsword-Ice-Burner-Set-Calculator/network/members
