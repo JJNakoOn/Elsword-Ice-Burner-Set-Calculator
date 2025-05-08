@@ -739,11 +739,11 @@
         ]
     },
     {
-        "set": "生命源泉(暫)",
+        "set": "薇塔芳塔娜",
         "link": "https://kelsword.web.fc2.com/rareavatar/ra_69.htm",
         "parts": [
             {
-                "name": "生命源泉武器",
+                "name": "薇塔芳塔娜武器",
                 "part": "weapon",
                 "attributes": {
                     "attrList": [
@@ -759,7 +759,7 @@
                 }
             },
             {
-                "name": "生命源泉:活力的葉裝飾",
+                "name": "薇塔芳塔娜:活力之葉飾",
                 "part": "faceMiddle",
                 "attributes": {
                     "attrList": [
@@ -779,7 +779,7 @@
                 }
             },
             {
-                "name": "生命源泉:讚美的豎琴",
+                "name": "薇塔芳塔娜:讚頌之豎琴",
                 "part": "accessoryUpper",
                 "attributes": {
                     "attrList": [
@@ -799,7 +799,7 @@
                 }
             },
             {
-                "name": "生命源泉:吉兆的詩篇",
+                "name": "薇塔芳塔娜:吉祥之詩",
                 "part": "accessoryLower",
                 "attributes": {
                     "attrList": [
@@ -819,7 +819,7 @@
                 }
             },
             {
-                "name": "生命源泉:氣息的頸領帶",
+                "name": "薇塔芳塔娜:氣息之領巾",
                 "part": "necklace",
                 "attributes": {
                     "attrList": [
