@@ -1,0 +1,123 @@
+{
+    "set": "크레스트 드레인",
+    "link": "https://discord.com/channels/877847187143426069/959975832066064395/1395250542099435550",
+    "parts": [
+        {
+            "name": "크레스트 드레인武器",
+            "part": "weapon",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 200
+                    },
+                    {
+                        "attribute": "100%血殺%",
+                        "value": 5
+                    }
+                ]
+            }
+        },
+        {
+            "name": "크레스트 드레인臉中",
+            "part": "faceMiddle",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "流血%",
+                        "value": 2
+                    }
+                ]
+            }
+        },
+        {
+            "name": "크레스트 드레인飾品(下衣)",
+            "part": "accessoryLower",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "流血%",
+                        "value": 1
+                    },
+                    {
+                        "attribute": "技能傷害%",
+                        "value": 1
+                    }
+                ]
+                
+            }
+        },
+        {
+            "name": "크레스트 드레인手臂",
+            "part": "arm",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "流血%",
+                        "value": 1
+                    },
+                    {
+                        "attribute": "技能傷害%",
+                        "value": 1
+                    }
+                ]
+            }
+        },
+        {
+            "name": "크레스트 드레인項鍊",
+            "part": "necklace",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 50
+                    },
+                    {
+                        "attribute": "適應力%",
+                        "value": 2
+                    },
+                    {
+                        "attribute": "流血%",
+                        "value": 2
+                    }
+                ]
+            }
+        }
+    ],
+    "suitEffects": [
+        {
+            "pieces": 2,
+            "effects": [
+                {
+                    "attribute": "100%血殺%",
+                    "value": 4
+                },
+                {
+                    "attribute": "技能傷害%",
+                    "value": 2
+                }
+            ]
+        },
+        {
+            "pieces": 3,
+            "effects": [
+                {
+                    "attribute": "雙攻%",
+                    "value": 6
+                }
+            ]
+        }
+    ]
+}

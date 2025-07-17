@@ -278,7 +278,6 @@
                             "description": "攻擊時1%的機率減少技能冷卻時間5秒 (超技能/天上之愛除外)(副本)(套用在副本內所有的玩家)"
                         }
                     ]
-                    
                 }
             },
             {
@@ -341,7 +340,6 @@
                             "description": "隨機任務發動機率+5% (組隊全體)"
                         }
                     ]
-                    
                 }
             },
             {
@@ -365,7 +363,6 @@
                             "description": "Fever發動機率+5% (組隊全體)"
                         }
                     ]
-                    
                 }
             },
             {
@@ -389,7 +386,6 @@
                             "description": "攻擊時3%的機率HP5%、MP+10回復 (副本)(套用在副本內所有的玩家)"
                         }
                     ]
-                    
                 }
             },
             {
@@ -417,7 +413,6 @@
                             "description": "攻擊時3%的機率發動雙重攻擊 (副本)(套用在副本內所有的玩家)"
                         }
                     ]
-                    
                 }
             },
             {
@@ -441,7 +436,6 @@
                             "description": "攻擊時3%的機率5秒間物理、魔法攻擊力增加10% (副本)(套用在副本內所有的玩家)"
                         }
                     ]
-                    
                 }
             }
         ],
@@ -479,6 +473,128 @@
             }
         ],
         "suitEffects": []
+    },
+    {
+        "set": "크레스트 드레인",
+        "link": "https://discord.com/channels/877847187143426069/959975832066064395/1395250542099435550",
+        "parts": [
+            {
+                "name": "크레스트 드레인武器",
+                "part": "weapon",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 200
+                        },
+                        {
+                            "attribute": "100%血殺%",
+                            "value": 5
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "크레스트 드레인臉中",
+                "part": "faceMiddle",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 30
+                        },
+                        {
+                            "attribute": "流血%",
+                            "value": 2
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "크레스트 드레인飾品(下衣)",
+                "part": "accessoryLower",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 30
+                        },
+                        {
+                            "attribute": "流血%",
+                            "value": 1
+                        },
+                        {
+                            "attribute": "技能傷害%",
+                            "value": 1
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "크레스트 드레인手臂",
+                "part": "arm",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 30
+                        },
+                        {
+                            "attribute": "流血%",
+                            "value": 1
+                        },
+                        {
+                            "attribute": "技能傷害%",
+                            "value": 1
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "크레스트 드레인項鍊",
+                "part": "necklace",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 50
+                        },
+                        {
+                            "attribute": "適應力%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "流血%",
+                            "value": 2
+                        }
+                    ]
+                }
+            }
+        ],
+        "suitEffects": [
+            {
+                "pieces": 2,
+                "effects": [
+                    {
+                        "attribute": "100%血殺%",
+                        "value": 4
+                    },
+                    {
+                        "attribute": "技能傷害%",
+                        "value": 2
+                    }
+                ]
+            },
+            {
+                "pieces": 3,
+                "effects": [
+                    {
+                        "attribute": "雙攻%",
+                        "value": 6
+                    }
+                ]
+            }
+        ]
     },
     {
         "set": "猛虎奇談(暫)",
@@ -538,7 +654,6 @@
                             "value": 1
                         }
                     ]
-                    
                 }
             },
             {
@@ -649,7 +764,6 @@
                             "value": 1
                         }
                     ]
-                    
                 }
             },
             {
