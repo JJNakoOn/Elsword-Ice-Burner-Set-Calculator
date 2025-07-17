@@ -608,11 +608,11 @@
         ]
     },
     {
-        "set": "厄暗輓歌(暫)",
+        "set": "厄瑞玻斯的哀歌(暫)",
         "link": "https://kelsword.web.fc2.com/rareavatar/ra_70.htm",
         "parts": [
             {
-                "name": "厄暗輓歌武器",
+                "name": "厄瑞玻斯的哀歌武器",
                 "part": "weapon",
                 "attributes": {
                     "attrList": [
@@ -632,7 +632,7 @@
                 }
             },
             {
-                "name": "厄暗輓歌:靈魂引導靈",
+                "name": "厄瑞玻斯的哀歌:靈魂引導靈",
                 "part": "support",
                 "attributes": {
                     "attrList": [
@@ -653,7 +653,7 @@
                 }
             },
             {
-                "name": "厄暗輓歌:使者冠冕",
+                "name": "厄瑞玻斯的哀歌:使者冠冕",
                 "part": "faceTop",
                 "attributes": {
                     "attrList": [
@@ -673,7 +673,7 @@
                 }
             },
             {
-                "name": "厄暗輓歌:沉默面紗",
+                "name": "厄瑞玻斯的哀歌:沉默面紗",
                 "part": "faceBottom",
                 "attributes": {
                     "attrList": [
@@ -693,7 +693,7 @@
                 }
             },
             {
-                "name": "厄暗輓歌:冥界焰河",
+                "name": "厄瑞玻斯的哀歌:冥界焰河",
                 "part": "accessoryLower",
                 "attributes": {
                     "attrList": [
