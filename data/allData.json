@@ -589,6 +589,10 @@
                 "pieces": 3,
                 "effects": [
                     {
+                        "attribute": "適應力%",
+                        "value": 2
+                    },
+                    {
                         "attribute": "雙攻%",
                         "value": 6
                     }
