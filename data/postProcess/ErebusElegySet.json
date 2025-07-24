@@ -44,7 +44,7 @@
             }
         },
         {
-            "name": "厄瑞玻斯的哀歌:使者冠冕",
+            "name": "厄瑞玻斯的哀歌:使者之冠",
             "part": "faceTop",
             "attributes": {
                 "attrList": [
@@ -64,7 +64,7 @@
             }
         },
         {
-            "name": "厄瑞玻斯的哀歌:沉默面紗",
+            "name": "厄瑞玻斯的哀歌:寂靜面紗",
             "part": "faceBottom",
             "attributes": {
                 "attrList": [
@@ -84,7 +84,7 @@
             }
         },
         {
-            "name": "厄瑞玻斯的哀歌:冥界焰河",
+            "name": "厄瑞玻斯的哀歌:冥河烈焰",
             "part": "accessoryLower",
             "attributes": {
                 "attrList": [
