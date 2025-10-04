@@ -152,6 +152,8 @@ const attributeList = [
     "兩極化%",
     "流血%",
     "100%血殺%",
+    "強者%",
+    "排熱%",
     "-MP消耗量%",
     "無視防禦%",
     "HP%",
@@ -810,6 +812,8 @@ function getAttritubeValueName(attribute, value) {
         "雙攻",
         "HP",
         "100%血殺",
+        "強者",
+        "排熱",
         "兩極化",
         "流血",
         "無視防禦"
