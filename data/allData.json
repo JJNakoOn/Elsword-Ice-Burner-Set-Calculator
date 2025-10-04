@@ -4,6 +4,22 @@
         "link": "https://discord.com/channels/877847187143426069/959975832066064395/1336904506587217951",
         "parts": [
             {
+                "name": "艾里奧斯守護騎士團武器",
+                "part": "weapon",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 150
+                        },
+                        {
+                            "attribute": "技能傷害%",
+                            "value": 4
+                        }
+                    ]
+                }
+            },
+            {
                 "name": "艾里奧斯守護騎士團護具",
                 "part": "accessoryWeapon",
                 "attributes": {
