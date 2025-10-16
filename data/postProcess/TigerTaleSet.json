@@ -1,5 +1,5 @@
 {
-    "set": "猛虎奇談(暫)",
+    "set": "猛虎奇談",
     "link": "https://kelsword.web.fc2.com/rareavatar/ra_71.htm",
     "parts": [
         {
@@ -19,7 +19,7 @@
             }
         },
         {
-            "name": "猛虎奇談臉中",
+            "name": "猛虎奇談:結繩眼鏡",
             "part": "faceMiddle",
             "attributes": {
                 "attrList": [
@@ -39,7 +39,7 @@
             }
         },
         {
-            "name": "猛虎奇談飾品(上衣)",
+            "name": "猛虎奇談:虎紋外套",
             "part": "accessoryUpper",
             "attributes": {
                 "attrList": [
@@ -60,7 +60,7 @@
             }
         },
         {
-            "name": "猛虎奇談耳環",
+            "name": "猛虎奇談:玉飾耳環",
             "part": "earring",
             "attributes": {
                 "attrList": [
@@ -80,7 +80,7 @@
             }
         },
         {
-            "name": "猛虎奇談戒指",
+            "name": "猛虎奇談:紅玉戒指",
             "part": "ring",
             "attributes": {
                 "attrList": [
