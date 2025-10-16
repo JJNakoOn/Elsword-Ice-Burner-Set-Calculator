@@ -491,11 +491,11 @@
         "suitEffects": []
     },
     {
-        "set": "Grandiflora(暫)",
+        "set": "似錦繁花(暫)",
         "link": "https://discord.com/channels/877847187143426069/959975832066064395/1423905591188787251",
         "parts": [
             {
-                "name": "Grandiflora武器",
+                "name": "似錦繁花:武器",
                 "part": "weapon",
                 "attributes": {
                     "attrList": [
@@ -511,7 +511,7 @@
                 }
             },
             {
-                "name": "Grandiflora武器飾品",
+                "name": "似錦繁花:武器飾品",
                 "part": "accessoryWeapon",
                 "attributes": {
                     "attrList": [
@@ -535,7 +535,7 @@
                 }
             },
             {
-                "name": "Grandiflora支援娃娃",
+                "name": "似錦繁花:支援娃娃",
                 "part": "support",
                 "attributes": {
                     "attrList": [
@@ -555,7 +555,7 @@
                 }
             },
             {
-                "name": "Grandiflora飾品(上衣)",
+                "name": "似錦繁花:飾品(上衣)",
                 "part": "accessoryUpper",
                 "attributes": {
                     "attrList": [
@@ -575,7 +575,7 @@
                 }
             },
             {
-                "name": "Grandiflora臉下",
+                "name": "似錦繁花:臉下",
                 "part": "faceBottom",
                 "attributes": {
                     "attrList": [
@@ -621,11 +621,11 @@
         ]
     },
     {
-        "set": "크레스트 드레인(暫)",
+        "set": "掠能波濤(暫)",
         "link": "https://discord.com/channels/877847187143426069/959975832066064395/1395250542099435550",
         "parts": [
             {
-                "name": "크레스트 드레인武器",
+                "name": "掠能波濤:武器",
                 "part": "weapon",
                 "attributes": {
                     "attrList": [
@@ -641,7 +641,7 @@
                 }
             },
             {
-                "name": "크레스트 드레인臉中",
+                "name": "掠能波濤:臉中",
                 "part": "faceMiddle",
                 "attributes": {
                     "attrList": [
@@ -657,7 +657,7 @@
                 }
             },
             {
-                "name": "크레스트 드레인飾品(下衣)",
+                "name": "掠能波濤:飾品(下衣)",
                 "part": "accessoryLower",
                 "attributes": {
                     "attrList": [
@@ -677,7 +677,7 @@
                 }
             },
             {
-                "name": "크레스트 드레인手臂",
+                "name": "掠能波濤:手臂",
                 "part": "arm",
                 "attributes": {
                     "attrList": [
@@ -697,7 +697,7 @@
                 }
             },
             {
-                "name": "크레스트 드레인項鍊",
+                "name": "掠能波濤:項鍊",
                 "part": "necklace",
                 "attributes": {
                     "attrList": [

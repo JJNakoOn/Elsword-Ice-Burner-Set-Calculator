@@ -1,9 +1,9 @@
 {
-    "set": "크레스트 드레인(暫)",
+    "set": "掠能波濤(暫)",
     "link": "https://discord.com/channels/877847187143426069/959975832066064395/1395250542099435550",
     "parts": [
         {
-            "name": "크레스트 드레인武器",
+            "name": "掠能波濤:武器",
             "part": "weapon",
             "attributes": {
                 "attrList": [
@@ -19,7 +19,7 @@
             }
         },
         {
-            "name": "크레스트 드레인臉中",
+            "name": "掠能波濤:臉中",
             "part": "faceMiddle",
             "attributes": {
                 "attrList": [
@@ -35,7 +35,7 @@
             }
         },
         {
-            "name": "크레스트 드레인飾品(下衣)",
+            "name": "掠能波濤:飾品(下衣)",
             "part": "accessoryLower",
             "attributes": {
                 "attrList": [
@@ -55,7 +55,7 @@
             }
         },
         {
-            "name": "크레스트 드레인手臂",
+            "name": "掠能波濤:手臂",
             "part": "arm",
             "attributes": {
                 "attrList": [
@@ -75,7 +75,7 @@
             }
         },
         {
-            "name": "크레스트 드레인項鍊",
+            "name": "掠能波濤:項鍊",
             "part": "necklace",
             "attributes": {
                 "attrList": [
