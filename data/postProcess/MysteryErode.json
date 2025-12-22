@@ -1,7 +1,7 @@
 {
     "set": "神秘的埃羅德",
     "isCostume": true,
-    "link": "https://forum.gamer.com.tw/Co.php?bsn=12259&sn=1331864",
+    "link": "https://bafybeiayc4wni3lnsbxiui6ycvud5gqd23ioifkkbujp4bmovwbxr5yoqi.ipfs.dweb.link",
     "parts": [
         {
             "name": "神秘的埃羅德武器飾品",
@@ -23,7 +23,6 @@
                         "description": "攻擊時1%的機率減少技能冷卻時間5秒 (超技能/天上之愛除外)(副本)(套用在副本內所有的玩家)"
                     }
                 ]
-                
             }
         },
         {
@@ -86,7 +85,6 @@
                         "description": "隨機任務發動機率+5% (組隊全體)"
                     }
                 ]
-                
             }
         },
         {
@@ -110,7 +108,6 @@
                         "description": "Fever發動機率+5% (組隊全體)"
                     }
                 ]
-                
             }
         },
         {
@@ -134,7 +131,6 @@
                         "description": "攻擊時3%的機率HP5%、MP+10回復 (副本)(套用在副本內所有的玩家)"
                     }
                 ]
-                
             }
         },
         {
@@ -162,7 +158,6 @@
                         "description": "攻擊時3%的機率發動雙重攻擊 (副本)(套用在副本內所有的玩家)"
                     }
                 ]
-                
             }
         },
         {
@@ -186,7 +181,6 @@
                         "description": "攻擊時3%的機率5秒間物理、魔法攻擊力增加10% (副本)(套用在副本內所有的玩家)"
                     }
                 ]
-                
             }
         }
     ],
