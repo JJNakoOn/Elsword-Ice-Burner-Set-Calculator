@@ -1,0 +1,130 @@
+{
+    "set": "牧羊埃特拉(暫)",
+    "link": "https://discord.com/channels/877847187143426069/959975832066064395/1455749052913156219",
+    "parts": [
+        {
+            "name": "牧羊埃特拉:武器",
+            "part": "weapon",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 200
+                    },
+                    {
+                        "attribute": "100%血殺%",
+                        "value": 5
+                    }
+                ]
+            }
+        },
+        {
+            "name": "牧羊埃特拉:臉上",
+            "part": "faceTop",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "流血%",
+                        "value": 1
+                    },
+                    {
+                        "attribute": "技能傷害%",
+                        "value": 1
+                    }
+                ]
+            }
+        },
+        {
+            "name": "牧羊埃特拉:飾品(下衣)",
+            "part": "accessoryLower",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 50
+                    },
+                    {
+                        "attribute": "流血%",
+                        "value": 1
+                    },
+                    {
+                        "attribute": "兩極化%",
+                        "value": 1
+                    }
+                ]
+            }
+        },
+        {
+            "name": "牧羊埃特拉:耳環",
+            "part": "earring",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "兩極化%",
+                        "value": 2
+                    }
+                ]
+            }
+        },
+        {
+            "name": "牧羊埃特拉:戒指",
+            "part": "ring",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 50
+                    },
+                    {
+                        "attribute": "兩極化%",
+                        "value": 2
+                    },
+                    {
+                        "attribute": "流血%",
+                        "value": 3
+                    }
+                ]
+            }
+        }
+    ],
+    "suitEffects": [
+        {
+            "pieces": 2,
+            "effects": [
+                {
+                    "attribute": "100%血殺%",
+                    "value": 4
+                },
+                {
+                    "attribute": "致命一擊傷害%",
+                    "value": 3
+                }
+            ]
+        },
+        {
+            "pieces": 3,
+            "effects": [
+                {
+                    "attribute": "技能傷害%",
+                    "value": 3
+                },
+                {
+                    "attribute": "強者%",
+                    "value": 6
+                },
+                {
+                    "attribute": "排熱%",
+                    "value": 6
+                }
+            ]
+        }
+    ]
+}
