@@ -1,0 +1,126 @@
+{
+    "set": "花郎戀歌(暫)",
+    "link": "https://elwiki.net/w/Ballad_of_Hwarang",
+    "parts": [
+        {
+            "name": "花郎戀歌:武器",
+            "part": "weapon",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 200
+                    },
+                    {
+                        "attribute": "100%血殺%",
+                        "value": 5
+                    }
+                ]
+            }
+        },
+        {
+            "name": "花郎戀歌:臉中",
+            "part": "faceMiddle",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "100%血殺%",
+                        "value": 2
+                    },
+                    {
+                        "attribute": "-MP消耗量%",
+                        "value": 5
+                    }
+                ]
+            }
+        },
+        {
+            "name": "花郎戀歌:飾品(上衣)",
+            "part": "accessoryUpper",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 50
+                    },
+                    {
+                        "attribute": "流血%",
+                        "value": 2
+                    }
+                ]
+            }
+        },
+        {
+            "name": "花郎戀歌:手臂",
+            "part": "arm",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "兩極化%",
+                        "value": 1
+                    },
+                    {
+                        "attribute": "-技能冷卻%",
+                        "value": 5
+                    }
+                ]
+            }
+        },
+        {
+            "name": "花郎戀歌:項鍊",
+            "part": "necklace",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "適應力%",
+                        "value": 2
+                    },
+                    {
+                        "attribute": "雙攻%",
+                        "value": 2
+                    },
+                    {
+                        "attribute": "攻擊MP回復%",
+                        "value": 14
+                    }
+                ]
+            }
+        }
+    ],
+    "suitEffects": [
+        {
+            "pieces": 2,
+            "effects": [
+                {
+                    "attribute": "流血%",
+                    "value": 5
+                }
+            ]
+        },
+        {
+            "pieces": 3,
+            "effects": [
+                {
+                    "attribute": "100%血殺%",
+                    "value": 6
+                },
+                {
+                    "attribute": "技能傷害%",
+                    "value": 5
+                }
+            ]
+        }
+    ]
+}
