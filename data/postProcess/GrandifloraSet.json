@@ -1,9 +1,9 @@
 {
-    "set": "似錦繁花(暫)",
+    "set": "日冕．灼耀花仙",
     "link": "https://discord.com/channels/877847187143426069/959975832066064395/1423905591188787251",
     "parts": [
         {
-            "name": "似錦繁花:武器",
+            "name": "日冕．灼耀花仙:武器",
             "part": "weapon",
             "attributes": {
                 "attrList": [
@@ -19,7 +19,7 @@
             }
         },
         {
-            "name": "似錦繁花:武器飾品",
+            "name": "日冕．灼耀花仙:盛開的胸針",
             "part": "accessoryWeapon",
             "attributes": {
                 "attrList": [
@@ -43,7 +43,7 @@
             }
         },
         {
-            "name": "似錦繁花:支援娃娃",
+            "name": "日冕．灼耀花仙:歡愉之吊燈",
             "part": "support",
             "attributes": {
                 "attrList": [
@@ -63,7 +63,7 @@
             }
         },
         {
-            "name": "似錦繁花:飾品(上衣)",
+            "name": "日冕．灼耀花仙:妖精之翼",
             "part": "accessoryUpper",
             "attributes": {
                 "attrList": [
@@ -83,7 +83,7 @@
             }
         },
         {
-            "name": "似錦繁花:臉下",
+            "name": "日冕．灼耀花仙:妖精的蹤跡",
             "part": "faceBottom",
             "attributes": {
                 "attrList": [
@@ -117,12 +117,12 @@
             "pieces": 3,
             "effects": [
                 {
-                    "attribute": "技能傷害%",
-                    "value": 5
-                },
-                {
                     "attribute": "流血%",
                     "value": 6
+                },
+                {
+                    "attribute": "技能傷害%",
+                    "value": 5
                 }
             ]
         }
