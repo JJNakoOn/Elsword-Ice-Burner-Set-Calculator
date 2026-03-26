@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const specialFXRight = document.getElementById("specialFXRight");
     const resetButton = document.getElementById("resetButton");
     const suitEffectsSection = document.getElementById("suitEffectsSection");
-    const comparisonControls = document.getElementById("saveForCompareBtn"); 
+    const comparisonControls = document.getElementById("saveForCompareBtn");
     const clearCompareBtn = document.getElementById("clearCompareBtn");
-    const comparisonHeader = document.getElementById("comparisonHeader"); 
+    const comparisonHeader = document.getElementById("comparisonHeader");
     const comparisonCells = document.querySelectorAll("td[data-comparison]");
 
     toggleSections.addEventListener("change", () => {
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         resetButton.style.display = toggleSections.checked
             ? "none"
             : "flex";
-            
+
         if (comparisonControls) {
             comparisonControls.style.display = toggleSections.checked
                 ? "none"
@@ -48,21 +48,21 @@ document.addEventListener("DOMContentLoaded", async () => {
                 ? "none"
                 : (Object.keys(savedAttributes).length > 0 ? "inline-block" : "none");
         }
-        
+
         const hasComparisonData = Object.keys(savedAttributes).length > 0;
-        
+
         if (comparisonHeader) {
             comparisonHeader.style.display = toggleSections.checked
                 ? "none"
                 : (hasComparisonData ? "table-cell" : "none");
         }
-        
+
         comparisonCells.forEach(cell => {
             cell.style.display = toggleSections.checked
                 ? "none"
                 : (hasComparisonData ? "table-cell" : "none");
         });
-        
+
         if (!toggleSections.checked && hasComparisonData) {
             updateComparisonDisplay();
         } else if (toggleSections.checked) {
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     resetButton.style.display = toggleSections.checked
         ? "none"
         : "flex";
-        
+
     if (comparisonControls) {
         comparisonControls.style.display = toggleSections.checked
             ? "none"
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const searchInput = document.getElementById('searchInput');
     const clearSearchBtn = document.querySelector('.clear-search-btn');
-    
+
     searchInput.addEventListener('input', (e) => {
         searchQuery = e.target.value.toLowerCase();
         currentPage = 1;
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         displayAvailableIceEquipment();
         toggleClearButton();
     });
-    
+
     clearSearchBtn.addEventListener('click', () => {
         searchInput.value = '';
         searchQuery = '';
@@ -156,13 +156,13 @@ const attributeList = [
     "排熱%",
     "-MP消耗量%",
     "無視防禦%",
+    "攻擊MP回復%",
     "HP%",
     "雙防+",
     "移動速度%",
     "跳躍速度%",
     "額外傷害%",
     "傷害減少%",
-    "攻擊MP回復%",
     "被擊MP回復%",
     "覺醒回復速度%",
     "覺醒持續時間%",
@@ -175,7 +175,7 @@ function updateFilteredData() {
     } else {
         filteredData = allEquipmentData.filter(item => {
             const setNameMatch = item.set.toLowerCase().includes(searchQuery);
-            const partsMatch = item.parts.some(part => 
+            const partsMatch = item.parts.some(part =>
                 getPartName(part.part).toLowerCase().includes(searchQuery)
             );
             return setNameMatch || partsMatch;
@@ -186,7 +186,7 @@ function updateFilteredData() {
 function toggleClearButton() {
     const clearSearchBtn = document.querySelector('.clear-search-btn');
     const searchInput = document.getElementById('searchInput');
-    
+
     if (searchInput.value.length > 0) {
         clearSearchBtn.classList.add('visible');
     } else {
@@ -290,7 +290,7 @@ async function loadChangelog() {
 function initializeFinalAttributes() {
     const finalAttributes = document.getElementById("finalAttributes");
     finalAttributes.innerHTML = "";
-    
+
     const thead = document.getElementById("finalValueTable").querySelector("thead tr");
     if (thead.children.length < 3) {
         const comparisonHeader = document.createElement("th");
@@ -299,7 +299,7 @@ function initializeFinalAttributes() {
         comparisonHeader.style.display = "none";
         thead.appendChild(comparisonHeader);
     }
-    
+
     attributeList.forEach((attr) => {
         const row = finalAttributes.insertRow();
         const nameCell = row.insertCell(0);
@@ -307,54 +307,54 @@ function initializeFinalAttributes() {
         nameCell.textContent = attr;
         valueCell.textContent = "-";
         valueCell.setAttribute("data-attribute", attr);
-        
+
         const comparisonCell = row.insertCell(2);
         comparisonCell.textContent = "-";
         comparisonCell.setAttribute("data-comparison", attr);
         comparisonCell.style.display = "none";
     });
-    
+
     addCompareButton();
 }
 
 function addCompareButton() {
     const finalValuesHeader = document.querySelector(".final-values h3");
-    
+
     if (!document.getElementById("saveForCompareBtn")) {
         const buttonContainer = document.createElement("div");
         buttonContainer.className = "d-flex justify-content-between align-items-center w-100";
-        
+
         const headerTitle = document.createElement("h3");
         headerTitle.textContent = finalValuesHeader.textContent;
         buttonContainer.appendChild(headerTitle);
-        
+
         const btnGroup = document.createElement("div");
         btnGroup.className = "btn-group";
-        
+
         const saveButton = document.createElement("button");
         saveButton.id = "saveForCompareBtn";
         saveButton.className = "btn btn-primary btn-sm";
         saveButton.innerHTML = "新增比較";
         saveButton.onclick = saveCurrentValues;
-        
+
         const clearButton = document.createElement("button");
         clearButton.id = "clearCompareBtn";
         clearButton.className = "btn btn-outline-secondary btn-sm";
         clearButton.innerHTML = "清除比較";
         clearButton.onclick = clearComparison;
         clearButton.style.display = "none";
-        
+
         btnGroup.appendChild(saveButton);
         btnGroup.appendChild(clearButton);
         buttonContainer.appendChild(btnGroup);
-        
+
         finalValuesHeader.parentNode.replaceChild(buttonContainer, finalValuesHeader);
     }
 }
 
 function clearComparison() {
     savedAttributes = {};
-    
+
     document.querySelectorAll("td[data-comparison]").forEach(cell => {
         cell.style.display = "none";
     });
@@ -367,20 +367,20 @@ function clearComparison() {
 function saveCurrentValues() {
     savedAttributes = {};
     const attributeCells = document.querySelectorAll("td[data-attribute]");
-    
+
     attributeCells.forEach((cell) => {
         const attr = cell.getAttribute("data-attribute");
         const value = cell.textContent;
         savedAttributes[attr] = value === "-" ? 0 : parseFloat(value);
     });
-    
+
     document.querySelectorAll("td[data-comparison]").forEach(cell => {
         cell.style.display = "table-cell";
     });
     document.getElementById("comparisonHeader").style.display = "table-cell";
-    
+
     updateComparisonDisplay();
-    
+
     document.getElementById("clearCompareBtn").style.display = "inline-block";
     document.getElementById("saveForCompareBtn").innerHTML = "更新比較";
 }
@@ -533,7 +533,7 @@ function displayAvailableIceEquipment() {
         const costumePostfix = item.isCostume !== undefined ? "(時裝)" : ""
         listItem.innerHTML = `<input type="checkbox" id="equip_${globalIndex}" value="${globalIndex}" ${selectedCheckboxes.has(globalIndex) ? "checked" : ""
             }>
-                        <label for="equip_${globalIndex}" class="ms-2"><a href=${item.link} target=${item.link === "#"?"":"_blank"}><b>${item.set
+                        <label for="equip_${globalIndex}" class="ms-2"><a href=${item.link} target=${item.link === "#" ? "" : "_blank"}><b>${item.set
             }${costumePostfix}</b></a>－${partsList}</label>`;
 
         listItem.querySelector("input").addEventListener("change", (e) => {
@@ -909,17 +909,17 @@ function updateFinalValues() {
     attributeCells.forEach((cell) => {
         const attr = cell.getAttribute("data-attribute");
         cell.textContent = attributeTotals[attr] === 0 ? "-" : attributeTotals[attr];
-        
+
         const indicator = cell.querySelector('.comparison-indicator');
         if (indicator) {
             indicator.remove();
         }
     });
-    
+
     if (Object.keys(savedAttributes).length > 0) {
         updateComparisonDisplay();
     }
-    
+
     const specialEffectsList = document.getElementById("specialEffectsList");
     specialEffectsList.innerHTML = "";
     const specialEffectsListRight = document.getElementById("specialEffectsListRight");
@@ -1026,26 +1026,26 @@ function updateComparisonDisplay() {
     document.querySelectorAll('.comparison-indicator').forEach(indicator => {
         indicator.remove();
     });
-    
+
     const attributeCells = document.querySelectorAll("td[data-attribute]");
     const comparisonCells = document.querySelectorAll("td[data-comparison]");
-    
+
     attributeCells.forEach((cell) => {
         const attr = cell.getAttribute("data-attribute");
         const currentValue = cell.textContent === "-" ? 0 : parseFloat(cell.textContent);
         const savedValue = savedAttributes[attr] || 0;
-        
+
         const comparisonCell = document.querySelector(`td[data-comparison="${attr}"]`);
         if (comparisonCell) {
             comparisonCell.textContent = savedValue === 0 ? "-" : savedValue;
         }
-        
+
         const diff = currentValue - savedValue;
-        
+
         if (diff !== 0) {
             const indicator = document.createElement("span");
             indicator.className = "comparison-indicator";
-            
+
             if (diff > 0) {
                 indicator.innerHTML = "▲";
                 indicator.style.color = "red";
@@ -1053,7 +1053,7 @@ function updateComparisonDisplay() {
                 indicator.innerHTML = "▼";
                 indicator.style.color = "blue";
             }
-            
+
             cell.appendChild(indicator);
         }
     });
