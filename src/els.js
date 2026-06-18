@@ -156,6 +156,7 @@ const attributeList = [
     "排熱%",
     "-MP消耗量%",
     "無視防禦%",
+    "主動/強韌技傷%",
     "攻擊MP回復%",
     "HP%",
     "雙防+",
@@ -168,6 +169,21 @@ const attributeList = [
     "覺醒持續時間%",
     "所有屬性抵抗+"
 ];
+
+// 複合屬性對應：當資料中出現複合屬性名稱時，將數值分配到多個目標屬性
+const compoundAttributeMap = {
+    "主動/強韌/強烈/超越技傷%": ["主動/強韌技傷%", "強烈/超越技傷%"]
+};
+
+/**
+ * 解析屬性名稱，若為複合屬性則回傳對應的多個目標屬性，否則回傳原屬性
+ */
+function resolveAttributeTargets(attribute) {
+    if (compoundAttributeMap[attribute]) {
+        return compoundAttributeMap[attribute];
+    }
+    return [attribute];
+}
 
 function updateFilteredData() {
     if (!searchQuery) {
@@ -801,6 +817,7 @@ function getAttritubeValueName(attribute, value) {
         "致命一擊傷害",
         "技能傷害",
         "強烈/超越技傷",
+        "主動/強韌/強烈/超越技傷",
         "移動速度",
         "跳躍速度",
         "額外傷害",
@@ -851,9 +868,15 @@ function updateFinalValues() {
 
     Object.values(selectedAttributes).forEach((attr) => {
         attr.attributes.attrList.forEach((a) => {
-            if (attributeTotals[a.attribute] !== undefined) {
-                attributeTotals[a.attribute] += a.value;
-            } else if (a.description) {
+            const targets = resolveAttributeTargets(a.attribute);
+            let matched = false;
+            targets.forEach((target) => {
+                if (attributeTotals[target] !== undefined) {
+                    attributeTotals[target] += a.value;
+                    matched = true;
+                }
+            });
+            if (!matched && a.description) {
                 specialEffects.push(a.description);
             }
         });
@@ -892,9 +915,15 @@ function updateFinalValues() {
             effect.forEach((effectSet) => {
                 if (count >= effectSet.pieces) {
                     effectSet.effects.forEach((eff) => {
-                        if (attributeTotals[eff.attribute] !== undefined) {
-                            attributeTotals[eff.attribute] += eff.value;
-                        } else {
+                        const targets = resolveAttributeTargets(eff.attribute);
+                        let matched = false;
+                        targets.forEach((target) => {
+                            if (attributeTotals[target] !== undefined) {
+                                attributeTotals[target] += eff.value;
+                                matched = true;
+                            }
+                        });
+                        if (!matched) {
                             const setName = effectId.split('-')[0];
                             const setData = allEquipmentData.find(set => set.set === setName);
                             const processedDescription = processDescriptionWithBrackets(eff.description, setData?.link || '#');

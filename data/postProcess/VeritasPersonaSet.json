@@ -1,9 +1,9 @@
 {
-    "set": "星辰牧者:阿利埃斯",
-    "link": "https://elwiki.net/w/Aries_Aethra",
+    "set": "真我假面(暫)",
+    "link": "https://elwiki.net/w/Veritas_Persona",
     "parts": [
         {
-            "name": "星辰牧者:阿利埃斯:武器",
+            "name": "真我假面:武器",
             "part": "weapon",
             "attributes": {
                 "attrList": [
@@ -12,15 +12,19 @@
                         "value": 200
                     },
                     {
-                        "attribute": "100%血殺%",
+                        "attribute": "強者%",
+                        "value": 5
+                    },
+                    {
+                        "attribute": "排熱%",
                         "value": 5
                     }
                 ]
             }
         },
         {
-            "name": "星辰牧者:阿利埃斯:夢境捕手",
-            "part": "faceTop",
+            "name": "真我假面:飾品(武器)",
+            "part": "accessoryWeapon",
             "attributes": {
                 "attrList": [
                     {
@@ -28,68 +32,68 @@
                         "value": 30
                     },
                     {
-                        "attribute": "流血%",
-                        "value": 1
-                    },
-                    {
-                        "attribute": "技能傷害%",
-                        "value": 1
-                    }
-                ]
-            }
-        },
-        {
-            "name": "星辰牧者:阿利埃斯:銀河",
-            "part": "accessoryLower",
-            "attributes": {
-                "attrList": [
-                    {
-                        "attribute": "雙攻+",
-                        "value": 50
-                    },
-                    {
-                        "attribute": "流血%",
-                        "value": 1
-                    },
-                    {
-                        "attribute": "兩極化%",
-                        "value": 1
-                    }
-                ]
-            }
-        },
-        {
-            "name": "星辰牧者:阿利埃斯:編織夢境",
-            "part": "earring",
-            "attributes": {
-                "attrList": [
-                    {
-                        "attribute": "雙攻+",
-                        "value": 30
-                    },
-                    {
-                        "attribute": "兩極化%",
-                        "value": 2
-                    }
-                ]
-            }
-        },
-        {
-            "name": "星辰牧者:阿利埃斯:備忘錄",
-            "part": "ring",
-            "attributes": {
-                "attrList": [
-                    {
-                        "attribute": "雙攻+",
-                        "value": 50
-                    },
-                    {
-                        "attribute": "兩極化%",
+                        "attribute": "適應力%",
                         "value": 2
                     },
                     {
                         "attribute": "流血%",
                         "value": 3
+                    }
+                ]
+            }
+        },
+        {
+            "name": "真我假面:臉下",
+            "part": "faceBottom",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 50
+                    },
+                    {
+                        "attribute": "兩極化%",
+                        "value": 2
+                    }
+                ]
+            }
+        },
+        {
+            "name": "真我假面:飾品(下衣)",
+            "part": "accessoryLower",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "適應力%",
+                        "value": 1
+                    },
+                    {
+                        "attribute": "兩極化%",
+                        "value": 1
+                    }
+                ]
+            }
+        },
+        {
+            "name": "真我假面:耳環",
+            "part": "earring",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 50
+                    },
+                    {
+                        "attribute": "流血%",
+                        "value": 2
+                    },
+                    {
+                        "attribute": "兩極化%",
+                        "value": 1
                     }
                 ]
             }
@@ -100,11 +104,11 @@
             "pieces": 2,
             "effects": [
                 {
-                    "attribute": "100%血殺%",
-                    "value": 4
+                    "attribute": "兩極化%",
+                    "value": 3
                 },
                 {
-                    "attribute": "致命一擊傷害%",
+                    "attribute": "流血%",
                     "value": 3
                 }
             ]
@@ -113,16 +117,16 @@
             "pieces": 3,
             "effects": [
                 {
-                    "attribute": "技能傷害%",
-                    "value": 3
+                    "attribute": "主動/強韌/強烈/超越技傷%",
+                    "value": 4
                 },
                 {
                     "attribute": "強者%",
-                    "value": 6
+                    "value": 10
                 },
                 {
                     "attribute": "排熱%",
-                    "value": 6
+                    "value": 10
                 }
             ]
         }

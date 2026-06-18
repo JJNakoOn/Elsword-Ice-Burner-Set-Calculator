@@ -491,6 +491,140 @@
         "suitEffects": []
     },
     {
+        "set": "真我假面(暫)",
+        "link": "https://elwiki.net/w/Veritas_Persona",
+        "parts": [
+            {
+                "name": "真我假面:武器",
+                "part": "weapon",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 200
+                        },
+                        {
+                            "attribute": "強者%",
+                            "value": 5
+                        },
+                        {
+                            "attribute": "排熱%",
+                            "value": 5
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "真我假面:飾品(武器)",
+                "part": "accessoryWeapon",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 30
+                        },
+                        {
+                            "attribute": "適應力%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "流血%",
+                            "value": 3
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "真我假面:臉下",
+                "part": "faceBottom",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 50
+                        },
+                        {
+                            "attribute": "兩極化%",
+                            "value": 2
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "真我假面:飾品(下衣)",
+                "part": "accessoryLower",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 30
+                        },
+                        {
+                            "attribute": "適應力%",
+                            "value": 1
+                        },
+                        {
+                            "attribute": "兩極化%",
+                            "value": 1
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "真我假面:耳環",
+                "part": "earring",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 50
+                        },
+                        {
+                            "attribute": "流血%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "兩極化%",
+                            "value": 1
+                        }
+                    ]
+                }
+            }
+        ],
+        "suitEffects": [
+            {
+                "pieces": 2,
+                "effects": [
+                    {
+                        "attribute": "兩極化%",
+                        "value": 3
+                    },
+                    {
+                        "attribute": "流血%",
+                        "value": 3
+                    }
+                ]
+            },
+            {
+                "pieces": 3,
+                "effects": [
+                    {
+                        "attribute": "主動/強韌/強烈/超越技傷%",
+                        "value": 4
+                    },
+                    {
+                        "attribute": "強者%",
+                        "value": 10
+                    },
+                    {
+                        "attribute": "排熱%",
+                        "value": 10
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "set": "花郎戀歌(暫)",
         "link": "https://elwiki.net/w/Ballad_of_Hwarang",
         "parts": [
@@ -617,11 +751,11 @@
         ]
     },
     {
-        "set": "牧羊埃特拉(暫)",
-        "link": "https://discord.com/channels/877847187143426069/959975832066064395/1455749052913156219",
+        "set": "星辰牧者:阿利埃斯",
+        "link": "https://elwiki.net/w/Aries_Aethra",
         "parts": [
             {
-                "name": "牧羊埃特拉:武器",
+                "name": "星辰牧者:阿利埃斯:武器",
                 "part": "weapon",
                 "attributes": {
                     "attrList": [
@@ -637,7 +771,7 @@
                 }
             },
             {
-                "name": "牧羊埃特拉:臉上",
+                "name": "星辰牧者:阿利埃斯:夢境捕手",
                 "part": "faceTop",
                 "attributes": {
                     "attrList": [
@@ -657,7 +791,7 @@
                 }
             },
             {
-                "name": "牧羊埃特拉:飾品(下衣)",
+                "name": "星辰牧者:阿利埃斯:銀河",
                 "part": "accessoryLower",
                 "attributes": {
                     "attrList": [
@@ -677,7 +811,7 @@
                 }
             },
             {
-                "name": "牧羊埃特拉:耳環",
+                "name": "星辰牧者:阿利埃斯:編織夢境",
                 "part": "earring",
                 "attributes": {
                     "attrList": [
@@ -693,7 +827,7 @@
                 }
             },
             {
-                "name": "牧羊埃特拉:戒指",
+                "name": "星辰牧者:阿利埃斯:備忘錄",
                 "part": "ring",
                 "attributes": {
                     "attrList": [
