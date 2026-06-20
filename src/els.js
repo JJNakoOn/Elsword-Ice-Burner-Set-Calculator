@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const suitEffectsSection = document.getElementById("suitEffectsSection");
     const comparisonControls = document.getElementById("saveForCompareBtn");
     const clearCompareBtn = document.getElementById("clearCompareBtn");
+    const setupCompareBuildBtn = document.getElementById("setupCompareBuildBtn");
     const comparisonHeader = document.getElementById("comparisonHeader");
     const comparisonCells = document.querySelectorAll("td[data-comparison]");
 
@@ -45,6 +46,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
         if (clearCompareBtn) {
             clearCompareBtn.style.display = toggleSections.checked
+                ? "none"
+                : (Object.keys(savedAttributes).length > 0 ? "inline-block" : "none");
+        }
+        if (setupCompareBuildBtn) {
+            setupCompareBuildBtn.style.display = toggleSections.checked
                 ? "none"
                 : (Object.keys(savedAttributes).length > 0 ? "inline-block" : "none");
         }
@@ -136,6 +142,10 @@ let allEquipmentData = [];
 let searchQuery = '';
 let filteredData = [];
 let savedAttributes = {};
+let selectedAttributesOrigin = {};
+let selectedAttributesBackup = {};
+let suitEffectsCheckBoxStatusOrigin = [];
+let suitEffectsCheckBoxStatusBackup = [];
 
 
 const attributeList = [
@@ -360,8 +370,16 @@ function addCompareButton() {
         clearButton.onclick = clearComparison;
         clearButton.style.display = "none";
 
+        const buildButton = document.createElement("button");
+        buildButton.id = "setupCompareBuildBtn";
+        buildButton.className = "btn btn-outline-primary btn-sm ms-1 me-1";
+        buildButton.innerHTML = "穿比較套";
+        buildButton.onclick = processCompareBuild;
+        buildButton.style.display = "none";
+
         btnGroup.appendChild(saveButton);
         btnGroup.appendChild(clearButton);
+        btnGroup.appendChild(buildButton);
         buttonContainer.appendChild(btnGroup);
 
         finalValuesHeader.parentNode.replaceChild(buttonContainer, finalValuesHeader);
@@ -378,9 +396,98 @@ function clearComparison() {
     document.querySelectorAll(".comparison-indicator").forEach(el => el.remove());
     document.getElementById("saveForCompareBtn").innerHTML = "新增比較";
     document.getElementById("clearCompareBtn").style.display = "none";
+
+    selectedAttributesOrigin = {};
+    selectedAttributesBackup = {};
+    suitEffectsCheckBoxStatusOrigin = [];
+    suitEffectsCheckBoxStatusBackup = [];
+    document.getElementById("setupCompareBuildBtn").innerHTML = "穿比較套";
+    document.getElementById("setupCompareBuildBtn").className = "btn btn-outline-primary btn-sm ms-1 me-1";
+    document.getElementById("setupCompareBuildBtn").style.display = "none";
+}
+
+function setupBuild(selectedBuildList, suitEffectsCheckBoxStatus) {
+    let partTypes = [
+        "weapon", 
+        "accessoryWeapon", 
+        "support", 
+        "faceTop", 
+        "faceMiddle", 
+        "faceBottom", 
+        "necklace", 
+        "accessoryUpper", 
+        "accessoryLower", 
+        "arm", 
+        "earring", 
+        "ring"
+    ];
+
+    for (let i in partTypes) {
+        if (selectedBuildList[partTypes[i]] !== undefined) {
+            updateSelectedPart(partTypes[i], selectedBuildList[partTypes[i]]?.name, selectedBuildList[partTypes[i]]?.attributes?.id, selectedBuildList[partTypes[i]]?.setName);
+        } else {
+            clearSelectedPart(partTypes[i]);
+        }
+    }
+
+    suitEffectsList.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        let isMatch = suitEffectsCheckBoxStatus.some(item => checkbox.id.startsWith(item));
+        if (isMatch) {
+            checkbox.checked = true;
+        } else {
+            checkbox.checked = false;
+        }
+    });
+}
+
+function saveSelectedBuildData(selectedBuildList, suitEffectsCheckBoxStatus) {
+    const suitEffectsList = document.getElementById("suitEffectsList");
+
+    for (let key in selectedBuildList) {
+        delete selectedBuildList[key];
+    }
+
+    Object.assign(selectedBuildList, structuredClone(selectedAttributes));
+    suitEffectsCheckBoxStatus.length = 0;
+
+    suitEffectsList.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        if (checkbox.checked) {
+            suitEffectsCheckBoxStatus.push(checkbox.id.split('-')[0]);
+        }
+    });
+}
+
+function processCompareBuild() {
+    if (this.classList.contains('btn-outline-primary')) {
+        this.classList.remove('btn-outline-primary');
+        this.classList.add('btn-warning');
+        this.innerHTML = "穿原本套";
+
+        // 穿上之前先記錄目前選擇的所有冰裝與套裝效果再穿上
+        saveSelectedBuildData(selectedAttributesOrigin, suitEffectsCheckBoxStatusOrigin);
+
+        // 開始穿上
+        setupBuild(selectedAttributesBackup, suitEffectsCheckBoxStatusBackup);
+    } else {
+        this.classList.remove('btn-warning');
+        this.classList.add('btn-outline-primary');
+        this.innerHTML = "穿比較套";
+
+        // 穿回的時候用穿上之前紀錄的狀態
+        setupBuild(selectedAttributesOrigin, suitEffectsCheckBoxStatusOrigin);
+    }
+
+    // 重新處理畫面渲染和數值計算
+    updateFinalValues();
+    removeZeroCountSuits();
+    applySuitEffectClasses();
+    updateComparisonDisplay();
 }
 
 function saveCurrentValues() {
+    // 紀錄目前選擇的所有冰裝與原本的套裝效果
+    saveSelectedBuildData(selectedAttributesBackup, suitEffectsCheckBoxStatusBackup);
+
     savedAttributes = {};
     const attributeCells = document.querySelectorAll("td[data-attribute]");
 
@@ -398,6 +505,7 @@ function saveCurrentValues() {
     updateComparisonDisplay();
 
     document.getElementById("clearCompareBtn").style.display = "inline-block";
+    document.getElementById("setupCompareBuildBtn").style.display = "inline-block";
     document.getElementById("saveForCompareBtn").innerHTML = "更新比較";
 }
 
