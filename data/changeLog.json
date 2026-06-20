@@ -1,5 +1,11 @@
 [
     {
+        "date": "2026-06-20",
+        "changes": [
+            "新增功能「穿比較套」，特別感謝 <a href=\"https://github.com/Neillife\" target=\"_blank\">雪胖</a> 對本項目做出的貢獻。"
+        ]
+    },
+    {
         "date": "2026-06-18",
         "changes": [
             "新增「真我假面」套裝，先暫用中文名稱",
