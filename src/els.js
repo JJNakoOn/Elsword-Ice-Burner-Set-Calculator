@@ -101,6 +101,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     resetConfirmModal = new bootstrap.Modal(document.getElementById('resetConfirmModal'));
+    compareBuildConfirmModal = new bootstrap.Modal(document.getElementById('compareBuildConfirmModal'));
 
     updateFilteredData();
     displayAvailableIceEquipment();
@@ -142,9 +143,7 @@ let allEquipmentData = [];
 let searchQuery = '';
 let filteredData = [];
 let savedAttributes = {};
-let selectedAttributesOrigin = {};
 let selectedAttributesBackup = {};
-let suitEffectsCheckBoxStatusOrigin = [];
 let suitEffectsCheckBoxStatusBackup = [];
 
 
@@ -373,8 +372,8 @@ function addCompareButton() {
         const buildButton = document.createElement("button");
         buildButton.id = "setupCompareBuildBtn";
         buildButton.className = "btn btn-outline-primary btn-sm ms-1 me-1";
-        buildButton.innerHTML = "穿比較套";
-        buildButton.onclick = processCompareBuild;
+        buildButton.innerHTML = "檢視比較";
+        buildButton.onclick = showCompareBuildConfirmModal;
         buildButton.style.display = "none";
 
         btnGroup.appendChild(saveButton);
@@ -397,16 +396,12 @@ function clearComparison() {
     document.getElementById("saveForCompareBtn").innerHTML = "新增比較";
     document.getElementById("clearCompareBtn").style.display = "none";
 
-    selectedAttributesOrigin = {};
     selectedAttributesBackup = {};
-    suitEffectsCheckBoxStatusOrigin = [];
     suitEffectsCheckBoxStatusBackup = [];
-    document.getElementById("setupCompareBuildBtn").innerHTML = "穿比較套";
-    document.getElementById("setupCompareBuildBtn").className = "btn btn-outline-primary btn-sm ms-1 me-1";
     document.getElementById("setupCompareBuildBtn").style.display = "none";
 }
 
-function setupBuild(selectedBuildList, suitEffectsCheckBoxStatus) {
+function processSelectedComparePart(selectedBuildList, isSetupBuild) {
     let partTypes = [
         "weapon", 
         "accessoryWeapon", 
@@ -424,12 +419,57 @@ function setupBuild(selectedBuildList, suitEffectsCheckBoxStatus) {
 
     for (let i in partTypes) {
         if (selectedBuildList[partTypes[i]] !== undefined) {
-            updateSelectedPart(partTypes[i], selectedBuildList[partTypes[i]]?.name, selectedBuildList[partTypes[i]]?.attributes?.id, selectedBuildList[partTypes[i]]?.setName);
+            if (isSetupBuild) {
+                updateSelectedPart(partTypes[i], selectedBuildList[partTypes[i]]?.name, selectedBuildList[partTypes[i]]?.attributes?.id, selectedBuildList[partTypes[i]]?.setName);
+            } else {
+                let targetCell = document.getElementById(`${partTypes[i]}-compare`);
+                if (targetCell) {
+                    targetCell.innerHTML = `<span class="part-name">${getPartName(
+                        partTypes[i]
+                    )}<br>${selectedBuildList[partTypes[i]]?.setName}</span>`;
+                    targetCell.classList.add("selected-part");
+                }
+            }
         } else {
-            clearSelectedPart(partTypes[i]);
+            if (isSetupBuild) {
+                clearSelectedPart(partTypes[i]);
+            } else {
+                let targetCell = document.getElementById(`${partTypes[i]}-compare`);
+                if (targetCell) {
+                    targetCell.innerHTML = `<span class="part-name">${getPartName(
+                        partTypes[i]
+                    )}</span>`;
+                    targetCell.classList.remove("selected-part");
+                }
+            }
         }
     }
 
+    if (!isSetupBuild) {
+        document.querySelectorAll('.equipment-part.normalCursorArea').forEach(part => {
+            part.classList.remove('selected-suit-part-1', 'selected-suit-part-2', 'selected-suit-part-3');
+        });
+
+        suitEffectsCheckBoxStatusBackup.forEach((setName, index) => {
+            const setData = allEquipmentData.find(set => set.set === setName);
+            if (setData) {
+                setData.parts.forEach(part => {
+                    const equipmentPart = document.getElementById(`${part.part}-compare`);
+                    if (selectedBuildList[part.part] && selectedBuildList[part.part].setName === setName) {
+                        if (equipmentPart) {
+                            equipmentPart.classList.add(`selected-suit-part-${index + 1}`);
+                        }
+                    }
+                });
+            }
+        });
+    }
+}
+
+function setupBuild(selectedBuildList, suitEffectsCheckBoxStatus) {
+    processSelectedComparePart(selectedBuildList, true);
+
+    const suitEffectsList = document.getElementById("suitEffectsList");
     suitEffectsList.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
         let isMatch = suitEffectsCheckBoxStatus.some(item => checkbox.id.startsWith(item));
         if (isMatch) {
@@ -457,31 +497,20 @@ function saveSelectedBuildData(selectedBuildList, suitEffectsCheckBoxStatus) {
     });
 }
 
+function showCompareBuildConfirmModal() {
+    processSelectedComparePart(selectedAttributesBackup, false);
+    compareBuildConfirmModal.show();
+}
+
 function processCompareBuild() {
-    if (this.classList.contains('btn-outline-primary')) {
-        this.classList.remove('btn-outline-primary');
-        this.classList.add('btn-warning');
-        this.innerHTML = "穿原本套";
-
-        // 穿上之前先記錄目前選擇的所有冰裝與套裝效果再穿上
-        saveSelectedBuildData(selectedAttributesOrigin, suitEffectsCheckBoxStatusOrigin);
-
-        // 開始穿上
-        setupBuild(selectedAttributesBackup, suitEffectsCheckBoxStatusBackup);
-    } else {
-        this.classList.remove('btn-warning');
-        this.classList.add('btn-outline-primary');
-        this.innerHTML = "穿比較套";
-
-        // 穿回的時候用穿上之前紀錄的狀態
-        setupBuild(selectedAttributesOrigin, suitEffectsCheckBoxStatusOrigin);
-    }
+    setupBuild(selectedAttributesBackup, suitEffectsCheckBoxStatusBackup);
 
     // 重新處理畫面渲染和數值計算
     updateFinalValues();
     removeZeroCountSuits();
     applySuitEffectClasses();
     updateComparisonDisplay();
+    compareBuildConfirmModal.hide();
 }
 
 function saveCurrentValues() {
