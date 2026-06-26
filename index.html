@@ -310,6 +310,119 @@
 
     <div
       class="modal fade"
+      id="compareBuildConfirmModal"
+      tabindex="-1"
+      aria-labelledby="compareBuildConfirmModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="compareBuildConfirmModalLabel">檢視比較</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            先前設定的比較套選擇部位如下
+            <div class="equipment-selection">
+              <div class="equipment-parts" id="equipmentPartss">
+                <div
+                  class="equipment-part normalCursorArea"
+                  id="weapon-compare"
+                >
+                  武器
+                </div>
+                <div
+                  class="equipment-part normalCursorArea"
+                  id="accessoryWeapon-compare"
+                >
+                  飾品(武器)
+                </div>
+                <div
+                  class="equipment-part normalCursorArea"
+                  id="support-compare"
+                >
+                  支援
+                </div>
+                <div
+                  class="equipment-part normalCursorArea"
+                  id="faceTop-compare"
+                >
+                  臉上
+                </div>
+                <div
+                  class="equipment-part normalCursorArea"
+                  id="accessoryUpper-compare"
+                >
+                  飾品(上衣)
+                </div>
+                <div
+                  class="equipment-part normalCursorArea"
+                  id="faceMiddle-compare"
+                >
+                  臉中
+                </div>
+                <div
+                  class="equipment-part normalCursorArea"
+                  id="accessoryLower-compare"
+                >
+                  飾品(下衣)
+                </div>
+                <div
+                  class="equipment-part normalCursorArea"
+                  id="faceBottom-compare"
+                >
+                  臉下
+                </div>
+                <div
+                  class="equipment-part normalCursorArea"
+                  id="arm-compare"
+                >
+                  手臂
+                </div>
+                <div
+                  class="equipment-part normalCursorArea"
+                  id="earring-compare"
+                >
+                  耳環
+                </div>
+                <div
+                  class="equipment-part normalCursorArea"
+                  id="necklace-compare"
+                >
+                  項鍊
+                </div>
+                <div
+                  class="equipment-part normalCursorArea"
+                  id="ring-compare"
+                >
+                  戒指
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              關閉
+            </button>
+            <button type="button" class="btn btn-danger" onclick="processCompareBuild()">
+              穿比較套
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
       id="resetConfirmModal"
       tabindex="-1"
       aria-labelledby="resetConfirmModalLabel"

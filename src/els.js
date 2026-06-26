@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const suitEffectsSection = document.getElementById("suitEffectsSection");
     const comparisonControls = document.getElementById("saveForCompareBtn");
     const clearCompareBtn = document.getElementById("clearCompareBtn");
+    const setupCompareBuildBtn = document.getElementById("setupCompareBuildBtn");
     const comparisonHeader = document.getElementById("comparisonHeader");
     const comparisonCells = document.querySelectorAll("td[data-comparison]");
 
@@ -45,6 +46,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
         if (clearCompareBtn) {
             clearCompareBtn.style.display = toggleSections.checked
+                ? "none"
+                : (Object.keys(savedAttributes).length > 0 ? "inline-block" : "none");
+        }
+        if (setupCompareBuildBtn) {
+            setupCompareBuildBtn.style.display = toggleSections.checked
                 ? "none"
                 : (Object.keys(savedAttributes).length > 0 ? "inline-block" : "none");
         }
@@ -95,6 +101,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     resetConfirmModal = new bootstrap.Modal(document.getElementById('resetConfirmModal'));
+    compareBuildConfirmModal = new bootstrap.Modal(document.getElementById('compareBuildConfirmModal'));
 
     updateFilteredData();
     displayAvailableIceEquipment();
@@ -136,6 +143,8 @@ let allEquipmentData = [];
 let searchQuery = '';
 let filteredData = [];
 let savedAttributes = {};
+let selectedAttributesBackup = {};
+let suitEffectsCheckBoxStatusBackup = [];
 
 
 const attributeList = [
@@ -360,8 +369,16 @@ function addCompareButton() {
         clearButton.onclick = clearComparison;
         clearButton.style.display = "none";
 
+        const buildButton = document.createElement("button");
+        buildButton.id = "setupCompareBuildBtn";
+        buildButton.className = "btn btn-outline-primary btn-sm ms-1 me-1";
+        buildButton.innerHTML = "檢視比較";
+        buildButton.onclick = showCompareBuildConfirmModal;
+        buildButton.style.display = "none";
+
         btnGroup.appendChild(saveButton);
         btnGroup.appendChild(clearButton);
+        btnGroup.appendChild(buildButton);
         buttonContainer.appendChild(btnGroup);
 
         finalValuesHeader.parentNode.replaceChild(buttonContainer, finalValuesHeader);
@@ -378,9 +395,128 @@ function clearComparison() {
     document.querySelectorAll(".comparison-indicator").forEach(el => el.remove());
     document.getElementById("saveForCompareBtn").innerHTML = "新增比較";
     document.getElementById("clearCompareBtn").style.display = "none";
+
+    selectedAttributesBackup = {};
+    suitEffectsCheckBoxStatusBackup = [];
+    document.getElementById("setupCompareBuildBtn").style.display = "none";
+}
+
+function processSelectedComparePart(selectedBuildList, isSetupBuild) {
+    let partTypes = [
+        "weapon", 
+        "accessoryWeapon", 
+        "support", 
+        "faceTop", 
+        "faceMiddle", 
+        "faceBottom", 
+        "necklace", 
+        "accessoryUpper", 
+        "accessoryLower", 
+        "arm", 
+        "earring", 
+        "ring"
+    ];
+
+    for (let i in partTypes) {
+        if (selectedBuildList[partTypes[i]] !== undefined) {
+            if (isSetupBuild) {
+                updateSelectedPart(partTypes[i], selectedBuildList[partTypes[i]]?.name, selectedBuildList[partTypes[i]]?.attributes?.id, selectedBuildList[partTypes[i]]?.setName);
+            } else {
+                let targetCell = document.getElementById(`${partTypes[i]}-compare`);
+                if (targetCell) {
+                    targetCell.innerHTML = `<span class="part-name">${getPartName(
+                        partTypes[i]
+                    )}<br>${selectedBuildList[partTypes[i]]?.setName}</span>`;
+                    targetCell.classList.add("selected-part");
+                }
+            }
+        } else {
+            if (isSetupBuild) {
+                clearSelectedPart(partTypes[i]);
+            } else {
+                let targetCell = document.getElementById(`${partTypes[i]}-compare`);
+                if (targetCell) {
+                    targetCell.innerHTML = `<span class="part-name">${getPartName(
+                        partTypes[i]
+                    )}</span>`;
+                    targetCell.classList.remove("selected-part");
+                }
+            }
+        }
+    }
+
+    if (!isSetupBuild) {
+        document.querySelectorAll('.equipment-part.normalCursorArea').forEach(part => {
+            part.classList.remove('selected-suit-part-1', 'selected-suit-part-2', 'selected-suit-part-3');
+        });
+
+        suitEffectsCheckBoxStatusBackup.forEach((setName, index) => {
+            const setData = allEquipmentData.find(set => set.set === setName);
+            if (setData) {
+                setData.parts.forEach(part => {
+                    const equipmentPart = document.getElementById(`${part.part}-compare`);
+                    if (selectedBuildList[part.part] && selectedBuildList[part.part].setName === setName) {
+                        if (equipmentPart) {
+                            equipmentPart.classList.add(`selected-suit-part-${index + 1}`);
+                        }
+                    }
+                });
+            }
+        });
+    }
+}
+
+function setupBuild(selectedBuildList, suitEffectsCheckBoxStatus) {
+    processSelectedComparePart(selectedBuildList, true);
+
+    const suitEffectsList = document.getElementById("suitEffectsList");
+    suitEffectsList.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        let isMatch = suitEffectsCheckBoxStatus.some(item => checkbox.id.startsWith(item));
+        if (isMatch) {
+            checkbox.checked = true;
+        } else {
+            checkbox.checked = false;
+        }
+    });
+}
+
+function saveSelectedBuildData(selectedBuildList, suitEffectsCheckBoxStatus) {
+    const suitEffectsList = document.getElementById("suitEffectsList");
+
+    for (let key in selectedBuildList) {
+        delete selectedBuildList[key];
+    }
+
+    Object.assign(selectedBuildList, structuredClone(selectedAttributes));
+    suitEffectsCheckBoxStatus.length = 0;
+
+    suitEffectsList.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        if (checkbox.checked) {
+            suitEffectsCheckBoxStatus.push(checkbox.id.split('-')[0]);
+        }
+    });
+}
+
+function showCompareBuildConfirmModal() {
+    processSelectedComparePart(selectedAttributesBackup, false);
+    compareBuildConfirmModal.show();
+}
+
+function processCompareBuild() {
+    setupBuild(selectedAttributesBackup, suitEffectsCheckBoxStatusBackup);
+
+    // 重新處理畫面渲染和數值計算
+    updateFinalValues();
+    removeZeroCountSuits();
+    applySuitEffectClasses();
+    updateComparisonDisplay();
+    compareBuildConfirmModal.hide();
 }
 
 function saveCurrentValues() {
+    // 紀錄目前選擇的所有冰裝與原本的套裝效果
+    saveSelectedBuildData(selectedAttributesBackup, suitEffectsCheckBoxStatusBackup);
+
     savedAttributes = {};
     const attributeCells = document.querySelectorAll("td[data-attribute]");
 
@@ -398,6 +534,7 @@ function saveCurrentValues() {
     updateComparisonDisplay();
 
     document.getElementById("clearCompareBtn").style.display = "inline-block";
+    document.getElementById("setupCompareBuildBtn").style.display = "inline-block";
     document.getElementById("saveForCompareBtn").innerHTML = "更新比較";
 }
 
