@@ -126,6 +126,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     toggleClearButton();
+
+    // Load state from local storage
+    loadState();
 });
 
 
@@ -1253,6 +1256,129 @@ function applySuitEffectClasses() {
     });
 }
 
+/* ============================================
+   Local Storage State Management
+   ============================================ */
+const LOCAL_STORAGE_KEY = "els_calculator_state";
+
+function saveState() {
+    try {
+        const state = {
+            selectedCheckboxes: Array.from(selectedCheckboxes),
+            selectedAttributes: {},
+            suitEffects: Array.from(document.querySelectorAll('#suitEffectsList input[type="checkbox"]:checked')).map(cb => cb.value),
+            toggleSections: document.getElementById("toggleSections")?.checked || false,
+            savedAttributes: {},
+            attrSortState: window.attrSortController ? window.attrSortController.getState() : null
+        };
+
+        for (const part in selectedAttributes) {
+            state.selectedAttributes[part] = {
+                name: selectedAttributes[part].name,
+                setName: selectedAttributes[part].setName
+            };
+        }
+
+        for (const part in savedAttributes) {
+            state.savedAttributes[part] = {
+                name: savedAttributes[part].name,
+                setName: savedAttributes[part].setName
+            };
+        }
+
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+        console.error("Failed to save state:", e);
+    }
+}
+
+function loadState() {
+    try {
+        const stateStr = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (!stateStr) return;
+        const state = JSON.parse(stateStr);
+
+        // 1. Restore selectedCheckboxes
+        if (state.selectedCheckboxes && Array.isArray(state.selectedCheckboxes)) {
+            state.selectedCheckboxes.forEach(idx => selectedCheckboxes.add(idx));
+            if (selectedCheckboxes.size > 0) {
+                importSelectedEquipment();
+            }
+        }
+
+        // 2. Restore selected parts
+        if (state.selectedAttributes) {
+            for (const part in state.selectedAttributes) {
+                const savedPart = state.selectedAttributes[part];
+                const setData = allEquipmentData.find(set => set.set === savedPart.setName);
+                if (setData) {
+                    const itemData = setData.parts.find(p => p.part === part && p.name === savedPart.name);
+                    if (itemData) {
+                        updateSelectedPart(part, savedPart.name, itemData.attributes.id, savedPart.setName);
+                    }
+                }
+            }
+        }
+
+        // 3. Restore suit effects checkboxes
+        if (state.suitEffects && Array.isArray(state.suitEffects)) {
+            state.suitEffects.forEach(setName => {
+                const cb = document.querySelector(`#suitEffectsList input[type="checkbox"][value="${setName}"]`);
+                if (cb && !cb.disabled) cb.checked = true;
+            });
+            updateFinalValues();
+            applySuitEffectClasses();
+        }
+
+        // 4. Restore attribute sorting
+        if (state.attrSortState && window.attrSortController) {
+            window.attrSortController.setState(
+                state.attrSortState.visibleAttrOrder || [...attributeList],
+                state.attrSortState.hiddenAttrs || []
+            );
+        }
+
+        // 5. Restore savedAttributes (Comparison)
+        if (state.savedAttributes && Object.keys(state.savedAttributes).length > 0) {
+            savedAttributes = {};
+            for (const part in state.savedAttributes) {
+                const savedPart = state.savedAttributes[part];
+                const setData = allEquipmentData.find(set => set.set === savedPart.setName);
+                if (setData) {
+                    const itemData = setData.parts.find(p => p.part === part && p.name === savedPart.name);
+                    if (itemData) {
+                        savedAttributes[part] = { ...itemData, setName: savedPart.setName };
+                    }
+                }
+            }
+            if (Object.keys(savedAttributes).length > 0) {
+                updateComparisonDisplay();
+                addCompareButton();
+                document.getElementById("clearCompareBtn").style.display = "inline-block";
+                document.getElementById("setupCompareBuildBtn").style.display = "inline-block";
+            }
+        }
+
+        // 6. Restore screenshot mode toggle
+        if (state.toggleSections !== undefined) {
+            const toggle = document.getElementById("toggleSections");
+            if (toggle) {
+                toggle.checked = state.toggleSections;
+                toggle.dispatchEvent(new Event("change"));
+            }
+        }
+
+    } catch (e) {
+        console.error("Failed to load state:", e);
+    }
+}
+
+// Bind save events
+window.addEventListener("beforeunload", saveState);
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === 'hidden') saveState();
+});
+
 function openTab(tabId, clickedButton) {
     const tabs = document.querySelectorAll(".tab-content");
     tabs.forEach((tab) => tab.classList.remove("active"));
@@ -1521,4 +1647,14 @@ function openTab(tabId, clickedButton) {
             cancelModal();
         }
     });
+
+    // Expose for saveState/loadState
+    window.attrSortController = {
+        getState: () => ({ visibleAttrOrder, hiddenAttrs }),
+        setState: (visible, hidden) => {
+            visibleAttrOrder = visible;
+            hiddenAttrs = hidden;
+            applyAttributeOrder();
+        }
+    };
 })();
