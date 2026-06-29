@@ -347,10 +347,16 @@ function addCompareButton() {
 
     if (!document.getElementById("saveForCompareBtn")) {
         const buttonContainer = document.createElement("div");
-        buttonContainer.className = "d-flex justify-content-between align-items-center w-100";
+        buttonContainer.className = "d-flex justify-content-between align-items-center w-100 flex-wrap";
+        buttonContainer.style.marginBottom = "10px";
+        buttonContainer.style.gap = "8px";
 
         const headerTitle = document.createElement("h3");
-        headerTitle.textContent = finalValuesHeader.textContent;
+        headerTitle.className = "m-0 d-inline-flex align-items-center";
+        headerTitle.style.whiteSpace = "nowrap";
+        Array.from(finalValuesHeader.childNodes).forEach(node => {
+            headerTitle.appendChild(node.cloneNode(true));
+        });
         buttonContainer.appendChild(headerTitle);
 
         const btnGroup = document.createElement("div");
@@ -358,20 +364,20 @@ function addCompareButton() {
 
         const saveButton = document.createElement("button");
         saveButton.id = "saveForCompareBtn";
-        saveButton.className = "btn btn-primary btn-sm";
+        saveButton.className = "btn btn-primary btn-sm text-nowrap";
         saveButton.innerHTML = "新增比較";
         saveButton.onclick = saveCurrentValues;
 
         const clearButton = document.createElement("button");
         clearButton.id = "clearCompareBtn";
-        clearButton.className = "btn btn-outline-secondary btn-sm";
+        clearButton.className = "btn btn-outline-secondary btn-sm text-nowrap";
         clearButton.innerHTML = "清除比較";
         clearButton.onclick = clearComparison;
         clearButton.style.display = "none";
 
         const buildButton = document.createElement("button");
         buildButton.id = "setupCompareBuildBtn";
-        buildButton.className = "btn btn-outline-primary btn-sm ms-1 me-1";
+        buildButton.className = "btn btn-outline-primary btn-sm ms-1 me-1 text-nowrap";
         buildButton.innerHTML = "檢視比較";
         buildButton.onclick = showCompareBuildConfirmModal;
         buildButton.style.display = "none";
@@ -1256,3 +1262,263 @@ function openTab(tabId, clickedButton) {
     navButtons.forEach((button) => button.classList.remove("active"));
     clickedButton.classList.add("active");
 }
+
+/* ============================================
+   Attribute Sort Modal Controller
+   ============================================ */
+(function () {
+    // State: which attributes are visible and their order
+    // On first load, all attributes are visible in their original order
+    let visibleAttrOrder = [...attributeList]; // array of attribute names in display order
+    let hiddenAttrs = []; // array of attribute names currently hidden
+
+    // Snapshot for cancel/rollback
+    let snapshotVisible = [];
+    let snapshotHidden = [];
+
+    // SortableJS instance
+    let sortableInstance = null;
+
+    // DOM references
+    const overlay = document.getElementById("attrSortOverlay");
+    const visibleListEl = document.getElementById("attrSortVisibleList");
+    const availableListEl = document.getElementById("attrSortAvailableList");
+    const confirmBtn = document.getElementById("attrSortConfirmBtn");
+    const cancelBtn = document.getElementById("attrSortCancelBtn");
+    const closeBtn = document.getElementById("attrSortCloseBtn");
+
+    // ----- Helpers -----
+
+    /** Get the original index of an attribute in attributeList (for sorted insertion) */
+    function getOriginalIndex(attrName) {
+        return attributeList.indexOf(attrName);
+    }
+
+    /** Create a list item for the "visible" panel */
+    function createVisibleItem(attrName) {
+        const li = document.createElement("li");
+        li.className = "attr-sort-item";
+        li.setAttribute("data-attr", attrName);
+
+        const handle = document.createElement("span");
+        handle.className = "attr-sort-handle";
+        handle.textContent = "≡";
+
+        const nameSpan = document.createElement("span");
+        nameSpan.className = "attr-sort-item-name";
+        nameSpan.textContent = attrName;
+
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.className = "attr-sort-item-btn attr-sort-item-btn-remove";
+        removeBtn.textContent = "−";
+        removeBtn.title = "移除";
+        removeBtn.addEventListener("click", () => {
+            moveToAvailable(attrName);
+        });
+
+        li.appendChild(handle);
+        li.appendChild(nameSpan);
+        li.appendChild(removeBtn);
+        return li;
+    }
+
+    /** Create a list item for the "available" panel */
+    function createAvailableItem(attrName) {
+        const li = document.createElement("li");
+        li.className = "attr-sort-item";
+        li.setAttribute("data-attr", attrName);
+
+        const nameSpan = document.createElement("span");
+        nameSpan.className = "attr-sort-item-name";
+        nameSpan.textContent = attrName;
+
+        const addBtn = document.createElement("button");
+        addBtn.type = "button";
+        addBtn.className = "attr-sort-item-btn attr-sort-item-btn-add";
+        addBtn.textContent = "+";
+        addBtn.title = "加入";
+        addBtn.addEventListener("click", () => {
+            moveToVisible(attrName);
+        });
+
+        li.appendChild(nameSpan);
+        li.appendChild(addBtn);
+        return li;
+    }
+
+    /** Render both lists based on current state */
+    function renderLists() {
+        // Visible list
+        visibleListEl.innerHTML = "";
+        if (visibleAttrOrder.length === 0) {
+            const emptyEl = document.createElement("li");
+            emptyEl.className = "attr-sort-list-empty";
+            emptyEl.textContent = "尚無已顯示的屬性";
+            visibleListEl.appendChild(emptyEl);
+        } else {
+            visibleAttrOrder.forEach(attr => {
+                visibleListEl.appendChild(createVisibleItem(attr));
+            });
+        }
+
+        // Available list — sorted by original index
+        availableListEl.innerHTML = "";
+        if (hiddenAttrs.length === 0) {
+            const emptyEl = document.createElement("li");
+            emptyEl.className = "attr-sort-list-empty";
+            emptyEl.textContent = "所有屬性皆已顯示";
+            availableListEl.appendChild(emptyEl);
+        } else {
+            const sorted = [...hiddenAttrs].sort(
+                (a, b) => getOriginalIndex(a) - getOriginalIndex(b)
+            );
+            sorted.forEach(attr => {
+                availableListEl.appendChild(createAvailableItem(attr));
+            });
+        }
+
+        // Reinitialize SortableJS
+        initSortable();
+    }
+
+    /** Move an attribute from available to visible (appended at bottom) */
+    function moveToVisible(attrName) {
+        hiddenAttrs = hiddenAttrs.filter(a => a !== attrName);
+        visibleAttrOrder.push(attrName);
+        renderLists();
+    }
+
+    /** Move an attribute from visible to available */
+    function moveToAvailable(attrName) {
+        visibleAttrOrder = visibleAttrOrder.filter(a => a !== attrName);
+        hiddenAttrs.push(attrName);
+        renderLists();
+    }
+
+    /** Initialize SortableJS on the visible list */
+    function initSortable() {
+        if (sortableInstance) {
+            sortableInstance.destroy();
+            sortableInstance = null;
+        }
+
+        if (visibleAttrOrder.length > 0) {
+            sortableInstance = new Sortable(visibleListEl, {
+                handle: ".attr-sort-handle",
+                animation: 180,
+                ghostClass: "sortable-ghost",
+                chosenClass: "sortable-chosen",
+                dragClass: "sortable-drag",
+                forceFallback: true, // Allows mouse wheel scrolling while dragging
+                fallbackClass: "sortable-fallback",
+                scroll: true,
+                scrollSensitivity: 60,
+                scrollSpeed: 15,
+                bubbleScroll: true,
+                onEnd: function () {
+                    // Sync visibleAttrOrder with DOM order
+                    const items = visibleListEl.querySelectorAll(".attr-sort-item");
+                    visibleAttrOrder = Array.from(items).map(
+                        item => item.getAttribute("data-attr")
+                    );
+                }
+            });
+        }
+    }
+
+    // ----- Modal Open / Close -----
+
+    function openModal() {
+        // Take snapshot
+        snapshotVisible = [...visibleAttrOrder];
+        snapshotHidden = [...hiddenAttrs];
+
+        renderLists();
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden"; // prevent background scroll
+    }
+
+    function closeModal() {
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+        if (sortableInstance) {
+            sortableInstance.destroy();
+            sortableInstance = null;
+        }
+    }
+
+    function cancelModal() {
+        // Rollback to snapshot
+        visibleAttrOrder = [...snapshotVisible];
+        hiddenAttrs = [...snapshotHidden];
+        closeModal();
+    }
+
+    function confirmModal() {
+        // Log the current visible order
+        console.log("已顯示屬性排序:", [...visibleAttrOrder]);
+
+        // Apply to the final attributes table
+        applyAttributeOrder();
+        closeModal();
+    }
+
+    /** Apply the current visibleAttrOrder to the finalAttributes table */
+    function applyAttributeOrder() {
+        const tbody = document.getElementById("finalAttributes");
+        if (!tbody) return;
+
+        // Build a map of attr name -> row element
+        const rowMap = {};
+        const rows = tbody.querySelectorAll("tr");
+        rows.forEach(row => {
+            const attrCell = row.querySelector("td[data-attribute]");
+            if (attrCell) {
+                const attrName = attrCell.getAttribute("data-attribute");
+                rowMap[attrName] = row;
+            }
+        });
+
+        // Hide all rows first
+        Object.values(rowMap).forEach(row => {
+            row.style.display = "none";
+        });
+
+        // Show and reorder only visible attributes
+        visibleAttrOrder.forEach(attr => {
+            const row = rowMap[attr];
+            if (row) {
+                row.style.display = "";
+                tbody.appendChild(row); // move to end (preserves new order)
+            }
+        });
+    }
+
+    // ----- Event Bindings -----
+
+    // Use event delegation for the gear button since addCompareButton may clone it
+    document.addEventListener("click", function (e) {
+        if (e.target.closest("#openAttrSortModal") || e.target.closest(".attr-sort-gear-btn")) {
+            openModal();
+        }
+    });
+
+    confirmBtn.addEventListener("click", confirmModal);
+    cancelBtn.addEventListener("click", cancelModal);
+    closeBtn.addEventListener("click", cancelModal);
+
+    // Click overlay background to cancel
+    overlay.addEventListener("click", function (e) {
+        if (e.target === overlay) {
+            cancelModal();
+        }
+    });
+
+    // ESC key to cancel
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && overlay.classList.contains("active")) {
+            cancelModal();
+        }
+    });
+})();

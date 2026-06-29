@@ -224,7 +224,7 @@
               <ul id="suitEffectsList" class="checkbox-list"></ul>
             </div>
             <div class="final-values">
-              <h3>最終數值</h3>
+              <h3>最終數值<button type="button" class="attr-sort-gear-btn" id="openAttrSortModal" title="自訂屬性顯示"><span class="gear-icon">⚙</span></button></h3>
               <table
                 id="finalValueTable"
                 class="table table-bordered table-striped"
@@ -459,6 +459,35 @@
       </div>
     </div>
 
+    <!-- Attribute Sort Modal -->
+    <div class="attr-sort-overlay" id="attrSortOverlay">
+      <div class="attr-sort-modal" id="attrSortModal">
+        <div class="attr-sort-modal-header">
+          <h4>自訂屬性顯示順序</h4>
+          <button type="button" class="attr-sort-close-btn" id="attrSortCloseBtn">&times;</button>
+        </div>
+        <div class="attr-sort-modal-body">
+          <div class="attr-sort-panel attr-sort-panel-visible">
+            <h5 class="attr-sort-panel-title">已顯示屬性</h5>
+            <div class="attr-sort-list-wrapper">
+              <ul class="attr-sort-list" id="attrSortVisibleList"></ul>
+            </div>
+          </div>
+          <div class="attr-sort-panel attr-sort-panel-available">
+            <h5 class="attr-sort-panel-title">待選屬性庫</h5>
+            <div class="attr-sort-list-wrapper">
+              <ul class="attr-sort-list" id="attrSortAvailableList"></ul>
+            </div>
+          </div>
+        </div>
+        <div class="attr-sort-modal-footer">
+          <button type="button" class="attr-sort-btn attr-sort-btn-cancel" id="attrSortCancelBtn">取消</button>
+          <button type="button" class="attr-sort-btn attr-sort-btn-confirm" id="attrSortConfirmBtn">確認</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
     <script src="./src/bootstrap.bundle.min.js"></script>
     <script src="./src/els.js"></script>
   </body>
