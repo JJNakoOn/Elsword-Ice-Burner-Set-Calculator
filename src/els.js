@@ -1401,12 +1401,13 @@ function openTab(tabId, clickedButton) {
     // Snapshot for cancel/rollback
     let snapshotVisible = [];
     let snapshotHidden = [];
+    let isConfirmed = false;
 
     // SortableJS instance
     let sortableInstance = null;
 
     // DOM references
-    const overlay = document.getElementById("attrSortOverlay");
+    const modalEl = document.getElementById("attrSortModal");
     const visibleListEl = document.getElementById("attrSortVisibleList");
     const availableListEl = document.getElementById("attrSortAvailableList");
     const confirmBtn = document.getElementById("attrSortConfirmBtn");
@@ -1423,28 +1424,34 @@ function openTab(tabId, clickedButton) {
     /** Create a list item for the "visible" panel */
     function createVisibleItem(attrName) {
         const li = document.createElement("li");
-        li.className = "attr-sort-item";
+        li.className = "list-group-item d-flex justify-content-between align-items-center bg-white border-bottom attr-sort-item";
         li.setAttribute("data-attr", attrName);
+        li.style.cursor = "grab";
+
+        const handleAndName = document.createElement("div");
+        handleAndName.className = "d-flex align-items-center";
 
         const handle = document.createElement("span");
-        handle.className = "attr-sort-handle";
+        handle.className = "attr-sort-handle me-3 text-muted fs-5";
         handle.textContent = "≡";
+        handle.style.cursor = "grab";
 
         const nameSpan = document.createElement("span");
-        nameSpan.className = "attr-sort-item-name";
         nameSpan.textContent = attrName;
+
+        handleAndName.appendChild(handle);
+        handleAndName.appendChild(nameSpan);
 
         const removeBtn = document.createElement("button");
         removeBtn.type = "button";
-        removeBtn.className = "attr-sort-item-btn attr-sort-item-btn-remove";
-        removeBtn.textContent = "−";
+        removeBtn.className = "btn btn-sm btn-outline-danger px-2 py-0 fs-5 lh-1";
+        removeBtn.innerHTML = "&minus;";
         removeBtn.title = "移除";
         removeBtn.addEventListener("click", () => {
             moveToAvailable(attrName);
         });
 
-        li.appendChild(handle);
-        li.appendChild(nameSpan);
+        li.appendChild(handleAndName);
         li.appendChild(removeBtn);
         return li;
     }
@@ -1452,17 +1459,16 @@ function openTab(tabId, clickedButton) {
     /** Create a list item for the "available" panel */
     function createAvailableItem(attrName) {
         const li = document.createElement("li");
-        li.className = "attr-sort-item";
+        li.className = "list-group-item d-flex justify-content-between align-items-center bg-white border-bottom attr-sort-item";
         li.setAttribute("data-attr", attrName);
 
         const nameSpan = document.createElement("span");
-        nameSpan.className = "attr-sort-item-name";
         nameSpan.textContent = attrName;
 
         const addBtn = document.createElement("button");
         addBtn.type = "button";
-        addBtn.className = "attr-sort-item-btn attr-sort-item-btn-add";
-        addBtn.textContent = "+";
+        addBtn.className = "btn btn-sm btn-outline-success px-2 py-0 fs-5 lh-1";
+        addBtn.innerHTML = "+";
         addBtn.title = "加入";
         addBtn.addEventListener("click", () => {
             moveToVisible(attrName);
@@ -1479,7 +1485,7 @@ function openTab(tabId, clickedButton) {
         visibleListEl.innerHTML = "";
         if (visibleAttrOrder.length === 0) {
             const emptyEl = document.createElement("li");
-            emptyEl.className = "attr-sort-list-empty";
+            emptyEl.className = "list-group-item text-muted text-center bg-transparent border-0 mt-2";
             emptyEl.textContent = "尚無已顯示的屬性";
             visibleListEl.appendChild(emptyEl);
         } else {
@@ -1492,7 +1498,7 @@ function openTab(tabId, clickedButton) {
         availableListEl.innerHTML = "";
         if (hiddenAttrs.length === 0) {
             const emptyEl = document.createElement("li");
-            emptyEl.className = "attr-sort-list-empty";
+            emptyEl.className = "list-group-item text-muted text-center bg-transparent border-0 mt-2";
             emptyEl.textContent = "所有屬性皆已顯示";
             availableListEl.appendChild(emptyEl);
         } else {
@@ -1555,29 +1561,34 @@ function openTab(tabId, clickedButton) {
 
     // ----- Modal Open / Close -----
 
+    // Bootstrap Modal instance
+    let bsAttrModal = null;
+    function getModalInstance() {
+        if (!bsAttrModal) {
+            bsAttrModal = new bootstrap.Modal(document.getElementById('attrSortModal'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+        }
+        return bsAttrModal;
+    }
+
     function openModal() {
         // Take snapshot
         snapshotVisible = [...visibleAttrOrder];
         snapshotHidden = [...hiddenAttrs];
+        isConfirmed = false;
 
         renderLists();
-        overlay.classList.add("active");
-        document.body.style.overflow = "hidden"; // prevent background scroll
+        getModalInstance().show();
     }
 
     function closeModal() {
-        overlay.classList.remove("active");
-        document.body.style.overflow = "";
-        if (sortableInstance) {
-            sortableInstance.destroy();
-            sortableInstance = null;
-        }
+        getModalInstance().hide();
     }
 
     function cancelModal() {
-        // Rollback to snapshot
-        visibleAttrOrder = [...snapshotVisible];
-        hiddenAttrs = [...snapshotHidden];
+        // Rollback to snapshot is now handled by hide.bs.modal listener
         closeModal();
     }
 
@@ -1586,6 +1597,7 @@ function openTab(tabId, clickedButton) {
         console.log("已顯示屬性排序:", [...visibleAttrOrder]);
 
         // Apply to the final attributes table
+        isConfirmed = true;
         applyAttributeOrder();
         closeModal();
     }
@@ -1634,17 +1646,15 @@ function openTab(tabId, clickedButton) {
     cancelBtn.addEventListener("click", cancelModal);
     closeBtn.addEventListener("click", cancelModal);
 
-    // Click overlay background to cancel
-    overlay.addEventListener("click", function (e) {
-        if (e.target === overlay) {
-            cancelModal();
+    // Bootstrap modal hidden event
+    modalEl.addEventListener("hidden.bs.modal", function () {
+        if (!isConfirmed) {
+            visibleAttrOrder = [...snapshotVisible];
+            hiddenAttrs = [...snapshotHidden];
         }
-    });
-
-    // ESC key to cancel
-    document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && overlay.classList.contains("active")) {
-            cancelModal();
+        if (sortableInstance) {
+            sortableInstance.destroy();
+            sortableInstance = null;
         }
     });
 
