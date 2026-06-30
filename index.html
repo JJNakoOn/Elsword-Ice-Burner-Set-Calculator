@@ -459,30 +459,34 @@
       </div>
     </div>
 
-    <!-- Attribute Sort Modal -->
-    <div class="attr-sort-overlay" id="attrSortOverlay">
-      <div class="attr-sort-modal" id="attrSortModal">
-        <div class="attr-sort-modal-header">
-          <h4>自訂屬性顯示順序</h4>
-          <button type="button" class="attr-sort-close-btn" id="attrSortCloseBtn">&times;</button>
-        </div>
-        <div class="attr-sort-modal-body">
-          <div class="attr-sort-panel attr-sort-panel-visible">
-            <h5 class="attr-sort-panel-title">已顯示屬性</h5>
-            <div class="attr-sort-list-wrapper">
-              <ul class="attr-sort-list" id="attrSortVisibleList"></ul>
+    <!-- Attribute Sort Modal (Bootstrap) -->
+    <div class="modal fade" id="attrSortModal" tabindex="-1" aria-labelledby="attrSortModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="attrSortModalLabel">自訂屬性顯示順序</h5>
+            <button type="button" class="btn-close" id="attrSortCloseBtn" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6 mb-3 mb-md-0">
+                <h5 class="text-center mb-3">已顯示屬性</h5>
+                <div class="border rounded p-2 bg-light" style="height: 350px; overflow-y: auto;">
+                  <ul class="list-group list-group-flush" id="attrSortVisibleList"></ul>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <h5 class="text-center mb-3">待選屬性庫</h5>
+                <div class="border rounded p-2 bg-light" style="height: 350px; overflow-y: auto;">
+                  <ul class="list-group list-group-flush" id="attrSortAvailableList"></ul>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="attr-sort-panel attr-sort-panel-available">
-            <h5 class="attr-sort-panel-title">待選屬性庫</h5>
-            <div class="attr-sort-list-wrapper">
-              <ul class="attr-sort-list" id="attrSortAvailableList"></ul>
-            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="attrSortCancelBtn">取消</button>
+            <button type="button" class="btn btn-primary" id="attrSortConfirmBtn">確認</button>
           </div>
-        </div>
-        <div class="attr-sort-modal-footer">
-          <button type="button" class="attr-sort-btn attr-sort-btn-cancel" id="attrSortCancelBtn">取消</button>
-          <button type="button" class="attr-sort-btn attr-sort-btn-confirm" id="attrSortConfirmBtn">確認</button>
         </div>
       </div>
     </div>
