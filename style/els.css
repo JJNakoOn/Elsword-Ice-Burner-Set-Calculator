@@ -489,3 +489,258 @@ label {
   background-color: #eaf4fd !important;
   z-index: 1000;
 }
+
+/* ============================================
+   RWD: Tablet breakpoint
+   ============================================ */
+@media (max-width: 1024px) {
+  .setup-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ============================================
+   RWD: Mobile breakpoint
+   ============================================ */
+@media (max-width: 768px) {
+  /* --- Global spacing & typography --- */
+  body {
+    padding: 10px 6px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  header .introduction {
+    max-width: 100%;
+  }
+
+  header .introduction p {
+    font-size: 0.9rem;
+  }
+
+  .container {
+    max-width: 100%;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .tab-content {
+    padding: 12px 10px;
+  }
+
+  label {
+    font-size: 1rem;
+  }
+
+  /* --- Nav tabs --- */
+  .nav-tabs .nav-link {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+
+  /* --- Import Tab: header & buttons --- */
+  #availableEquipmentHeader {
+    gap: 8px;
+  }
+
+  #availableEquipmentHeader h3 {
+    font-size: 1.1rem;
+  }
+
+  #availableEquipmentHeader .button-group {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  #availableEquipmentHeader .button-group .btn {
+    flex: 1;
+    font-size: 0.85rem;
+    padding: 6px 8px;
+  }
+
+  .search-container {
+    max-width: 100%;
+  }
+
+  /* --- Import Tab: pagination --- */
+  #pagination .btn {
+    margin: 0 2px;
+    padding: 4px 10px;
+    font-size: 0.85rem;
+  }
+
+  /* --- Setup Tab: grid layout --- */
+  .setup-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* --- Setup Tab: section titles --- */
+  .equipment-selection h3,
+  .ice-options h3,
+  .suit-effects h3,
+  .final-values h3 {
+    font-size: 1.15rem;
+  }
+
+  /* --- Setup Tab: equipment parts grid --- */
+  .equipment-part {
+    height: 60px;
+    font-size: 0.85rem;
+  }
+
+  /* --- Setup Tab: suit effects --- */
+  .suit-effect-content {
+    width: 100%;
+  }
+
+  .checkbox-list-item {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  /* --- Setup Tab: equipment sections max-height --- */
+  .equipment-selection,
+  .ice-options,
+  .suit-effects,
+  .final-values {
+    max-height: none;
+    padding: 10px 8px;
+  }
+
+  /* --- Setup Tab: title with reset --- */
+  .title-with-reset {
+    gap: 10px;
+  }
+
+  /* --- Final Values: table --- */
+  #finalValueTable {
+    font-size: 0.85rem;
+  }
+
+  #finalValueTable th,
+  #finalValueTable td {
+    padding: 6px 4px;
+  }
+
+  /* --- Final Values: compare button container --- */
+  .title-with-compare {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .title-with-compare .btn-group {
+    width: 100%;
+    display: flex;
+  }
+
+  .title-with-compare .btn-group .btn {
+    flex: 1;
+  }
+
+  /* --- Toggle switch --- */
+  .toggle-switch .form-check-label h5 {
+    font-size: 1rem;
+  }
+
+  /* --- Changelog --- */
+  .changelog-container {
+    max-height: none;
+  }
+
+  .changelog-date {
+    font-size: 1rem;
+  }
+
+  /* --- Footer --- */
+  footer p {
+    font-size: 0.85rem;
+  }
+
+  /* --- Compare Build modal equipment parts --- */
+  #compareBuildConfirmModal .equipment-parts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #compareBuildConfirmModal .equipment-part {
+    height: 55px;
+    font-size: 0.8rem;
+  }
+
+  /* --- Mobile Screenshot Mode (Spec Card) --- */
+  .setup-container.screenshot-mode {
+    grid-template-columns: 1.3fr 1fr;
+    grid-template-areas: 
+      "equip final"
+      "equip special"
+      "watermark watermark";
+    gap: 8px;
+    padding: 10px;
+    background: linear-gradient(135deg, #ffffff 0%, #f4f9fd 100%);
+    border: 2px solid #b4cff8;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .setup-container.screenshot-mode .equipment-selection {
+    grid-area: equip;
+    padding: 0;
+  }
+
+  .setup-container.screenshot-mode .final-values:not(#specialFXRight) {
+    grid-area: final;
+    padding: 0;
+  }
+
+  .setup-container.screenshot-mode #specialFXRight {
+    grid-area: special;
+    padding: 0;
+    margin-top: 4px;
+  }
+
+  .setup-container.screenshot-mode .screenshot-watermark {
+    display: block !important;
+    grid-area: watermark;
+    border-top: 1px dashed #dee2e6;
+    padding-top: 6px;
+    margin-top: 4px;
+  }
+
+  /* Screenshot mode compact sizing overrides */
+  .setup-container.screenshot-mode .equipment-part {
+    height: 52px;
+    font-size: 0.75rem;
+    border-radius: 6px;
+  }
+
+  .setup-container.screenshot-mode .equipment-parts {
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .setup-container.screenshot-mode h3 {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+
+  .setup-container.screenshot-mode #finalValueTable {
+    font-size: 0.75rem;
+    margin-bottom: 0;
+  }
+
+  .setup-container.screenshot-mode #finalValueTable th,
+  .setup-container.screenshot-mode #finalValueTable td {
+    padding: 4px 2px;
+  }
+
+  .setup-container.screenshot-mode #specialEffectsListRight {
+    font-size: 0.75rem;
+    padding-left: 14px;
+    margin-bottom: 0;
+  }
+}
+
+
