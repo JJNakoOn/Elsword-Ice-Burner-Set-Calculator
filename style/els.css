@@ -669,5 +669,78 @@ label {
     height: 55px;
     font-size: 0.8rem;
   }
+
+  /* --- Mobile Screenshot Mode (Spec Card) --- */
+  .setup-container.screenshot-mode {
+    grid-template-columns: 1.3fr 1fr;
+    grid-template-areas: 
+      "equip final"
+      "equip special"
+      "watermark watermark";
+    gap: 8px;
+    padding: 10px;
+    background: linear-gradient(135deg, #ffffff 0%, #f4f9fd 100%);
+    border: 2px solid #b4cff8;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .setup-container.screenshot-mode .equipment-selection {
+    grid-area: equip;
+    padding: 0;
+  }
+
+  .setup-container.screenshot-mode .final-values:not(#specialFXRight) {
+    grid-area: final;
+    padding: 0;
+  }
+
+  .setup-container.screenshot-mode #specialFXRight {
+    grid-area: special;
+    padding: 0;
+    margin-top: 4px;
+  }
+
+  .setup-container.screenshot-mode .screenshot-watermark {
+    display: block !important;
+    grid-area: watermark;
+    border-top: 1px dashed #dee2e6;
+    padding-top: 6px;
+    margin-top: 4px;
+  }
+
+  /* Screenshot mode compact sizing overrides */
+  .setup-container.screenshot-mode .equipment-part {
+    height: 52px;
+    font-size: 0.75rem;
+    border-radius: 6px;
+  }
+
+  .setup-container.screenshot-mode .equipment-parts {
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .setup-container.screenshot-mode h3 {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+
+  .setup-container.screenshot-mode #finalValueTable {
+    font-size: 0.75rem;
+    margin-bottom: 0;
+  }
+
+  .setup-container.screenshot-mode #finalValueTable th,
+  .setup-container.screenshot-mode #finalValueTable td {
+    padding: 4px 2px;
+  }
+
+  .setup-container.screenshot-mode #specialEffectsListRight {
+    font-size: 0.75rem;
+    padding-left: 14px;
+    margin-bottom: 0;
+  }
 }
+
 

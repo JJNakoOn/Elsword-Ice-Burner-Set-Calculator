@@ -76,6 +76,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                 indicator.remove();
             });
         }
+
+        const setupContainer = document.querySelector(".setup-container");
+        if (setupContainer) {
+            if (toggleSections.checked) {
+                setupContainer.classList.add("screenshot-mode");
+            } else {
+                setupContainer.classList.remove("screenshot-mode");
+            }
+        }
     });
 
     iceOptionsSection.style.display = toggleSections.checked
