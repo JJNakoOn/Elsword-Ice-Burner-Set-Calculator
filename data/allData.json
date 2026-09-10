@@ -576,12 +576,12 @@
                             "value": 30
                         },
                         {
-                            "attribute": "適應力%",
-                            "value": 2
+                            "attribute": "100%血殺%",
+                            "value": 3
                         },
                         {
-                            "attribute": "兩極化%",
-                            "value": 2
+                            "attribute": "主動/強韌/強烈/超越技傷%",
+                            "value": 3
                         }
                     ]
                 }
