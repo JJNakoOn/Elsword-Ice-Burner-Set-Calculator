@@ -491,6 +491,128 @@
         "suitEffects": []
     },
     {
+        "set": "幻影面紗(暫)",
+        "link": "https://discord.com/channels/877847187143426069/1488383418776551596/1547467393586958396",
+        "parts": [
+            {
+                "name": "幻影面紗:武器",
+                "part": "weapon",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 200
+                        },
+                        {
+                            "attribute": "強者%",
+                            "value": 5
+                        },
+                        {
+                            "attribute": "排熱%",
+                            "value": 5
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "幻影面紗:支援",
+                "part": "support",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 30
+                        },
+                        {
+                            "attribute": "適應力%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "兩極化%",
+                            "value": 2
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "幻影面紗:臉上",
+                "part": "faceTop",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 30
+                        },
+                        {
+                            "attribute": "流血%",
+                            "value": 2
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "幻影面紗:飾品(上衣)",
+                "part": "accessoryUpper",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 30
+                        },
+                        {
+                            "attribute": "適應力%",
+                            "value": 2
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "幻影面紗:戒指",
+                "part": "ring",
+                "attributes": {
+                    "attrList": [
+                        {
+                            "attribute": "雙攻+",
+                            "value": 30
+                        },
+                        {
+                            "attribute": "適應力%",
+                            "value": 2
+                        },
+                        {
+                            "attribute": "兩極化%",
+                            "value": 2
+                        }
+                    ]
+                }
+            }
+        ],
+        "suitEffects": [
+            {
+                "pieces": 2,
+                "effects": [
+                    {
+                        "attribute": "流血%",
+                        "value": 10
+                    }
+                ]
+            },
+            {
+                "pieces": 3,
+                "effects": [
+                    {
+                        "attribute": "100%血殺%",
+                        "value": 10
+                    },
+                    {
+                        "attribute": "-技能冷卻%",
+                        "value": 5
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "set": "真我假面(暫)",
         "link": "https://elwiki.net/w/Veritas_Persona",
         "parts": [
@@ -625,11 +747,11 @@
         ]
     },
     {
-        "set": "花郎戀歌(暫)",
-        "link": "https://elwiki.net/w/Ballad_of_Hwarang",
+        "set": "紫霄花郎",
+        "link": "https://elwiki.net/w/Hwarang%27s_Serenade",
         "parts": [
             {
-                "name": "花郎戀歌:武器",
+                "name": "紫霄花郎:武器",
                 "part": "weapon",
                 "attributes": {
                     "attrList": [
@@ -645,7 +767,7 @@
                 }
             },
             {
-                "name": "花郎戀歌:臉中",
+                "name": "紫霄花郎:悲戀協奏",
                 "part": "faceMiddle",
                 "attributes": {
                     "attrList": [
@@ -665,7 +787,7 @@
                 }
             },
             {
-                "name": "花郎戀歌:飾品(上衣)",
+                "name": "紫霄花郎:花郎之羽衣",
                 "part": "accessoryUpper",
                 "attributes": {
                     "attrList": [
@@ -681,7 +803,7 @@
                 }
             },
             {
-                "name": "花郎戀歌:手臂",
+                "name": "紫霄花郎:忠義手甲",
                 "part": "arm",
                 "attributes": {
                     "attrList": [
@@ -701,7 +823,7 @@
                 }
             },
             {
-                "name": "花郎戀歌:項鍊",
+                "name": "紫霄花郎:緣分繩結",
                 "part": "necklace",
                 "attributes": {
                     "attrList": [

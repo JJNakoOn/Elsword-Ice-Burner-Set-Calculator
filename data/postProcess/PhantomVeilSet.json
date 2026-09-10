@@ -1,9 +1,9 @@
 {
-    "set": "紫霄花郎",
-    "link": "https://elwiki.net/w/Hwarang%27s_Serenade",
+    "set": "幻影面紗(暫)",
+    "link": "https://discord.com/channels/877847187143426069/1488383418776551596/1547467393586958396",
     "parts": [
         {
-            "name": "紫霄花郎:武器",
+            "name": "幻影面紗:武器",
             "part": "weapon",
             "attributes": {
                 "attrList": [
@@ -12,71 +12,19 @@
                         "value": 200
                     },
                     {
-                        "attribute": "100%血殺%",
+                        "attribute": "強者%",
+                        "value": 5
+                    },
+                    {
+                        "attribute": "排熱%",
                         "value": 5
                     }
                 ]
             }
         },
         {
-            "name": "紫霄花郎:悲戀協奏",
-            "part": "faceMiddle",
-            "attributes": {
-                "attrList": [
-                    {
-                        "attribute": "雙攻+",
-                        "value": 30
-                    },
-                    {
-                        "attribute": "100%血殺%",
-                        "value": 2
-                    },
-                    {
-                        "attribute": "-MP消耗量%",
-                        "value": 5
-                    }
-                ]
-            }
-        },
-        {
-            "name": "紫霄花郎:花郎之羽衣",
-            "part": "accessoryUpper",
-            "attributes": {
-                "attrList": [
-                    {
-                        "attribute": "雙攻+",
-                        "value": 50
-                    },
-                    {
-                        "attribute": "流血%",
-                        "value": 2
-                    }
-                ]
-            }
-        },
-        {
-            "name": "紫霄花郎:忠義手甲",
-            "part": "arm",
-            "attributes": {
-                "attrList": [
-                    {
-                        "attribute": "雙攻+",
-                        "value": 30
-                    },
-                    {
-                        "attribute": "兩極化%",
-                        "value": 1
-                    },
-                    {
-                        "attribute": "-技能冷卻%",
-                        "value": 5
-                    }
-                ]
-            }
-        },
-        {
-            "name": "紫霄花郎:緣分繩結",
-            "part": "necklace",
+            "name": "幻影面紗:支援",
+            "part": "support",
             "attributes": {
                 "attrList": [
                     {
@@ -88,12 +36,60 @@
                         "value": 2
                     },
                     {
-                        "attribute": "雙攻%",
+                        "attribute": "兩極化%",
+                        "value": 2
+                    }
+                ]
+            }
+        },
+        {
+            "name": "幻影面紗:臉上",
+            "part": "faceTop",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "流血%",
+                        "value": 2
+                    }
+                ]
+            }
+        },
+        {
+            "name": "幻影面紗:飾品(上衣)",
+            "part": "accessoryUpper",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "適應力%",
+                        "value": 2
+                    }
+                ]
+            }
+        },
+        {
+            "name": "幻影面紗:戒指",
+            "part": "ring",
+            "attributes": {
+                "attrList": [
+                    {
+                        "attribute": "雙攻+",
+                        "value": 30
+                    },
+                    {
+                        "attribute": "適應力%",
                         "value": 2
                     },
                     {
-                        "attribute": "攻擊MP回復%",
-                        "value": 14
+                        "attribute": "兩極化%",
+                        "value": 2
                     }
                 ]
             }
@@ -105,7 +101,7 @@
             "effects": [
                 {
                     "attribute": "流血%",
-                    "value": 5
+                    "value": 10
                 }
             ]
         },
@@ -114,10 +110,10 @@
             "effects": [
                 {
                     "attribute": "100%血殺%",
-                    "value": 6
+                    "value": 10
                 },
                 {
-                    "attribute": "技能傷害%",
+                    "attribute": "-技能冷卻%",
                     "value": 5
                 }
             ]
